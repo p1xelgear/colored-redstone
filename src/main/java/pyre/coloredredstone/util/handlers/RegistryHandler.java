@@ -1,6 +1,7 @@
 package pyre.coloredredstone.util.handlers;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.config.Config;
@@ -9,8 +10,11 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import pyre.coloredredstone.blocks.BlockColoredRedstoneWire;
+import pyre.coloredredstone.blocks.TileEntityColoredRedstoneWire;
 import pyre.coloredredstone.init.ModBlocks;
 import pyre.coloredredstone.init.ModItems;
 import pyre.coloredredstone.util.IHasModel;
@@ -54,8 +58,11 @@ public class RegistryHandler {
 
     @SideOnly(Side.CLIENT)
     public static void registerColors() {
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) ->
+                BlockColoredRedstoneWire.colorMultiplier(state.getValue(BlockColoredRedstoneWire.POWER), state.getValue(BlockColoredRedstoneWire.COLOR)), ModBlocks.COLORED_REDSTONE_WIRE);
     }
 
     public static void registerTileEntities() {
+        GameRegistry.registerTileEntity(TileEntityColoredRedstoneWire.class, Reference.MOD_ID + ":coloredRedstoneWire");
     }
 }
