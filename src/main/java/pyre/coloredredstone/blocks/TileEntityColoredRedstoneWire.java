@@ -1,6 +1,5 @@
 package pyre.coloredredstone.blocks;
 
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -13,8 +12,8 @@ public class TileEntityColoredRedstoneWire extends TileEntity {
 
     private EnumDyeColor color;
 
-    public TileEntityColoredRedstoneWire(IBlockState state) {
-        this.color = state.getValue(BlockColoredRedstoneWire.COLOR);;
+    public TileEntityColoredRedstoneWire() {
+        this.color = EnumDyeColor.RED;
     }
 
     @Nullable
@@ -76,5 +75,6 @@ public class TileEntityColoredRedstoneWire extends TileEntity {
 
     public void setColor(EnumDyeColor color) {
         this.color = color;
+        this.markDirty();
     }
 }
