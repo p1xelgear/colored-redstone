@@ -1,0 +1,26 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "builtin/generated",
+    "transform": "forge:default-item"
+  },
+  "variants": {
+    "color": {
+      "0": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_black"} },
+      "1": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_green"} },
+      "2": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_brown"} },
+      "3": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_blue"} },
+      "4": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_purple"} },
+      "5": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_cyan"} },
+      "6": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_light_gray"} },
+      "7": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_gray"} },
+      "8": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_pink"} },
+      "9": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_lime"} },
+      "10": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_yellow"} },
+      "11": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_light_blue"} },
+      "12": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_magenta"} },
+      "13": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_orange"} },
+      "14": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_white"} }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+#################
+##### ITEMS #####
+#################
+
+item.colored_redstone_dust.name=Colored Dust
+
+############################
+##### GENERIC TOOLTIPS #####
+############################
+
+coloredredstone.tooltip.waterproof=Waterproof!
