@@ -87,8 +87,13 @@ public class ItemColoredRedstoneDust extends ItemBase {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        if (stack.getMetadata() == 4) {
-            tooltip.add(EnumColor.byMetadata(4).getChatColor() + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.waterproof"));
+        EnumColor color = EnumColor.byMetadata(stack.getMetadata());
+        switch (color){
+            case BLUE:
+                tooltip.add(color.getChatColor() + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.waterproof"));
+                break;
+            case WHITE:
+                tooltip.add(color.getChatColor() + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.despawnproof"));
         }
     }
 }

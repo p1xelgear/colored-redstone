@@ -9,3 +9,4 @@ item.colored_redstone_dust.name=Colored Redstone Dust
 ############################
 
 coloredredstone.tooltip.waterproof=Waterproof!
+coloredredstone.tooltip.despawnproof=Despawn-proof!
