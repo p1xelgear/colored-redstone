@@ -63,6 +63,6 @@ public class RegistryHandler {
     }
 
     public static void registerTileEntities() {
-        GameRegistry.registerTileEntity(TileEntityColoredRedstoneWire.class, Reference.MOD_ID + ":coloredRedstoneWire");
+        GameRegistry.registerTileEntity(TileEntityColoredRedstoneWire.class, ModBlocks.COLORED_REDSTONE_WIRE.getRegistryName());
     }
 }

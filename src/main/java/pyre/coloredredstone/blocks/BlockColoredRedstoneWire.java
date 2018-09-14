@@ -5,13 +5,11 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.EnumDyeColor;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -19,18 +17,22 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pyre.coloredredstone.init.ModBlocks;
+import pyre.coloredredstone.init.ModItems;
 import pyre.coloredredstone.init.ModMaterials;
+import pyre.coloredredstone.util.EnumColor;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
+import static pyre.coloredredstone.util.EnumColor.RED;
+
 public class BlockColoredRedstoneWire extends BlockRedstoneWire {
 
-    public static final PropertyEnum<EnumDyeColor> COLOR = PropertyEnum.create("color", EnumDyeColor.class);
+    public static final PropertyEnum<EnumColor> COLOR = PropertyEnum.create("color", EnumColor.class);
 
     public BlockColoredRedstoneWire() {
         super();
-        this.setDefaultState(super.getDefaultState().withProperty(COLOR, EnumDyeColor.RED));
+        this.setDefaultState(super.getDefaultState().withProperty(COLOR, RED));
 
         ModBlocks.BLOCKS.add(this);
     }
@@ -45,11 +47,15 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire {
     {
         state = super.getActualState(state, worldIn, pos);
 
-        EnumDyeColor color = EnumDyeColor.RED;
+        EnumColor color = state.getValue(COLOR);
 
         TileEntity tileentity = worldIn instanceof ChunkCache ? ((ChunkCache)worldIn).getTileEntity(pos, Chunk.EnumCreateEntityType.CHECK) : worldIn.getTileEntity(pos);
         if (tileentity instanceof TileEntityColoredRedstoneWire){
             color = ((TileEntityColoredRedstoneWire)tileentity).getColor();
+            if (color == null){
+                color = state.getValue(COLOR);
+                ((TileEntityColoredRedstoneWire)tileentity).setColor(color);
+            }
         }
         state = state.withProperty(COLOR, color);
 
@@ -71,59 +77,34 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire {
 
     @Override
     public Material getMaterial(IBlockState state) {
-        EnumDyeColor color = state.getValue(COLOR);
-        if (color == EnumDyeColor.BLUE){
+        EnumColor color = state.getValue(COLOR);
+        if (color == EnumColor.BLUE){
             return ModMaterials.CIRCUITS_WATERPROOF;
         }
         return super.getMaterial(state);
     }
 
-    @SideOnly(Side.CLIENT)
-    public static int colorMultiplier(int power, EnumDyeColor color)
-    {
-        float powerMultiplier = (float)power / 15.0F;
-        float red, green, blue;
+    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
 
-        if (color == EnumDyeColor.RED) {
-            red = powerMultiplier * 0.6F + 0.4F;
-        } else {
-            red = powerMultiplier * powerMultiplier * 0.65F - 0.6F;
+        int metadata = state.getValue(COLOR).getMetadata();
+        if (metadata != 1){
+            return new ItemStack(ModItems.COLORED_REDSTONE_DUST, 1, metadata);
         }
-
-        green = powerMultiplier * powerMultiplier * 0.7F - 0.5F;
-
-        if (color == EnumDyeColor.RED) {
-            blue = powerMultiplier * powerMultiplier * 0.6F - 0.7F;
-        } else {
-            blue = powerMultiplier * 0.6F + 0.45F;
-        }
-
-        if (power == 0)
-        {
-            if (color == EnumDyeColor.RED) {
-                red = 0.3F;
-            } else {
-                blue = 0.35F;
-            }
-        }
-
-        if (green < 0.0F)
-        {
-            green = 0.0F;
-        }
-
-        if (blue < 0.0F)
-        {
-            blue = 0.0F;
-        }
-
-        int i = MathHelper.clamp((int)(red * 255.0F), 0, 255);
-        int j = MathHelper.clamp((int)(green * 255.0F), 0, 255);
-        int k = MathHelper.clamp((int)(blue * 255.0F), 0, 255);
-        return -16777216 | i << 16 | j << 8 | k;
+        return new ItemStack(Items.REDSTONE);
     }
 
     @SideOnly(Side.CLIENT)
+    public static int colorMultiplier(int power, EnumColor color) {
+
+        int red = color.getShades()[power].getR();
+        int green = color.getShades()[power].getG();
+        int blue = color.getShades()[power].getB();
+
+        return -16777216 | red << 16 | green << 8 | blue;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
     {
         int i = stateIn.getValue(POWER);

@@ -1,41 +1,40 @@
 package pyre.coloredredstone.blocks;
 
-import net.minecraft.item.EnumDyeColor;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import pyre.coloredredstone.util.EnumColor;
 
 import javax.annotation.Nullable;
 
 public class TileEntityColoredRedstoneWire extends TileEntity {
 
-    private EnumDyeColor color;
+    private EnumColor color;
 
     public TileEntityColoredRedstoneWire() {
-        this.color = EnumDyeColor.RED;
     }
 
     @Nullable
     @Override
     public SPacketUpdateTileEntity getUpdatePacket() {
-        NBTTagCompound nbtTagCompound = new NBTTagCompound();
-        writeToNBT(nbtTagCompound);
         int metadata = getBlockMetadata();
-        return new SPacketUpdateTileEntity(this.pos, metadata, nbtTagCompound);
+        return new SPacketUpdateTileEntity(this.pos, metadata, writeToNBT(new NBTTagCompound()));
     }
 
     @Override
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
+        super.onDataPacket(net, pkt);
         readFromNBT(pkt.getNbtCompound());
     }
 
     @Override
     public NBTTagCompound getUpdateTag()
     {
-        NBTTagCompound nbtTagCompound = new NBTTagCompound();
-        writeToNBT(nbtTagCompound);
-        return nbtTagCompound;
+        return writeToNBT( new NBTTagCompound());
     }
 
     @Override
@@ -48,7 +47,10 @@ public class TileEntityColoredRedstoneWire extends TileEntity {
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
 
-        compound.setInteger("color", color.getMetadata());
+        if (this.color != null){
+            int metadata = this.color.getMetadata();
+            compound.setInteger("color", metadata);
+        }
 
         return compound;
     }
@@ -57,23 +59,24 @@ public class TileEntityColoredRedstoneWire extends TileEntity {
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
 
-        EnumDyeColor color = EnumDyeColor.RED;
-
         if (compound.hasKey("color")){
             int colorMeta = compound.getInteger("color");
             if (colorMeta >= 0 && colorMeta <= 15){
-                color = EnumDyeColor.byMetadata(colorMeta);
+                this.color = EnumColor.byMetadata(colorMeta);
             }
         }
-
-        this.color = color;
     }
 
-    public EnumDyeColor getColor() {
+    @Override
+    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
+        return oldState.getBlock() != newState.getBlock();
+    }
+
+    public EnumColor getColor() {
         return color;
     }
 
-    public void setColor(EnumDyeColor color) {
+    public void setColor(EnumColor color) {
         this.color = color;
         this.markDirty();
     }
