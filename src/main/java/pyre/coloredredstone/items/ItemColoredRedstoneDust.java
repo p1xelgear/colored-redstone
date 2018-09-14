@@ -2,7 +2,6 @@ package pyre.coloredredstone.items;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -18,6 +17,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import pyre.coloredredstone.ColoredRedstone;
 import pyre.coloredredstone.blocks.BlockColoredRedstoneWire;
 import pyre.coloredredstone.init.ModBlocks;
 import pyre.coloredredstone.util.EnumColor;
@@ -74,11 +74,21 @@ public class ItemColoredRedstoneDust extends ItemBase {
         return damage;
     }
 
+    @Override
+    public String getItemStackDisplayName(ItemStack stack) {
+        String result = ColoredRedstone.proxy.localize(this.getUnlocalizedName(stack) + ".name");
+        int metadata = stack.getMetadata();
+        EnumColor color = EnumColor.byMetadata(metadata);
+        result += " (" + color.getChatColor() + color.getDisplayName() + TextFormatting.WHITE +")";
+
+        return result;
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         if (stack.getMetadata() == 4) {
-            tooltip.add(TextFormatting.AQUA + I18n.format(Reference.MOD_ID + ".tooltip.waterproof"));
+            tooltip.add(EnumColor.byMetadata(4).getChatColor() + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.waterproof"));
         }
     }
 }
