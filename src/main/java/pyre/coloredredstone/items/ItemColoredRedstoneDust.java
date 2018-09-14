@@ -2,7 +2,6 @@ package pyre.coloredredstone.items;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -17,7 +16,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pyre.coloredredstone.blocks.BlockColoredRedstoneWire;
@@ -63,58 +61,11 @@ public class ItemColoredRedstoneDust extends ItemBase {
     }
 
     @Override
-    public void registerModels() {
-        ModelResourceLocation blackColoredRedstoneDustModel = new ModelResourceLocation(getRegistryName(), "color=0");
-        ModelResourceLocation greenColoredRedstoneDustModel = new ModelResourceLocation(getRegistryName(), "color=2");
-        ModelResourceLocation brownColoredRedstoneDustModel = new ModelResourceLocation(getRegistryName(), "color=3");
-        ModelResourceLocation blueColoredRedstoneDustModel = new ModelResourceLocation(getRegistryName(), "color=4");
-        ModelResourceLocation purpleColoredRedstoneDustModel = new ModelResourceLocation(getRegistryName(), "color=5");
-        ModelResourceLocation cyanColoredRedstoneDustModel = new ModelResourceLocation(getRegistryName(), "color=6");
-        ModelResourceLocation lightGrayColoredRedstoneDustModel = new ModelResourceLocation(getRegistryName(), "color=7");
-        ModelResourceLocation grayColoredRedstoneDustModel = new ModelResourceLocation(getRegistryName(), "color=8");
-        ModelResourceLocation pinkColoredRedstoneDustModel = new ModelResourceLocation(getRegistryName(), "color=9");
-        ModelResourceLocation limeColoredRedstoneDustModel = new ModelResourceLocation(getRegistryName(), "color=10");
-        ModelResourceLocation yellowColoredRedstoneDustModel = new ModelResourceLocation(getRegistryName(), "color=11");
-        ModelResourceLocation lightBlueColoredRedstoneDustModel = new ModelResourceLocation(getRegistryName(), "color=12");
-        ModelResourceLocation magentaColoredRedstoneDustModel = new ModelResourceLocation(getRegistryName(), "color=13");
-        ModelResourceLocation orangeColoredRedstoneDustModel = new ModelResourceLocation(getRegistryName(), "color=14");
-        ModelResourceLocation whiteColoredRedstoneDustModel = new ModelResourceLocation(getRegistryName(), "color=15");
-
-        ModelLoader.setCustomModelResourceLocation(this, 0, blackColoredRedstoneDustModel);
-        ModelLoader.setCustomModelResourceLocation(this, 2, greenColoredRedstoneDustModel);
-        ModelLoader.setCustomModelResourceLocation(this, 3, brownColoredRedstoneDustModel);
-        ModelLoader.setCustomModelResourceLocation(this, 4, blueColoredRedstoneDustModel);
-        ModelLoader.setCustomModelResourceLocation(this, 5, purpleColoredRedstoneDustModel);
-        ModelLoader.setCustomModelResourceLocation(this, 6, cyanColoredRedstoneDustModel);
-        ModelLoader.setCustomModelResourceLocation(this, 7, lightGrayColoredRedstoneDustModel);
-        ModelLoader.setCustomModelResourceLocation(this, 8, grayColoredRedstoneDustModel);
-        ModelLoader.setCustomModelResourceLocation(this, 9, pinkColoredRedstoneDustModel);
-        ModelLoader.setCustomModelResourceLocation(this, 10, limeColoredRedstoneDustModel);
-        ModelLoader.setCustomModelResourceLocation(this, 11, yellowColoredRedstoneDustModel);
-        ModelLoader.setCustomModelResourceLocation(this, 12, lightBlueColoredRedstoneDustModel);
-        ModelLoader.setCustomModelResourceLocation(this, 13, magentaColoredRedstoneDustModel);
-        ModelLoader.setCustomModelResourceLocation(this, 14, orangeColoredRedstoneDustModel);
-        ModelLoader.setCustomModelResourceLocation(this, 15, whiteColoredRedstoneDustModel);
-    }
-
-    @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-        if (tab == CreativeTabs.REDSTONE){
-            items.add(new ItemStack(this, 1, 0));
-            items.add(new ItemStack(this, 1, 2));
-            items.add(new ItemStack(this, 1, 3));
-            items.add(new ItemStack(this, 1, 4));
-            items.add(new ItemStack(this, 1, 5));
-            items.add(new ItemStack(this, 1, 6));
-            items.add(new ItemStack(this, 1, 7));
-            items.add(new ItemStack(this, 1, 8));
-            items.add(new ItemStack(this, 1, 9));
-            items.add(new ItemStack(this, 1, 10));
-            items.add(new ItemStack(this, 1, 11));
-            items.add(new ItemStack(this, 1, 12));
-            items.add(new ItemStack(this, 1, 13));
-            items.add(new ItemStack(this, 1, 14));
-            items.add(new ItemStack(this, 1, 15));
+        for (int i = 0; i < EnumColor.values().length; i++) {
+            if (i != 1){ //skip RED
+                items.add(new ItemStack(this, 1, i));
+            }
         }
     }
 
