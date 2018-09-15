@@ -5,6 +5,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -19,6 +20,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pyre.coloredredstone.ColoredRedstone;
 import pyre.coloredredstone.blocks.BlockColoredRedstoneWire;
+import pyre.coloredredstone.entities.EntityItemColored;
 import pyre.coloredredstone.init.ModBlocks;
 import pyre.coloredredstone.util.EnumColor;
 import pyre.coloredredstone.util.Reference;
@@ -92,8 +94,38 @@ public class ItemColoredRedstoneDust extends ItemBase {
             case BLUE:
                 tooltip.add(color.getChatColor() + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.waterproof"));
                 break;
+            case GREEN:
+                tooltip.add(color.getChatColor() + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.cactusproof"));
+                break;
+            case YELLOW:
+                tooltip.add(color.getChatColor() + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.fireproof"));
+                break;
+            case ORANGE:
+                tooltip.add(color.getChatColor() + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.explosionproof"));
+                break;
             case WHITE:
                 tooltip.add(color.getChatColor() + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.despawnproof"));
         }
     }
+
+    @Override
+    public boolean hasCustomEntity(ItemStack stack) {
+        return true;
+    }
+
+    @Nullable
+    @Override
+    public Entity createEntity(World world, Entity oldEntityItem, ItemStack itemstack) {
+
+        EntityItemColored newEntityItem = new EntityItemColored(world, oldEntityItem.posX, oldEntityItem.posY, oldEntityItem.posZ, itemstack);
+        newEntityItem.motionX = oldEntityItem.motionX;
+        newEntityItem.motionY = oldEntityItem.motionY;
+        newEntityItem.motionZ = oldEntityItem.motionZ;
+        newEntityItem.setPickupDelay(40);
+        newEntityItem.hoverStart = ((EntityItem)oldEntityItem).hoverStart;
+        newEntityItem.lifespan = ((EntityItem)oldEntityItem).lifespan;
+
+        return newEntityItem;
+    }
+
 }
