@@ -86,9 +86,12 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire {
 
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
 
-        int metadata = state.getValue(COLOR).getMetadata();
-        if (metadata != 1){
-            return new ItemStack(ModItems.COLORED_REDSTONE_DUST, 1, metadata);
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
+        if (tileEntity instanceof TileEntityColoredRedstoneWire) {
+            int colorMetadata = ((TileEntityColoredRedstoneWire)tileEntity).getColor().getMetadata();
+            if (colorMetadata != EnumColor.RED.getMetadata()){
+                return new ItemStack(ModItems.COLORED_REDSTONE_DUST, 1, colorMetadata);
+            }
         }
         return new ItemStack(Items.REDSTONE);
     }
