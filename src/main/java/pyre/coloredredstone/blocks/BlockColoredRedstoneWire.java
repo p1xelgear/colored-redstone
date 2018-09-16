@@ -13,6 +13,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -99,6 +100,12 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire {
     }
 
     @Override
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+        state = getActualState(state, world, pos);
+        super.getDrops(drops, world, pos, state, fortune);
+    }
+
+    @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
         EnumColor color = state.getValue(COLOR);
         if (color != EnumColor.RED) {
@@ -129,6 +136,17 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire {
             }
         }
         return false;
+    }
+
+    @Override
+    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
+        return willHarvest || super.removedByPlayer(state, world, pos, player, false);
+    }
+
+    @Override
+    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack) {
+        super.harvestBlock(worldIn, player, pos, state, te, stack);
+        worldIn.setBlockToAir(pos);
     }
 
     @SideOnly(Side.CLIENT)
