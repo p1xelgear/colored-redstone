@@ -5,21 +5,24 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pyre.coloredredstone.init.ModBlocks;
 import pyre.coloredredstone.init.ModItems;
 import pyre.coloredredstone.init.ModMaterials;
 import pyre.coloredredstone.util.EnumColor;
+import pyre.coloredredstone.util.OreDictionaryUtils;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -37,29 +40,32 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire {
         ModBlocks.BLOCKS.add(this);
     }
 
+    @Nullable
+    private TileEntityColoredRedstoneWire getTileEntity(IBlockAccess world, BlockPos pos) {
+        return (TileEntityColoredRedstoneWire) world.getTileEntity(pos);
+    }
+
+    private EnumColor getColor(IBlockAccess world, BlockPos pos) {
+        final TileEntityColoredRedstoneWire tileEntity = getTileEntity(world, pos);
+        return tileEntity != null ? tileEntity.getColor() : EnumColor.RED;
+    }
+
+    private void setColor(IBlockAccess world, BlockPos pos, EnumColor color) {
+        final TileEntityColoredRedstoneWire tileEntity = getTileEntity(world, pos);
+        if (tileEntity != null) {
+            tileEntity.setColor(color);
+        }
+    }
+
     @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, NORTH, EAST, SOUTH, WEST, POWER, COLOR);
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
-    {
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos){
         state = super.getActualState(state, worldIn, pos);
-
-        EnumColor color = state.getValue(COLOR);
-
-        TileEntity tileentity = worldIn instanceof ChunkCache ? ((ChunkCache)worldIn).getTileEntity(pos, Chunk.EnumCreateEntityType.CHECK) : worldIn.getTileEntity(pos);
-        if (tileentity instanceof TileEntityColoredRedstoneWire){
-            color = ((TileEntityColoredRedstoneWire)tileentity).getColor();
-            if (color == null){
-                color = state.getValue(COLOR);
-                ((TileEntityColoredRedstoneWire)tileentity).setColor(color);
-            }
-        }
-        state = state.withProperty(COLOR, color);
-
-        return state;
+        return state.withProperty(COLOR, getColor(worldIn, pos));
     }
 
     @Override
@@ -70,9 +76,7 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire {
     @Nullable
     @Override
     public TileEntity createTileEntity(World world, IBlockState state) {
-        TileEntityColoredRedstoneWire te = new TileEntityColoredRedstoneWire();
-        te.setColor(state.getValue(COLOR));
-        return te;
+        return new TileEntityColoredRedstoneWire();
     }
 
     @Override
@@ -84,16 +88,47 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire {
         return super.getMaterial(state);
     }
 
+    @Override
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
 
-        TileEntity tileEntity = worldIn.getTileEntity(pos);
-        if (tileEntity instanceof TileEntityColoredRedstoneWire) {
-            int colorMetadata = ((TileEntityColoredRedstoneWire)tileEntity).getColor().getMetadata();
-            if (colorMetadata != EnumColor.RED.getMetadata()){
-                return new ItemStack(ModItems.COLORED_REDSTONE_DUST, 1, colorMetadata);
-            }
+        EnumColor color = getColor(worldIn, pos);
+        if (color != EnumColor.RED){
+            return new ItemStack(ModItems.COLORED_REDSTONE_DUST, 1, color.getMetadata());
         }
         return new ItemStack(Items.REDSTONE);
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+        EnumColor color = state.getValue(COLOR);
+        if (color != EnumColor.RED) {
+            return ModItems.COLORED_REDSTONE_DUST;
+        }
+        return Items.REDSTONE;
+    }
+
+    @Override
+    public int damageDropped(IBlockState state) {
+        EnumColor color = state.getValue(COLOR);
+        if (color != EnumColor.RED) {
+            return state.getValue(COLOR).getMetadata();
+        }
+        return 0;
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        ItemStack heldItem = playerIn.getHeldItem(hand);
+
+        if (!heldItem.isEmpty()) {
+            EnumColor color = OreDictionaryUtils.getDyeColor(heldItem);
+            if (color != null && color != getColor(worldIn, pos)) {
+                setColor(worldIn, pos, color);
+                heldItem.shrink(1);
+                return true;
+            }
+        }
+        return false;
     }
 
     @SideOnly(Side.CLIENT)

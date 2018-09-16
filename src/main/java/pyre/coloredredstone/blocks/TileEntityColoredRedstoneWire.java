@@ -13,9 +13,11 @@ import javax.annotation.Nullable;
 
 public class TileEntityColoredRedstoneWire extends TileEntity {
 
-    private EnumColor color;
+    private EnumColor color = EnumColor.RED;
 
-    public TileEntityColoredRedstoneWire() {
+    private void notifyBlockUpdate() {
+        final IBlockState state = getWorld().getBlockState(getPos());
+        getWorld().notifyBlockUpdate(getPos(), state, state, 3);
     }
 
     @Nullable
@@ -27,8 +29,8 @@ public class TileEntityColoredRedstoneWire extends TileEntity {
 
     @Override
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
-        super.onDataPacket(net, pkt);
         readFromNBT(pkt.getNbtCompound());
+        notifyBlockUpdate();
     }
 
     @Override
@@ -70,6 +72,12 @@ public class TileEntityColoredRedstoneWire extends TileEntity {
     @Override
     public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
         return oldState.getBlock() != newState.getBlock();
+    }
+
+    @Override
+    public void markDirty() {
+        super.markDirty();
+        notifyBlockUpdate();
     }
 
     public EnumColor getColor() {

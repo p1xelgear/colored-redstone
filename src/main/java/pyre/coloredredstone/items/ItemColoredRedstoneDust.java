@@ -9,6 +9,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -20,6 +21,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pyre.coloredredstone.ColoredRedstone;
 import pyre.coloredredstone.blocks.BlockColoredRedstoneWire;
+import pyre.coloredredstone.blocks.TileEntityColoredRedstoneWire;
 import pyre.coloredredstone.entities.EntityItemColored;
 import pyre.coloredredstone.init.ModBlocks;
 import pyre.coloredredstone.util.EnumColor;
@@ -43,21 +45,22 @@ public class ItemColoredRedstoneDust extends ItemBase {
         BlockPos blockpos = flag ? pos : pos.offset(facing);
         ItemStack itemstack = player.getHeldItem(hand);
 
-        if (player.canPlayerEdit(blockpos, facing, itemstack) && worldIn.mayPlace(worldIn.getBlockState(blockpos).getBlock(), blockpos, false, facing, (Entity)null) && ModBlocks.COLORED_REDSTONE_WIRE.canPlaceBlockAt(worldIn, blockpos))
-        {
+        if (player.canPlayerEdit(blockpos, facing, itemstack) && worldIn.mayPlace(worldIn.getBlockState(blockpos).getBlock(), blockpos, false, facing, (Entity) null) && ModBlocks.COLORED_REDSTONE_WIRE.canPlaceBlockAt(worldIn, blockpos)) {
             IBlockState state = ModBlocks.COLORED_REDSTONE_WIRE.getDefaultState().withProperty(BlockColoredRedstoneWire.COLOR, EnumColor.byMetadata(itemstack.getMetadata()));
             worldIn.setBlockState(blockpos, state, 2);
 
-            if (player instanceof EntityPlayerMP)
-            {
-                CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP)player, blockpos, itemstack);
+            TileEntity tileEntity = worldIn.getTileEntity(blockpos);
+            if (tileEntity instanceof TileEntityColoredRedstoneWire) {
+                ((TileEntityColoredRedstoneWire) tileEntity).setColor(EnumColor.byMetadata(itemstack.getMetadata()));
+            }
+
+            if (player instanceof EntityPlayerMP) {
+                CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP) player, blockpos, itemstack);
             }
 
             itemstack.shrink(1);
             return EnumActionResult.SUCCESS;
-        }
-        else
-        {
+        } else {
             return EnumActionResult.FAIL;
         }
     }
@@ -65,7 +68,7 @@ public class ItemColoredRedstoneDust extends ItemBase {
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
         for (int i = 0; i < EnumColor.values().length; i++) {
-            if (i != 1){ //skip RED
+            if (i != 1) { //skip RED
                 items.add(new ItemStack(this, 1, i));
             }
         }
@@ -81,7 +84,7 @@ public class ItemColoredRedstoneDust extends ItemBase {
         String result = ColoredRedstone.proxy.localize(this.getUnlocalizedName(stack) + ".name");
         int metadata = stack.getMetadata();
         EnumColor color = EnumColor.byMetadata(metadata);
-        result += " (" + color.getChatColor() + color.getDisplayName() + TextFormatting.WHITE +")";
+        result += " (" + color.getChatColor() + color.getDisplayName() + TextFormatting.WHITE + ")";
 
         return result;
     }
@@ -90,7 +93,7 @@ public class ItemColoredRedstoneDust extends ItemBase {
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         EnumColor color = EnumColor.byMetadata(stack.getMetadata());
-        switch (color){
+        switch (color) {
             case BLUE:
                 tooltip.add(color.getChatColor() + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.waterproof"));
                 break;
@@ -122,10 +125,9 @@ public class ItemColoredRedstoneDust extends ItemBase {
         newEntityItem.motionY = oldEntityItem.motionY;
         newEntityItem.motionZ = oldEntityItem.motionZ;
         newEntityItem.setPickupDelay(40);
-        newEntityItem.hoverStart = ((EntityItem)oldEntityItem).hoverStart;
-        newEntityItem.lifespan = ((EntityItem)oldEntityItem).lifespan;
+        newEntityItem.hoverStart = ((EntityItem) oldEntityItem).hoverStart;
+        newEntityItem.lifespan = ((EntityItem) oldEntityItem).lifespan;
 
         return newEntityItem;
     }
-
 }
