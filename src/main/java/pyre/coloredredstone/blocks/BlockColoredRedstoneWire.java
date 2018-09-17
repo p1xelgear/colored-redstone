@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -15,6 +16,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -33,6 +35,7 @@ import static pyre.coloredredstone.util.EnumColor.RED;
 public class BlockColoredRedstoneWire extends BlockRedstoneWire {
 
     public static final PropertyEnum<EnumColor> COLOR = PropertyEnum.create("color", EnumColor.class);
+    public static final float EXPLOSION_PROOF_BLOCK_RESISTANCE = 6000.0F;
 
     public BlockColoredRedstoneWire() {
         super();
@@ -90,6 +93,15 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire {
     }
 
     @Override
+    public float getExplosionResistance(World world, BlockPos pos, @Nullable Entity exploder, Explosion explosion) {
+        EnumColor color = getColor(world, pos);
+        if (color == EnumColor.ORANGE){
+            return EXPLOSION_PROOF_BLOCK_RESISTANCE;
+        }
+        return super.getExplosionResistance(world, pos, exploder, explosion);
+    }
+
+    @Override
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
 
         EnumColor color = getColor(worldIn, pos);
@@ -138,13 +150,16 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire {
         return false;
     }
 
+    //preserved TileEntity until after #getDrops has been called
     @Override
     public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
         return willHarvest || super.removedByPlayer(state, world, pos, player, false);
     }
 
+    //preserved TileEntity until after #getDrops has been called
     @Override
     public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack) {
+        // If it will harvest, delay deletion of the block until after #getDrops
         super.harvestBlock(worldIn, player, pos, state, te, stack);
         worldIn.setBlockToAir(pos);
     }
