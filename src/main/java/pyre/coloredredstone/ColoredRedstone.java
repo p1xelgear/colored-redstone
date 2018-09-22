@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
 import pyre.coloredredstone.init.ModBlocks;
+import pyre.coloredredstone.init.ModEntities;
 import pyre.coloredredstone.init.ModItems;
 import pyre.coloredredstone.proxy.CommonProxy;
 import pyre.coloredredstone.util.Reference;
@@ -25,6 +26,7 @@ public class ColoredRedstone {
         logger = event.getModLog();
         ModBlocks.init();
         ModItems.init();
+        ModEntities.init();
         RegistryHandler.registerTileEntities();
     }
 

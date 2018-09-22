@@ -1,7 +1,6 @@
 package pyre.coloredredstone.util.handlers;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -16,12 +15,14 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pyre.coloredredstone.blocks.BlockColoredRedstoneWire;
 import pyre.coloredredstone.blocks.TileEntityColoredRedstoneWire;
 import pyre.coloredredstone.init.ModBlocks;
+import pyre.coloredredstone.init.ModEntities;
 import pyre.coloredredstone.init.ModItems;
 import pyre.coloredredstone.util.EnumColor;
 import pyre.coloredredstone.util.Reference;
@@ -40,6 +41,11 @@ public class RegistryHandler {
     @SubscribeEvent
     public static void onItemRegister(RegistryEvent.Register<Item> event) {
         event.getRegistry().registerAll(ModItems.ITEMS.toArray(new Item[0]));
+    }
+
+    @SubscribeEvent
+    public static void onEntityRegister(RegistryEvent.Register<EntityEntry> event){
+        event.getRegistry().registerAll(ModEntities.ENTITY_ENTRIES.toArray(new EntityEntry[0]));
     }
 
     @SubscribeEvent
