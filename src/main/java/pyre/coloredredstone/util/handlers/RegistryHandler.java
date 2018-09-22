@@ -2,6 +2,7 @@ package pyre.coloredredstone.util.handlers;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -78,7 +79,7 @@ public class RegistryHandler {
                 ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), ITEM_VARIANT_INVENTORY));
             } else {
                 NonNullList<ItemStack> subItemList = NonNullList.create();
-                item.getSubItems(null, subItemList);
+                item.getSubItems(CreativeTabs.REDSTONE, subItemList);
                 for (ItemStack itemStack : subItemList){
                     ModelResourceLocation subItemModel = new ModelResourceLocation(item.getRegistryName(), SUB_ITEM_VARIANT_COLOR + EnumColor.getNameByMetadata(itemStack.getMetadata()));
                     ModelLoader.setCustomModelResourceLocation(item, itemStack.getMetadata(), subItemModel);

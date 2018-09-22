@@ -67,9 +67,11 @@ public class ItemColoredRedstoneDust extends ItemBase {
 
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-        for (int i = 0; i < EnumColor.values().length; i++) {
-            if (i != 1) { //skip RED
-                items.add(new ItemStack(this, 1, i));
+        if (tab == CreativeTabs.REDSTONE) {
+            for (int i = 0; i < EnumColor.values().length; i++) {
+                if (i != 1) { //skip RED
+                    items.add(new ItemStack(this, 1, i));
+                }
             }
         }
     }
