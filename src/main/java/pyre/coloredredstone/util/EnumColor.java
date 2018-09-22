@@ -49,6 +49,10 @@ public enum EnumColor implements IStringSerializable {
         return META_LOOKUP[meta];
     }
 
+    public static String getNameByMetadata(int meta){
+        return byMetadata(meta).getName();
+    }
+
 
     public int getMetadata() {
         return this.meta;

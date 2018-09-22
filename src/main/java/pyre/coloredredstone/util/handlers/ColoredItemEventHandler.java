@@ -13,7 +13,7 @@ public class ColoredItemEventHandler {
     @SubscribeEvent
     public static void preventDespawn(ItemExpireEvent event){
         ItemStack itemStack = event.getEntityItem().getItem();
-        if (itemStack.getItem() == ModItems.COLORED_REDSTONE_DUST){
+        if (itemStack.getItem() == ModItems.COLORED_REDSTONE_DUST || itemStack.getItem() == ModItems.COLORED_REDSTONE_BLOCK){
             if (itemStack.getItem().getMetadata(itemStack) == EnumColor.WHITE.getMetadata()){
                 event.setCanceled(true);
             }

@@ -1,0 +1,32 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "coloredredstone:colored_redstone_block"
+  },
+  "variants": {
+    "inventory": [
+      {
+        "model": "builtin/generated",
+        "__comment": "Get Forge to inject the default rotations and scales for an item in a player's hand, on the ground, etc.",
+        "transform": "forge:default-item"
+      }
+    ],
+    "color": {
+      "black": {"textures": {"all": "coloredredstone:blocks/colored_redstone_block_black"} },
+      "green": {"textures": {"all": "coloredredstone:blocks/colored_redstone_block_green"} },
+      "brown": {"textures": {"all": "coloredredstone:blocks/colored_redstone_block_brown"} },
+      "blue": {"textures": {"all": "coloredredstone:blocks/colored_redstone_block_blue"} },
+      "purple": {"textures": {"all": "coloredredstone:blocks/colored_redstone_block_purple"} },
+      "cyan": {"textures": {"all": "coloredredstone:blocks/colored_redstone_block_cyan"} },
+      "light_gray": {"textures": {"all": "coloredredstone:blocks/colored_redstone_block_light_gray"} },
+      "gray": {"textures": {"all": "coloredredstone:blocks/colored_redstone_block_gray"} },
+      "pink": {"textures": {"all": "coloredredstone:blocks/colored_redstone_block_pink"} },
+      "lime": {"textures": {"all": "coloredredstone:blocks/colored_redstone_block_lime"} },
+      "yellow": {"textures": {"all": "coloredredstone:blocks/colored_redstone_block_yellow"} },
+      "light_blue": {"textures": {"all": "coloredredstone:blocks/colored_redstone_block_light_blue"} },
+      "magenta": {"textures": {"all": "coloredredstone:blocks/colored_redstone_block_magenta"} },
+      "orange": {"textures": {"all": "coloredredstone:blocks/colored_redstone_block_orange"} },
+      "white": {"textures": {"all": "coloredredstone:blocks/colored_redstone_block_white"} }
+    }
+  }
+}

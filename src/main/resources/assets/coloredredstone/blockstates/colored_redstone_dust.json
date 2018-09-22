@@ -6,21 +6,21 @@
   },
   "variants": {
     "color": {
-      "0": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_black"} },
-      "2": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_green"} },
-      "3": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_brown"} },
-      "4": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_blue"} },
-      "5": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_purple"} },
-      "6": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_cyan"} },
-      "7": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_light_gray"} },
-      "8": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_gray"} },
-      "9": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_pink"} },
-      "10": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_lime"} },
-      "11": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_yellow"} },
-      "12": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_light_blue"} },
-      "13": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_magenta"} },
-      "14": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_orange"} },
-      "15": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_white"} }
+      "black": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_black"} },
+      "green": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_green"} },
+      "brown": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_brown"} },
+      "blue": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_blue"} },
+      "purple": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_purple"} },
+      "cyan": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_cyan"} },
+      "light_gray": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_light_gray"} },
+      "gray": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_gray"} },
+      "pink": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_pink"} },
+      "lime": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_lime"} },
+      "yellow": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_yellow"} },
+      "light_blue": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_light_blue"} },
+      "magenta": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_magenta"} },
+      "orange": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_orange"} },
+      "white": {"textures": {"layer0": "coloredredstone:items/colored_redstone_dust_white"} }
     }
   }
 }
