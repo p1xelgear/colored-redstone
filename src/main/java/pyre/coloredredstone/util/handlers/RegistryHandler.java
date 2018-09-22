@@ -7,6 +7,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.config.Config;
@@ -22,6 +23,7 @@ import pyre.coloredredstone.blocks.BlockColoredRedstoneWire;
 import pyre.coloredredstone.blocks.TileEntityColoredRedstoneWire;
 import pyre.coloredredstone.init.ModBlocks;
 import pyre.coloredredstone.init.ModItems;
+import pyre.coloredredstone.util.EnumColor;
 import pyre.coloredredstone.util.Reference;
 
 @Mod.EventBusSubscriber
@@ -42,7 +44,6 @@ public class RegistryHandler {
 
     @SubscribeEvent
     public static void onModelRegister(ModelRegistryEvent event) {
-
         registerItemModels();
         registerItemFromBlockModels();
     }
@@ -54,9 +55,10 @@ public class RegistryHandler {
         }
     }
 
+    @SubscribeEvent
     @SideOnly(Side.CLIENT)
-    public static void registerColors() {
-        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) ->
+    public static void registerColors(ColorHandlerEvent.Block event) {
+        event.getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) ->
                 BlockColoredRedstoneWire.colorMultiplier(state.getValue(BlockColoredRedstoneWire.POWER), state.getValue(BlockColoredRedstoneWire.COLOR)), ModBlocks.COLORED_REDSTONE_WIRE);
     }
 
@@ -72,7 +74,7 @@ public class RegistryHandler {
                 NonNullList<ItemStack> subItemList = NonNullList.create();
                 item.getSubItems(null, subItemList);
                 for (ItemStack itemStack : subItemList){
-                    ModelResourceLocation subItemModel = new ModelResourceLocation(item.getRegistryName(), SUB_ITEM_VARIANT_COLOR + itemStack.getMetadata());
+                    ModelResourceLocation subItemModel = new ModelResourceLocation(item.getRegistryName(), SUB_ITEM_VARIANT_COLOR + EnumColor.getNameByMetadata(itemStack.getMetadata()));
                     ModelLoader.setCustomModelResourceLocation(item, itemStack.getMetadata(), subItemModel);
                 }
             }
@@ -82,7 +84,7 @@ public class RegistryHandler {
     private static void registerItemFromBlockModels() {
         for (Block block : ModBlocks.BLOCKS) {
             Item itemFromBlock = Item.getItemFromBlock(block);
-            if (itemFromBlock != Items.AIR){
+            if (itemFromBlock != Items.AIR && !itemFromBlock.getHasSubtypes()){
                 ModelLoader.setCustomModelResourceLocation(itemFromBlock, 0, new ModelResourceLocation(itemFromBlock.getRegistryName(), ITEM_VARIANT_INVENTORY));
             }
         }

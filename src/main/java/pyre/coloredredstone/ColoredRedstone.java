@@ -31,6 +31,5 @@ public class ColoredRedstone {
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         OreDictionaryHandler.registerOreDictionary();
-        RegistryHandler.registerColors();
     }
 }
