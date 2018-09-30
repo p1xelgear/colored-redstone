@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.client.event.ColorHandlerEvent;
@@ -21,6 +22,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pyre.coloredredstone.blocks.BlockColoredRedstoneWire;
+import pyre.coloredredstone.blocks.TileEntityColoredRedstoneTorch;
 import pyre.coloredredstone.blocks.TileEntityColoredRedstoneWire;
 import pyre.coloredredstone.init.ModBlocks;
 import pyre.coloredredstone.init.ModEntities;
@@ -71,6 +73,7 @@ public class RegistryHandler {
 
     public static void registerTileEntities() {
         GameRegistry.registerTileEntity(TileEntityColoredRedstoneWire.class, ModBlocks.COLORED_REDSTONE_WIRE.getRegistryName());
+        GameRegistry.registerTileEntity(TileEntityColoredRedstoneTorch.class, ModBlocks.COLORED_REDSTONE_TORCH.getRegistryName());
     }
 
     private static void registerItemModels() {

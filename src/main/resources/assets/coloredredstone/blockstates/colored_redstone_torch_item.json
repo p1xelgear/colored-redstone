@@ -1,0 +1,86 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "builtin/generated",
+    "transform": "forge:default-item"
+  },
+  "variants": {
+    "color": {
+      "black": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_torch_black_on"
+        }
+      },
+      "green": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_torch_green_on"
+        }
+      },
+      "brown": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_torch_brown_on"
+        }
+      },
+      "blue": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_torch_blue_on"
+        }
+      },
+      "purple": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_torch_purple_on"
+        }
+      },
+      "cyan": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_torch_cyan_on"
+        }
+      },
+      "light_gray": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_torch_light_gray_on"
+        }
+      },
+      "gray": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_torch_gray_on"
+        }
+      },
+      "pink": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_torch_pink_on"
+        }
+      },
+      "lime": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_torch_lime_on"
+        }
+      },
+      "yellow": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_torch_yellow_on"
+        }
+      },
+      "light_blue": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_torch_light_blue_on"
+        }
+      },
+      "magenta": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_torch_magenta_on"
+        }
+      },
+      "orange": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_torch_orange_on"
+        }
+      },
+      "white": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_torch_white_on"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "color": {
+      "black": {
+        "textures": {
+          "torch": "coloredredstone:blocks/colored_redstone_torch_black_off"
+        }
+      },
+      "green": {
+        "textures": {
+          "torch": "coloredredstone:blocks/colored_redstone_torch_green_off"
+        }
+      },
+      "brown": {
+        "textures": {
+          "torch": "coloredredstone:blocks/colored_redstone_torch_brown_off"
+        }
+      },
+      "blue": {
+        "textures": {
+          "torch": "coloredredstone:blocks/colored_redstone_torch_blue_off"
+        }
+      },
+      "purple": {
+        "textures": {
+          "torch": "coloredredstone:blocks/colored_redstone_torch_purple_off"
+        }
+      },
+      "cyan": {
+        "textures": {
+          "torch": "coloredredstone:blocks/colored_redstone_torch_cyan_off"
+        }
+      },
+      "light_gray": {
+        "textures": {
+          "torch": "coloredredstone:blocks/colored_redstone_torch_light_gray_off"
+        }
+      },
+      "gray": {
+        "textures": {
+          "torch": "coloredredstone:blocks/colored_redstone_torch_gray_off"
+        }
+      },
+      "pink": {
+        "textures": {
+          "torch": "coloredredstone:blocks/colored_redstone_torch_pink_off"
+        }
+      },
+      "lime": {
+        "textures": {
+          "torch": "coloredredstone:blocks/colored_redstone_torch_lime_off"
+        }
+      },
+      "yellow": {
+        "textures": {
+          "torch": "coloredredstone:blocks/colored_redstone_torch_yellow_off"
+        }
+      },
+      "light_blue": {
+        "textures": {
+          "torch": "coloredredstone:blocks/colored_redstone_torch_light_blue_off"
+        }
+      },
+      "magenta": {
+        "textures": {
+          "torch": "coloredredstone:blocks/colored_redstone_torch_magenta_off"
+        }
+      },
+      "orange": {
+        "textures": {
+          "torch": "coloredredstone:blocks/colored_redstone_torch_orange_off"
+        }
+      },
+      "white": {
+        "textures": {
+          "torch": "coloredredstone:blocks/colored_redstone_torch_white_off"
+        }
+      }
+    },
+    "facing": {
+      "up": {
+        "model": "minecraft:unlit_redstone_torch"
+      },
+      "east": {
+        "model": "minecraft:unlit_redstone_torch_wall"
+      },
+      "south": {
+        "model": "minecraft:unlit_redstone_torch_wall",
+        "y": 90
+      },
+      "west": {
+        "model": "minecraft:unlit_redstone_torch_wall",
+        "y": 180
+      },
+      "north": {
+        "model": "minecraft:unlit_redstone_torch_wall",
+        "y": 270
+      }
+    }
+  }
+}

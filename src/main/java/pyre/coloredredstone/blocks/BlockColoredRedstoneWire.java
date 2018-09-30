@@ -186,11 +186,8 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire {
             double d1 = (double)((float)pos.getY() + 0.0625F);
             double d2 = (double)pos.getZ() + 0.5D + ((double)rand.nextFloat() - 0.5D) * 0.2D;
 
-            EnumColor color =  EnumColor.RED;
-            TileEntity tileEntity = worldIn.getTileEntity(pos);
-            if (tileEntity instanceof TileEntityColoredRedstoneWire) {
-                color = ((TileEntityColoredRedstoneWire)tileEntity).getColor();
-            }
+            EnumColor color = getTileEntity(worldIn, pos).getColor();
+
             float f1 = color.getShades()[i].getR() / 255.0F;
             float f2 = color.getShades()[i].getG() / 255.0F;
             float f3 = color.getShades()[i].getB() / 255.0F;
