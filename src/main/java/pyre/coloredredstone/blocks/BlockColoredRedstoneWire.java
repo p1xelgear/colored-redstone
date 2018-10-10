@@ -80,9 +80,10 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire {
     @Nullable
     @Override
     public TileEntity createTileEntity(World world, IBlockState state) {
-        return new TileEntityColoredRedstoneWire();
+        return new TileEntityColoredRedstoneWire(state.getValue(COLOR));
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public Material getMaterial(IBlockState state) {
         EnumColor color = state.getValue(COLOR);

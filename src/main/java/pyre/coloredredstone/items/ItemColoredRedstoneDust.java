@@ -49,11 +49,6 @@ public class ItemColoredRedstoneDust extends ItemBase {
             IBlockState state = ModBlocks.COLORED_REDSTONE_WIRE.getDefaultState().withProperty(BlockColoredRedstoneWire.COLOR, EnumColor.byMetadata(itemstack.getMetadata()));
             worldIn.setBlockState(blockpos, state, 2);
 
-            TileEntity tileEntity = worldIn.getTileEntity(blockpos);
-            if (tileEntity instanceof TileEntityColoredRedstoneWire) {
-                ((TileEntityColoredRedstoneWire) tileEntity).setColor(EnumColor.byMetadata(itemstack.getMetadata()));
-            }
-
             if (player instanceof EntityPlayerMP) {
                 CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP) player, blockpos, itemstack);
             }
