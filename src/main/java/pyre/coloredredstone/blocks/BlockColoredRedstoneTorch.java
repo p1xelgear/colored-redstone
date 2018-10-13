@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockRedstoneTorch;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -25,6 +24,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pyre.coloredredstone.ColoredRedstone;
 import pyre.coloredredstone.init.ModBlocks;
+import pyre.coloredredstone.init.ModItems;
 import pyre.coloredredstone.init.ModMaterials;
 import pyre.coloredredstone.util.EnumColor;
 import pyre.coloredredstone.util.OreDictionaryUtils;
@@ -33,14 +33,12 @@ import javax.annotation.Nullable;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class BlockColoredRedstoneTorch extends BlockRedstoneTorch {
-
-    public static final PropertyEnum<EnumColor> COLOR = PropertyEnum.create("color", EnumColor.class, input -> input != EnumColor.RED);
-    public static final float EXPLOSION_PROOF_BLOCK_RESISTANCE = 6000.0F;
+public class BlockColoredRedstoneTorch extends BlockRedstoneTorch implements IColoredFeatures, IBlockColoredWithoutRedTE<TileEntityColoredRedstoneTorch> {
 
     public BlockColoredRedstoneTorch(String name, boolean isOn) {
         super(isOn);
@@ -50,23 +48,6 @@ public class BlockColoredRedstoneTorch extends BlockRedstoneTorch {
         setSoundType(SoundType.WOOD);
 
         ModBlocks.BLOCKS.add(this);
-    }
-
-    @Nullable
-    private TileEntityColoredRedstoneTorch getTileEntity(IBlockAccess world, BlockPos pos) {
-        return (TileEntityColoredRedstoneTorch) world.getTileEntity(pos);
-    }
-
-    private EnumColor getColor(IBlockAccess world, BlockPos pos) {
-        final TileEntityColoredRedstoneTorch tileEntity = getTileEntity(world, pos);
-        return tileEntity != null ? tileEntity.getColor() : EnumColor.RED;
-    }
-
-    private void setColor(IBlockAccess world, BlockPos pos, EnumColor color) {
-        final TileEntityColoredRedstoneTorch tileEntity = getTileEntity(world, pos);
-        if (tileEntity != null) {
-            tileEntity.setColor(color);
-        }
     }
 
     @Override
@@ -108,7 +89,9 @@ public class BlockColoredRedstoneTorch extends BlockRedstoneTorch {
 
         if (isOn()) {
             if (flag) {
-                worldIn.setBlockState(pos, ModBlocks.UNLIT_COLORED_REDSTONE_TORCH.getDefaultState().withProperty(FACING, state.getValue(FACING)).withProperty(COLOR, state.getValue(COLOR)), 3);
+                worldIn.setBlockState(pos, ModBlocks.UNLIT_COLORED_REDSTONE_TORCH.getDefaultState()
+                        .withProperty(FACING, state.getValue(FACING))
+                        .withProperty(COLOR, state.getValue(COLOR)), 3);
 
                 if (this.isBurnedOut(worldIn, pos, true)) {
                     worldIn.playSound(null, pos, SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, SoundCategory.BLOCKS, 0.5F, 2.6F + (worldIn.rand.nextFloat() - worldIn.rand.nextFloat()) * 0.8F);
@@ -124,7 +107,9 @@ public class BlockColoredRedstoneTorch extends BlockRedstoneTorch {
                 }
             }
         } else if (!flag && !this.isBurnedOut(worldIn, pos, false)) {
-            worldIn.setBlockState(pos, ModBlocks.COLORED_REDSTONE_TORCH.getDefaultState().withProperty(FACING, state.getValue(FACING)).withProperty(COLOR, state.getValue(COLOR)), 3);
+            worldIn.setBlockState(pos, ModBlocks.COLORED_REDSTONE_TORCH.getDefaultState()
+                    .withProperty(FACING, state.getValue(FACING))
+                    .withProperty(COLOR, state.getValue(COLOR)), 3);
         }
     }
 
@@ -138,9 +123,11 @@ public class BlockColoredRedstoneTorch extends BlockRedstoneTorch {
                 if (color == EnumColor.RED){
                     IBlockState redstoneTorchState;
                     if (isOn()){
-                        redstoneTorchState = Blocks.REDSTONE_TORCH.getDefaultState().withProperty(FACING, state.getValue(FACING));
+                        redstoneTorchState = Blocks.REDSTONE_TORCH.getDefaultState()
+                                .withProperty(FACING, state.getValue(FACING));
                     } else {
-                        redstoneTorchState = Blocks.UNLIT_REDSTONE_TORCH.getDefaultState().withProperty(FACING, state.getValue(FACING));
+                        redstoneTorchState = Blocks.UNLIT_REDSTONE_TORCH.getDefaultState()
+                                .withProperty(FACING, state.getValue(FACING));
                     }
                     worldIn.setBlockState(pos, redstoneTorchState, 3);
                 }
@@ -155,29 +142,18 @@ public class BlockColoredRedstoneTorch extends BlockRedstoneTorch {
     @SuppressWarnings("deprecation")
     @Override
     public Material getMaterial(IBlockState state) {
-        EnumColor color = state.getValue(COLOR);
-        if (color == EnumColor.BLUE) {
-            return ModMaterials.CIRCUITS_WATERPROOF;
-        }
-        return super.getMaterial(state);
+        return state.getValue(COLOR) == WATERPROOF_COLOR ? ModMaterials.CIRCUITS_WATERPROOF : super.getMaterial(state);
     }
 
     @Override
     public float getExplosionResistance(World world, BlockPos pos, @Nullable Entity exploder, Explosion explosion) {
-        EnumColor color = getColor(world, pos);
-        if (color == EnumColor.ORANGE) {
-            return EXPLOSION_PROOF_BLOCK_RESISTANCE;
-        }
-        return super.getExplosionResistance(world, pos, exploder, explosion);
+        return getColor(world, pos) == EXPLOSION_PROOF_COLOR ? EXPLOSION_PROOF_BLOCK_RESISTANCE : super.getExplosionResistance(world, pos, exploder, explosion);
     }
 
     @Override
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
         EnumColor color = getColor(worldIn, pos);
-        if (color != EnumColor.RED) {
-            return new ItemStack(ModBlocks.COLORED_REDSTONE_TORCH, 1, color.getMetadata());
-        }
-        return new ItemStack(Blocks.REDSTONE_TORCH);
+        return color != EnumColor.RED ? new ItemStack(ModItems.COLORED_REDSTONE_TORCH, 1, color.getMetadata()) : new ItemStack(Blocks.REDSTONE_TORCH);
     }
 
     @Override
@@ -188,29 +164,19 @@ public class BlockColoredRedstoneTorch extends BlockRedstoneTorch {
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        EnumColor color = state.getValue(COLOR);
-        if (color != EnumColor.RED) {
-            return Item.getItemFromBlock(ModBlocks.COLORED_REDSTONE_TORCH);
-        }
-        return Item.getItemFromBlock(Blocks.REDSTONE_TORCH);
+        return state.getValue(COLOR) != EnumColor.RED ? ModItems.COLORED_REDSTONE_TORCH : Item.getItemFromBlock(Blocks.REDSTONE_TORCH);
     }
 
     @Override
     public int damageDropped(IBlockState state) {
-        EnumColor color = state.getValue(COLOR);
-        if (color != EnumColor.RED) {
-            return state.getValue(COLOR).getMetadata();
-        }
-        return 0;
+        return state.getValue(COLOR) != EnumColor.RED ? state.getValue(COLOR).getMetadata() : 0;
     }
 
     @Override
     public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
-        for (int i = 0; i < EnumColor.values().length; i++) {
-            if (i != 1) { //skip RED
-                items.add(new ItemStack(this, 1, i));
-            }
-        }
+        Arrays.stream(EnumColor.values())
+                .filter(color -> color.getMetadata() != EnumColor.RED.getMetadata())
+                .forEach(color -> items.add(new ItemStack(this, 1, color.getMetadata())));
     }
 
     //preserved TileEntity until after #getDrops has been called
@@ -236,25 +202,24 @@ public class BlockColoredRedstoneTorch extends BlockRedstoneTorch {
     @Override
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
         if (isOn()) {
-            double d0 = (double) pos.getX() + 0.5D + (rand.nextDouble() - 0.5D) * 0.2D;
-            double d1 = (double) pos.getY() + 0.7D + (rand.nextDouble() - 0.5D) * 0.2D;
-            double d2 = (double) pos.getZ() + 0.5D + (rand.nextDouble() - 0.5D) * 0.2D;
+            double posX = (double) pos.getX() + 0.5D + (rand.nextDouble() - 0.5D) * 0.2D;
+            double posY = (double) pos.getY() + 0.7D + (rand.nextDouble() - 0.5D) * 0.2D;
+            double posZ = (double) pos.getZ() + 0.5D + (rand.nextDouble() - 0.5D) * 0.2D;
             EnumFacing enumfacing = stateIn.getValue(FACING);
 
             if (enumfacing.getAxis().isHorizontal()) {
-                EnumFacing enumfacing1 = enumfacing.getOpposite();
-                d0 += 0.27D * (double) enumfacing1.getFrontOffsetX();
-                d1 += 0.22D;
-                d2 += 0.27D * (double) enumfacing1.getFrontOffsetZ();
+                EnumFacing oppositeFacing = enumfacing.getOpposite();
+                posX += 0.27D * (double) oppositeFacing.getFrontOffsetX();
+                posY += 0.22D;
+                posZ += 0.27D * (double) oppositeFacing.getFrontOffsetZ();
             }
 
-            EnumColor color = getTileEntity(worldIn, pos).getColor();
+            EnumColor color = getColor(worldIn, pos);
+            double red = color.getShades()[15].getR() / 255.0F;
+            double green = color.getShades()[15].getG() / 255.0F;
+            double blue = color.getShades()[15].getB() / 255.0F;
 
-            double f1 = color.getShades()[15].getR() / 255.0F;
-            double f2 = color.getShades()[15].getG() / 255.0F;
-            double f3 = color.getShades()[15].getB() / 255.0F;
-
-            worldIn.spawnParticle(EnumParticleTypes.REDSTONE, d0, d1, d2, f1, f2, f3);
+            worldIn.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, red, green, blue);
         }
     }
 

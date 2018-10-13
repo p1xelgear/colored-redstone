@@ -32,33 +32,13 @@ import java.util.Random;
 
 import static pyre.coloredredstone.util.EnumColor.RED;
 
-public class BlockColoredRedstoneWire extends BlockRedstoneWire {
-
-    public static final PropertyEnum<EnumColor> COLOR = PropertyEnum.create("color", EnumColor.class);
-    public static final float EXPLOSION_PROOF_BLOCK_RESISTANCE = 6000.0F;
+public class BlockColoredRedstoneWire extends BlockRedstoneWire implements IColoredFeatures, IBlockColoredTE<TileEntityColoredRedstoneWire>{
 
     public BlockColoredRedstoneWire() {
         super();
         this.setDefaultState(super.getDefaultState().withProperty(COLOR, RED));
 
         ModBlocks.BLOCKS.add(this);
-    }
-
-    @Nullable
-    private TileEntityColoredRedstoneWire getTileEntity(IBlockAccess world, BlockPos pos) {
-        return (TileEntityColoredRedstoneWire) world.getTileEntity(pos);
-    }
-
-    private EnumColor getColor(IBlockAccess world, BlockPos pos) {
-        final TileEntityColoredRedstoneWire tileEntity = getTileEntity(world, pos);
-        return tileEntity != null ? tileEntity.getColor() : EnumColor.RED;
-    }
-
-    private void setColor(IBlockAccess world, BlockPos pos, EnumColor color) {
-        final TileEntityColoredRedstoneWire tileEntity = getTileEntity(world, pos);
-        if (tileEntity != null) {
-            tileEntity.setColor(color);
-        }
     }
 
     @Override
@@ -86,30 +66,18 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire {
     @SuppressWarnings("deprecation")
     @Override
     public Material getMaterial(IBlockState state) {
-        EnumColor color = state.getValue(COLOR);
-        if (color == EnumColor.BLUE){
-            return ModMaterials.CIRCUITS_WATERPROOF;
-        }
-        return super.getMaterial(state);
+        return state.getValue(COLOR) == WATERPROOF_COLOR ? ModMaterials.CIRCUITS_WATERPROOF : super.getMaterial(state);
     }
 
     @Override
     public float getExplosionResistance(World world, BlockPos pos, @Nullable Entity exploder, Explosion explosion) {
-        EnumColor color = getColor(world, pos);
-        if (color == EnumColor.ORANGE){
-            return EXPLOSION_PROOF_BLOCK_RESISTANCE;
-        }
-        return super.getExplosionResistance(world, pos, exploder, explosion);
+        return getColor(world, pos) == EXPLOSION_PROOF_COLOR ? EXPLOSION_PROOF_BLOCK_RESISTANCE : super.getExplosionResistance(world, pos, exploder, explosion);
     }
 
     @Override
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
-
         EnumColor color = getColor(worldIn, pos);
-        if (color != EnumColor.RED){
-            return new ItemStack(ModItems.COLORED_REDSTONE_DUST, 1, color.getMetadata());
-        }
-        return new ItemStack(Items.REDSTONE);
+        return color != EnumColor.RED ? new ItemStack(ModItems.COLORED_REDSTONE_DUST, 1, color.getMetadata()) : new ItemStack(Items.REDSTONE);
     }
 
     @Override
@@ -120,20 +88,12 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire {
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        EnumColor color = state.getValue(COLOR);
-        if (color != EnumColor.RED) {
-            return ModItems.COLORED_REDSTONE_DUST;
-        }
-        return Items.REDSTONE;
+        return state.getValue(COLOR) != EnumColor.RED ? ModItems.COLORED_REDSTONE_DUST : Items.REDSTONE;
     }
 
     @Override
     public int damageDropped(IBlockState state) {
-        EnumColor color = state.getValue(COLOR);
-        if (color != EnumColor.RED) {
-            return state.getValue(COLOR).getMetadata();
-        }
-        return 0;
+        return state.getValue(COLOR) != EnumColor.RED ? state.getValue(COLOR).getMetadata() : 0;
     }
 
     @Override
@@ -167,7 +127,6 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire {
 
     @SideOnly(Side.CLIENT)
     public static int colorMultiplier(int power, EnumColor color) {
-
         int red = color.getShades()[power].getR();
         int green = color.getShades()[power].getG();
         int blue = color.getShades()[power].getB();
@@ -179,21 +138,19 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire {
     @Override
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
     {
-        int i = stateIn.getValue(POWER);
+        int power = stateIn.getValue(POWER);
 
-        if (i != 0)
-        {
-            double d0 = (double)pos.getX() + 0.5D + ((double)rand.nextFloat() - 0.5D) * 0.2D;
-            double d1 = (double)((float)pos.getY() + 0.0625F);
-            double d2 = (double)pos.getZ() + 0.5D + ((double)rand.nextFloat() - 0.5D) * 0.2D;
+        if (power != 0) {
+            double posX = (double)pos.getX() + 0.5D + (rand.nextDouble() - 0.5D) * 0.2D;
+            double posY = (double)((float)pos.getY() + 0.0625F);
+            double posZ = (double)pos.getZ() + 0.5D + (rand.nextDouble() - 0.5D) * 0.2D;
 
-            EnumColor color = getTileEntity(worldIn, pos).getColor();
+            EnumColor color = getColor(worldIn, pos);
+            double red = color.getShades()[power].getR() / 255.0F;
+            double green = color.getShades()[power].getG() / 255.0F;
+            double blue = color.getShades()[power].getB() / 255.0F;
 
-            float f1 = color.getShades()[i].getR() / 255.0F;
-            float f2 = color.getShades()[i].getG() / 255.0F;
-            float f3 = color.getShades()[i].getB() / 255.0F;
-
-            worldIn.spawnParticle(EnumParticleTypes.REDSTONE, d0, d1, d2, (double)f1, (double)f2, (double)f3);
+            worldIn.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, red, green, blue);
         }
     }
 }
