@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockRedstoneTorch;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -12,7 +13,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import pyre.coloredredstone.blocks.BlockColoredRedstone;
 import pyre.coloredredstone.blocks.BlockColoredRedstoneTorch;
 import pyre.coloredredstone.init.ModBlocks;
-import pyre.coloredredstone.init.ModItems;
+import pyre.coloredredstone.items.IColoredItem;
 import pyre.coloredredstone.util.EnumColor;
 import pyre.coloredredstone.util.OreDictionaryUtils;
 
@@ -22,10 +23,9 @@ public class ColoredItemEventHandler {
     @SubscribeEvent
     public static void preventDespawn(ItemExpireEvent event){
         ItemStack itemStack = event.getEntityItem().getItem();
-        if (itemStack.getItem() == ModItems.COLORED_REDSTONE_DUST || itemStack.getItem() == ModItems.COLORED_REDSTONE_BLOCK || itemStack.getItem() == ModItems.COLORED_REDSTONE_TORCH){
-            if (itemStack.getItem().getMetadata(itemStack) == EnumColor.WHITE.getMetadata()){
-                event.setCanceled(true);
-            }
+        Item item = itemStack.getItem();
+        if (item instanceof IColoredItem && itemStack.getMetadata() == EnumColor.WHITE.getMetadata()) {
+            event.setCanceled(true);
         }
     }
 
