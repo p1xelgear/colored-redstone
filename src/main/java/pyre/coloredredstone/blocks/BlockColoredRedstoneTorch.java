@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+@SuppressWarnings("NullableProblems")
 public class BlockColoredRedstoneTorch extends BlockRedstoneTorch implements IColoredFeatures, IBlockColoredWithoutRedTE<TileEntityColoredRedstoneTorch> {
 
     public BlockColoredRedstoneTorch(String name, boolean isOn) {
@@ -175,7 +176,7 @@ public class BlockColoredRedstoneTorch extends BlockRedstoneTorch implements ICo
     @Override
     public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
         Arrays.stream(EnumColor.values())
-                .filter(color -> color.getMetadata() != EnumColor.RED.getMetadata())
+                .filter(color -> color != EnumColor.RED)
                 .forEach(color -> items.add(new ItemStack(this, 1, color.getMetadata())));
     }
 

@@ -2,7 +2,6 @@ package pyre.coloredredstone.blocks;
 
 import net.minecraft.block.BlockRedstoneWire;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -32,6 +31,7 @@ import java.util.Random;
 
 import static pyre.coloredredstone.util.EnumColor.RED;
 
+@SuppressWarnings("NullableProblems")
 public class BlockColoredRedstoneWire extends BlockRedstoneWire implements IColoredFeatures, IBlockColoredTE<TileEntityColoredRedstoneWire>{
 
     public BlockColoredRedstoneWire() {

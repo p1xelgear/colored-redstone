@@ -28,6 +28,7 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.Random;
 
+@SuppressWarnings("NullableProblems")
 public class BlockColoredRedstone extends Block implements IColoredFeatures, IBlockColoredWithoutRed {
 
     public BlockColoredRedstone(String name) {
@@ -56,7 +57,6 @@ public class BlockColoredRedstone extends Block implements IColoredFeatures, IBl
     }
 
     @Override
-    @SuppressWarnings("NullableProblems")
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, COLOR);
     }
@@ -96,7 +96,7 @@ public class BlockColoredRedstone extends Block implements IColoredFeatures, IBl
     }
 
     @Override
-    @SuppressWarnings({"deprecation", "NullableProblems"})
+    @SuppressWarnings("deprecation")
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(COLOR, EnumColor.byMetadata(meta));
     }
@@ -109,7 +109,7 @@ public class BlockColoredRedstone extends Block implements IColoredFeatures, IBl
     @Override
     public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
         Arrays.stream(EnumColor.values())
-                .filter(color -> color.getMetadata() != EnumColor.RED.getMetadata())
+                .filter(color -> color != EnumColor.RED)
                 .forEach(color -> items.add(new ItemStack(this, 1, color.getMetadata())));
     }
 
