@@ -10,6 +10,7 @@ item.colored_redstone_dust.name=Colored Redstone Dust
 
 tile.colored_redstone_block.name=Block of Colored Redstone
 tile.colored_redstone_torch.name=Colored Redstone Torch
+tile.unpowered_colored_redstone_repeater.name=Colored Redstone Repeater
 
 ############################
 ##### GENERIC TOOLTIPS #####

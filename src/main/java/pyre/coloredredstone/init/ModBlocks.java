@@ -3,6 +3,7 @@ package pyre.coloredredstone.init;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import pyre.coloredredstone.blocks.BlockColoredRedstone;
+import pyre.coloredredstone.blocks.BlockColoredRedstoneRepeater;
 import pyre.coloredredstone.blocks.BlockColoredRedstoneTorch;
 import pyre.coloredredstone.blocks.BlockColoredRedstoneWire;
 
@@ -17,6 +18,8 @@ public class ModBlocks {
     public static BlockColoredRedstone COLORED_REDSTONE_BLOCK;
     public static BlockColoredRedstoneTorch COLORED_REDSTONE_TORCH;
     public static BlockColoredRedstoneTorch UNLIT_COLORED_REDSTONE_TORCH;
+    public static BlockColoredRedstoneRepeater POWERED_COLORED_REDSTONE_REPEATER;
+    public static BlockColoredRedstoneRepeater UNPOWERED_COLORED_REDSTONE_REPEATER;
 
     public static void init(){
         COLORED_REDSTONE_WIRE = new BlockColoredRedstoneWire();
@@ -25,5 +28,8 @@ public class ModBlocks {
         COLORED_REDSTONE_TORCH = new BlockColoredRedstoneTorch("colored_redstone_torch", true);
         COLORED_REDSTONE_TORCH.setLightLevel(0.5F).setCreativeTab(CreativeTabs.REDSTONE);
         UNLIT_COLORED_REDSTONE_TORCH = new BlockColoredRedstoneTorch("unlit_colored_redstone_torch", false);
+        POWERED_COLORED_REDSTONE_REPEATER = new BlockColoredRedstoneRepeater("minecraft:powered_repeater", true);
+        UNPOWERED_COLORED_REDSTONE_REPEATER = new BlockColoredRedstoneRepeater("minecraft:unpowered_repeater", false);
+        UNPOWERED_COLORED_REDSTONE_REPEATER.setCreativeTab(CreativeTabs.REDSTONE).setUnlocalizedName("unpowered_colored_redstone_repeater");
     }
 }

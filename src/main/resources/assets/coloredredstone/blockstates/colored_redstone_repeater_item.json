@@ -1,0 +1,86 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "builtin/generated",
+    "transform": "forge:default-item"
+  },
+  "variants": {
+    "color": {
+      "black": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_repeater_black"
+        }
+      },
+      "green": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_repeater_green"
+        }
+      },
+      "brown": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_repeater_brown"
+        }
+      },
+      "blue": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_repeater_blue"
+        }
+      },
+      "purple": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_repeater_purple"
+        }
+      },
+      "cyan": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_repeater_cyan"
+        }
+      },
+      "light_gray": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_repeater_light_gray"
+        }
+      },
+      "gray": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_repeater_gray"
+        }
+      },
+      "pink": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_repeater_pink"
+        }
+      },
+      "lime": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_repeater_lime"
+        }
+      },
+      "yellow": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_repeater_yellow"
+        }
+      },
+      "light_blue": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_repeater_light_blue"
+        }
+      },
+      "magenta": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_repeater_magenta"
+        }
+      },
+      "orange": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_repeater_orange"
+        }
+      },
+      "white": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_repeater_white"
+        }
+      }
+    }
+  }
+}

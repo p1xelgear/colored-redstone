@@ -5,7 +5,6 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.client.event.ColorHandlerEvent;
@@ -22,11 +21,13 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pyre.coloredredstone.blocks.BlockColoredRedstoneWire;
+import pyre.coloredredstone.blocks.TileEntityColoredRedstoneRepeater;
 import pyre.coloredredstone.blocks.TileEntityColoredRedstoneTorch;
 import pyre.coloredredstone.blocks.TileEntityColoredRedstoneWire;
 import pyre.coloredredstone.init.ModBlocks;
 import pyre.coloredredstone.init.ModEntities;
 import pyre.coloredredstone.init.ModItems;
+import pyre.coloredredstone.util.CustomStateMapper;
 import pyre.coloredredstone.util.EnumColor;
 import pyre.coloredredstone.util.Reference;
 
@@ -53,6 +54,7 @@ public class RegistryHandler {
 
     @SubscribeEvent
     public static void onModelRegister(ModelRegistryEvent event) {
+        setCustomStateMappers();
         registerItemModels();
         registerItemFromBlockModels();
     }
@@ -74,6 +76,12 @@ public class RegistryHandler {
     public static void registerTileEntities() {
         GameRegistry.registerTileEntity(TileEntityColoredRedstoneWire.class, ModBlocks.COLORED_REDSTONE_WIRE.getRegistryName());
         GameRegistry.registerTileEntity(TileEntityColoredRedstoneTorch.class, ModBlocks.COLORED_REDSTONE_TORCH.getRegistryName());
+        GameRegistry.registerTileEntity(TileEntityColoredRedstoneRepeater.class, ModBlocks.UNPOWERED_COLORED_REDSTONE_REPEATER.getRegistryName());
+    }
+
+    private static void setCustomStateMappers() {
+        ModelLoader.setCustomStateMapper(ModBlocks.UNPOWERED_COLORED_REDSTONE_REPEATER, new CustomStateMapper("coloredredstone:unpowered_colored_redstone_repeater"));
+        ModelLoader.setCustomStateMapper(ModBlocks.POWERED_COLORED_REDSTONE_REPEATER, new CustomStateMapper("coloredredstone:powered_colored_redstone_repeater"));
     }
 
     private static void registerItemModels() {
