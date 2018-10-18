@@ -4,8 +4,8 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.text.TextFormatting;
 
 public enum EnumColor implements IStringSerializable {
-    BLACK(0, "black", "BLACK", "dyeBlack", Colors.BLACK, TextFormatting.BLACK),
-    RED(1, "red", "RED", "dyeRed", Colors.RED, TextFormatting.DARK_RED),
+    RED(0, "red", "RED", "dyeRed", Colors.RED, TextFormatting.DARK_RED),
+    BLACK(1, "black", "BLACK", "dyeBlack", Colors.BLACK, TextFormatting.BLACK),
     GREEN(2, "green", "GREEN", "dyeGreen", Colors.GREEN, TextFormatting.DARK_GREEN),
     BROWN(3, "brown", "BROWN", "dyeBrown", Colors.BROWN, TextFormatting.GOLD),
     BLUE(4, "blue", "BLUE", "dyeBlue", Colors.BLUE, TextFormatting.DARK_BLUE),
@@ -58,6 +58,7 @@ public enum EnumColor implements IStringSerializable {
         return this.meta;
     }
 
+    @SuppressWarnings("NullableProblems")
     @Override
     public String getName() {
         return this.name;
