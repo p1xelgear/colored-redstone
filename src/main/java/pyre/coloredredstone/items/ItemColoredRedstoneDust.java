@@ -41,7 +41,7 @@ public class ItemColoredRedstoneDust extends ItemBase implements IColoredItem{
 
         if (player.canPlayerEdit(blockpos, facing, itemstack) && worldIn.mayPlace(worldIn.getBlockState(blockpos).getBlock(), blockpos, false, facing, (Entity) null) && ModBlocks.COLORED_REDSTONE_WIRE.canPlaceBlockAt(worldIn, blockpos)) {
             IBlockState state = ModBlocks.COLORED_REDSTONE_WIRE.getDefaultState().withProperty(BlockColoredRedstoneWire.COLOR, EnumColor.byMetadata(itemstack.getMetadata()));
-            worldIn.setBlockState(blockpos, state, 2);
+            worldIn.setBlockState(blockpos, state, 3);
 
             if (player instanceof EntityPlayerMP) {
                 CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP) player, blockpos, itemstack);
