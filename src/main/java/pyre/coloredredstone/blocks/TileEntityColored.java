@@ -1,5 +1,6 @@
 package pyre.coloredredstone.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -77,6 +78,11 @@ public abstract class TileEntityColored extends TileEntity {
         notifyBlockUpdate();
     }
 
+    @Override
+    public void onLoad() {
+        setActualState();
+    }
+
     public EnumColor getColor() {
         return color;
     }
@@ -84,5 +90,15 @@ public abstract class TileEntityColored extends TileEntity {
     public void setColor(EnumColor color) {
         this.color = color;
         this.markDirty();
+        setActualState();
+    }
+
+    private void setActualState() {
+        if (!world.isRemote){
+            IBlockState blockState = world.getBlockState(pos);
+            Block block = blockState.getBlock();
+            IBlockState actualState = block.getActualState(blockState, world, pos);
+            world.setBlockState(pos, actualState, 3);
+        }
     }
 }

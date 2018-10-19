@@ -18,7 +18,7 @@ public interface IBlockColoredWithoutRedTE<TE extends TileEntityColored> extends
     @Override
     default EnumColor getColor(IBlockAccess world, BlockPos pos) {
         final TE tileEntity = getTileEntity(world, pos);
-        return tileEntity != null ? tileEntity.getColor() : EnumColor.RED;
+        return tileEntity != null ? tileEntity.getColor() : EnumColor.BLACK;
     }
 
     @Override
