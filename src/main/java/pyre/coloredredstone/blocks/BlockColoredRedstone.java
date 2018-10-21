@@ -8,12 +8,10 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
@@ -22,7 +20,6 @@ import net.minecraft.world.World;
 import pyre.coloredredstone.init.ModBlocks;
 import pyre.coloredredstone.init.ModItems;
 import pyre.coloredredstone.util.EnumColor;
-import pyre.coloredredstone.util.OreDictionaryUtils;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -111,24 +108,5 @@ public class BlockColoredRedstone extends Block implements IColoredFeatures, IBl
         Arrays.stream(EnumColor.values())
                 .filter(color -> color != EnumColor.RED)
                 .forEach(color -> items.add(new ItemStack(this, 1, color.getMetadata())));
-    }
-
-    @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        ItemStack heldItem = playerIn.getHeldItem(hand);
-
-        if (!heldItem.isEmpty() && heldItem.getCount() >= 9) {
-            EnumColor color = OreDictionaryUtils.getDyeColor(heldItem);
-            if (color != null && color != getColor(worldIn, pos)) {
-                if (color == EnumColor.RED){
-                    IBlockState redstoneBlockState = Blocks.REDSTONE_BLOCK.getDefaultState();
-                    worldIn.setBlockState(pos, redstoneBlockState, 2);
-                }
-                setColor(worldIn, pos, color);
-                heldItem.shrink(9);
-                return true;
-            }
-        }
-        return false;
     }
 }

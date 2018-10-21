@@ -15,7 +15,10 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
@@ -27,7 +30,6 @@ import pyre.coloredredstone.init.ModBlocks;
 import pyre.coloredredstone.init.ModItems;
 import pyre.coloredredstone.init.ModMaterials;
 import pyre.coloredredstone.util.EnumColor;
-import pyre.coloredredstone.util.OreDictionaryUtils;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Field;
@@ -112,32 +114,6 @@ public class BlockColoredRedstoneTorch extends BlockRedstoneTorch implements ICo
                     .withProperty(FACING, state.getValue(FACING))
                     .withProperty(COLOR, state.getValue(COLOR)), 3);
         }
-    }
-
-    @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        ItemStack heldItem = playerIn.getHeldItem(hand);
-
-        if (!heldItem.isEmpty()) {
-            EnumColor color = OreDictionaryUtils.getDyeColor(heldItem);
-            if (color != null && color != getColor(worldIn, pos)) {
-                if (color == EnumColor.RED){
-                    IBlockState redstoneTorchState;
-                    if (isOn()){
-                        redstoneTorchState = Blocks.REDSTONE_TORCH.getDefaultState()
-                                .withProperty(FACING, state.getValue(FACING));
-                    } else {
-                        redstoneTorchState = Blocks.UNLIT_REDSTONE_TORCH.getDefaultState()
-                                .withProperty(FACING, state.getValue(FACING));
-                    }
-                    worldIn.setBlockState(pos, redstoneTorchState, 3);
-                }
-                setColor(worldIn, pos, color);
-                heldItem.shrink(1);
-                return true;
-            }
-        }
-        return false;
     }
 
     @SuppressWarnings("deprecation")

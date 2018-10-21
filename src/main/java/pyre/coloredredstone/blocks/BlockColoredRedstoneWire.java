@@ -10,8 +10,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
@@ -24,7 +22,6 @@ import pyre.coloredredstone.init.ModBlocks;
 import pyre.coloredredstone.init.ModItems;
 import pyre.coloredredstone.init.ModMaterials;
 import pyre.coloredredstone.util.EnumColor;
-import pyre.coloredredstone.util.OreDictionaryUtils;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -94,21 +91,6 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire implements IColo
     @Override
     public int damageDropped(IBlockState state) {
         return state.getValue(COLOR) != EnumColor.RED ? state.getValue(COLOR).getMetadata() : 0;
-    }
-
-    @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        ItemStack heldItem = playerIn.getHeldItem(hand);
-
-        if (!heldItem.isEmpty()) {
-            EnumColor color = OreDictionaryUtils.getDyeColor(heldItem);
-            if (color != null && color != getColor(worldIn, pos)) {
-                setColor(worldIn, pos, color);
-                heldItem.shrink(1);
-                return true;
-            }
-        }
-        return false;
     }
 
     //preserved TileEntity until after #getDrops has been called
