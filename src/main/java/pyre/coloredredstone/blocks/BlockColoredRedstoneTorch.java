@@ -23,6 +23,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pyre.coloredredstone.ColoredRedstone;
@@ -42,6 +43,11 @@ import java.util.Random;
 
 @SuppressWarnings("NullableProblems")
 public class BlockColoredRedstoneTorch extends BlockRedstoneTorch implements IColoredFeatures, IBlockColoredWithoutRedTE<TileEntityColoredRedstoneTorch> {
+
+    private Method isBurnedOut;
+    private Method shouldBeOff;
+    private Field isOn;
+    private Field toggles;
 
     public BlockColoredRedstoneTorch(String name, boolean isOn) {
         super(isOn);
@@ -97,7 +103,8 @@ public class BlockColoredRedstoneTorch extends BlockRedstoneTorch implements ICo
                         .withProperty(COLOR, state.getValue(COLOR)), 3);
 
                 if (this.isBurnedOut(worldIn, pos, true)) {
-                    worldIn.playSound(null, pos, SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, SoundCategory.BLOCKS, 0.5F, 2.6F + (worldIn.rand.nextFloat() - worldIn.rand.nextFloat()) * 0.8F);
+                    worldIn.playSound(null, pos, SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, SoundCategory.BLOCKS,
+                            0.5F, 2.6F + (worldIn.rand.nextFloat() - worldIn.rand.nextFloat()) * 0.8F);
 
                     for (int i = 0; i < 5; ++i) {
                         double d0 = (double) pos.getX() + rand.nextDouble() * 0.6D + 0.2D;
@@ -202,56 +209,63 @@ public class BlockColoredRedstoneTorch extends BlockRedstoneTorch implements ICo
 
     private boolean isBurnedOut(World worldIn, BlockPos pos, boolean turnOff) {
         try {
-            Method isBurnedOutMethod = this.getClass().getSuperclass().getDeclaredMethod("isBurnedOut", World.class, BlockPos.class, boolean.class);
-            isBurnedOutMethod.setAccessible(true);
-            return (boolean) isBurnedOutMethod.invoke(this, worldIn, pos, turnOff);
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            ColoredRedstone.logger.warn("Cannot invoke 'isBurnedOut' method for ColoredRedstoneTorch.");
-            return false;
+            if (isBurnedOut == null) {
+                isBurnedOut = ReflectionHelper.findMethod(this.getClass().getSuperclass(), "isBurnedOut",
+                        "func_176598_a", World.class, BlockPos.class, boolean.class);
+            }
+            return (boolean) isBurnedOut.invoke(this, worldIn, pos, turnOff);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            ColoredRedstone.logger.error("Cannot invoke 'isBurnedOut' method for ColoredRedstoneTorch.", e);
+            throw new RuntimeException("Cannot invoke 'isBurnedOut' method for ColoredRedstoneTorch.", e);
         }
     }
 
     private boolean shouldBeOff(World worldIn, BlockPos pos, IBlockState state) {
         try {
-            Method isBurnedOutMethod = this.getClass().getSuperclass().getDeclaredMethod("shouldBeOff", World.class, BlockPos.class, IBlockState.class);
-            isBurnedOutMethod.setAccessible(true);
-            return (boolean) isBurnedOutMethod.invoke(this, worldIn, pos, state);
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            ColoredRedstone.logger.warn("Cannot invoke 'shouldBeOff' method for ColoredRedstoneTorch.");
-            return false;
+            if (shouldBeOff == null) {
+                shouldBeOff = ReflectionHelper.findMethod(this.getClass().getSuperclass(), "shouldBeOff",
+                        "func_176597_g", World.class, BlockPos.class, IBlockState.class);
+            }
+            return (boolean) shouldBeOff.invoke(this, worldIn, pos, state);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            ColoredRedstone.logger.error("Cannot invoke 'shouldBeOff' method for ColoredRedstoneTorch.", e);
+            throw new RuntimeException("Cannot invoke 'shouldBeOff' method for ColoredRedstoneTorch.", e);
         }
     }
 
     private boolean isOn() {
         try {
-            Field isOnField = this.getClass().getSuperclass().getDeclaredField("isOn");
-            isOnField.setAccessible(true);
-            return (boolean) isOnField.get(this);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            ColoredRedstone.logger.warn("Cannot get 'isOn' value for ColoredRedstoneTorch.");
-            return true;
+            if (isOn == null) {
+                isOn = ReflectionHelper.findField(this.getClass().getSuperclass(), "isOn", "field_150113_a");
+            }
+            return (boolean) isOn.get(this);
+        } catch (IllegalAccessException e) {
+            ColoredRedstone.logger.error("Cannot get 'isOn' value for ColoredRedstoneTorch.", e);
+            throw new RuntimeException("Cannot get 'isOn' value for ColoredRedstoneTorch.", e);
         }
     }
 
     private Map<World, List<?>> getToggles() {
         try {
-            Field isOnField = this.getClass().getSuperclass().getDeclaredField("toggles");
-            isOnField.setAccessible(true);
-            return (Map<World, List<?>>) isOnField.get(this);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            ColoredRedstone.logger.warn("Cannot get 'toggles' value for ColoredRedstoneTorch.");
-            return null;
+            if (toggles == null) {
+                toggles = ReflectionHelper.findField(this.getClass().getSuperclass(), "toggles", "field_150112_b");
+            }
+            @SuppressWarnings("unchecked")
+            Map<World, List<?>> toggle = (Map<World, List<?>>) toggles.get(this);
+            return toggle;
+        } catch (IllegalAccessException e) {
+            ColoredRedstone.logger.error("Cannot get 'toggles' value for ColoredRedstoneTorch.", e);
+            throw new RuntimeException("Cannot get 'toggles' value for ColoredRedstoneTorch.", e);
         }
     }
 
     private long getTimeForToggle(Object toggle, Class<?> innerClass) {
         try {
-            Field timeField = innerClass.getDeclaredField("time");
-            timeField.setAccessible(true);
-            return (long) timeField.get(toggle);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            ColoredRedstone.logger.warn("Cannot get 'toggles.time' value for ColoredRedstoneTorch.");
-            return Long.MAX_VALUE;
+            Field time = ReflectionHelper.findField(innerClass, "time", "field_150844_d");
+            return (long) time.get(toggle);
+        } catch (IllegalAccessException e) {
+            ColoredRedstone.logger.error("Cannot get 'toggles.time' value for ColoredRedstoneTorch.", e);
+            throw new RuntimeException("Cannot get 'toggles.time' value for ColoredRedstoneTorch.", e);
         }
     }
 }
