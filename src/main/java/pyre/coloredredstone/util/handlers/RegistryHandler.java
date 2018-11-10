@@ -20,10 +20,7 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import pyre.coloredredstone.blocks.BlockColoredRedstoneWire;
-import pyre.coloredredstone.blocks.TileEntityColoredRedstoneRepeater;
-import pyre.coloredredstone.blocks.TileEntityColoredRedstoneTorch;
-import pyre.coloredredstone.blocks.TileEntityColoredRedstoneWire;
+import pyre.coloredredstone.blocks.*;
 import pyre.coloredredstone.init.ModBlocks;
 import pyre.coloredredstone.init.ModEntities;
 import pyre.coloredredstone.init.ModItems;
@@ -77,11 +74,14 @@ public class RegistryHandler {
         GameRegistry.registerTileEntity(TileEntityColoredRedstoneWire.class, ModBlocks.COLORED_REDSTONE_WIRE.getRegistryName());
         GameRegistry.registerTileEntity(TileEntityColoredRedstoneTorch.class, ModBlocks.COLORED_REDSTONE_TORCH.getRegistryName());
         GameRegistry.registerTileEntity(TileEntityColoredRedstoneRepeater.class, ModBlocks.UNPOWERED_COLORED_REDSTONE_REPEATER.getRegistryName());
+        GameRegistry.registerTileEntity(TileEntityColoredRedstoneComparator.class, ModBlocks.UNPOWERED_COLORED_REDSTONE_COMPARATOR.getRegistryName());
     }
 
     private static void setCustomStateMappers() {
         ModelLoader.setCustomStateMapper(ModBlocks.UNPOWERED_COLORED_REDSTONE_REPEATER, new CustomStateMapper("coloredredstone:unpowered_colored_redstone_repeater"));
         ModelLoader.setCustomStateMapper(ModBlocks.POWERED_COLORED_REDSTONE_REPEATER, new CustomStateMapper("coloredredstone:powered_colored_redstone_repeater"));
+        ModelLoader.setCustomStateMapper(ModBlocks.UNPOWERED_COLORED_REDSTONE_COMPARATOR, new CustomStateMapper("coloredredstone:unpowered_colored_redstone_comparator"));
+        ModelLoader.setCustomStateMapper(ModBlocks.POWERED_COLORED_REDSTONE_COMPARATOR, new CustomStateMapper("coloredredstone:powered_colored_redstone_comparator"));
     }
 
     private static void registerItemModels() {

@@ -106,6 +106,13 @@ public class ColoredItemEventHandler {
     }
 
     @SubscribeEvent
+    public static void changeRedstoneComparatorColor(PlayerInteractEvent.RightClickBlock event) {
+        if (event.getEntityPlayer().isSneaking()){
+            changeTileEntityColor(event, BlockColoredRedstoneComparator.class);
+        }
+    }
+
+    @SubscribeEvent
     public static void changeRedstoneWireColor(PlayerInteractEvent.RightClickBlock event) {
         changeTileEntityColor(event, BlockColoredRedstoneWire.class);
     }

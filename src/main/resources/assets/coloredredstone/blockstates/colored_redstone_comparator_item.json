@@ -1,0 +1,86 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "builtin/generated",
+    "transform": "forge:default-item"
+  },
+  "variants": {
+    "color": {
+      "black": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_comparator_black"
+        }
+      },
+      "green": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_comparator_green"
+        }
+      },
+      "brown": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_comparator_brown"
+        }
+      },
+      "blue": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_comparator_blue"
+        }
+      },
+      "purple": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_comparator_purple"
+        }
+      },
+      "cyan": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_comparator_cyan"
+        }
+      },
+      "light_gray": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_comparator_light_gray"
+        }
+      },
+      "gray": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_comparator_gray"
+        }
+      },
+      "pink": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_comparator_pink"
+        }
+      },
+      "lime": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_comparator_lime"
+        }
+      },
+      "yellow": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_comparator_yellow"
+        }
+      },
+      "light_blue": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_comparator_light_blue"
+        }
+      },
+      "magenta": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_comparator_magenta"
+        }
+      },
+      "orange": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_comparator_orange"
+        }
+      },
+      "white": {
+        "textures": {
+          "layer0": "coloredredstone:blocks/colored_redstone_comparator_white"
+        }
+      }
+    }
+  }
+}

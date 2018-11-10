@@ -131,7 +131,6 @@ public class BlockColoredRedstoneRepeater extends BlockRedstoneRepeater implemen
 
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-        //super.breakBlock(worldIn, pos, state);
         this.notifyNeighbors(worldIn, pos, state);
     }
 

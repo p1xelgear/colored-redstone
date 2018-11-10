@@ -2,10 +2,7 @@ package pyre.coloredredstone.init;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
-import pyre.coloredredstone.blocks.BlockColoredRedstone;
-import pyre.coloredredstone.blocks.BlockColoredRedstoneRepeater;
-import pyre.coloredredstone.blocks.BlockColoredRedstoneTorch;
-import pyre.coloredredstone.blocks.BlockColoredRedstoneWire;
+import pyre.coloredredstone.blocks.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +17,8 @@ public class ModBlocks {
     public static BlockColoredRedstoneTorch UNLIT_COLORED_REDSTONE_TORCH;
     public static BlockColoredRedstoneRepeater POWERED_COLORED_REDSTONE_REPEATER;
     public static BlockColoredRedstoneRepeater UNPOWERED_COLORED_REDSTONE_REPEATER;
+    public static BlockColoredRedstoneComparator POWERED_COLORED_REDSTONE_COMPARATOR;
+    public static BlockColoredRedstoneComparator UNPOWERED_COLORED_REDSTONE_COMPARATOR;
 
     public static void init(){
         COLORED_REDSTONE_WIRE = new BlockColoredRedstoneWire();
@@ -31,5 +30,9 @@ public class ModBlocks {
         POWERED_COLORED_REDSTONE_REPEATER = new BlockColoredRedstoneRepeater("minecraft:powered_repeater", true);
         UNPOWERED_COLORED_REDSTONE_REPEATER = new BlockColoredRedstoneRepeater("minecraft:unpowered_repeater", false);
         UNPOWERED_COLORED_REDSTONE_REPEATER.setCreativeTab(CreativeTabs.REDSTONE).setUnlocalizedName("unpowered_colored_redstone_repeater");
+        POWERED_COLORED_REDSTONE_COMPARATOR = new BlockColoredRedstoneComparator("minecraft:powered_comparator", true);
+        POWERED_COLORED_REDSTONE_COMPARATOR.setLightLevel(0.625F);
+        UNPOWERED_COLORED_REDSTONE_COMPARATOR = new BlockColoredRedstoneComparator("minecraft:unpowered_comparator", false);
+        UNPOWERED_COLORED_REDSTONE_COMPARATOR.setCreativeTab(CreativeTabs.REDSTONE).setUnlocalizedName("unpowered_colored_redstone_comparator");
     }
 }
