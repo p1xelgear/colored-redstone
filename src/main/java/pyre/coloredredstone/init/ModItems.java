@@ -20,7 +20,7 @@ public class ModItems {
         COLORED_REDSTONE_DUST = new ItemColoredRedstoneDust("colored_redstone_dust");
         COLORED_REDSTONE_BLOCK = new ItemColoredRedstoneBlock(ModBlocks.COLORED_REDSTONE_BLOCK, "colored_redstone_block");
         COLORED_REDSTONE_TORCH = new ItemColoredRedstoneTorch(ModBlocks.COLORED_REDSTONE_TORCH, "colored_redstone_torch_item");
-        COLORED_REDSTONE_REPEATER = new ItemColoredRedstoneRepeater(ModBlocks.UNPOWERED_COLORED_REDSTONE_REPEATER, "colored_redstone_repeater_item");
-        COLORED_REDSTONE_COMPARATOR = new ItemColoredRedstoneComparator(ModBlocks.UNPOWERED_COLORED_REDSTONE_COMPARATOR, "colored_redstone_comparator_item");
+        COLORED_REDSTONE_REPEATER = new ItemColoredRedstoneDiode(ModBlocks.UNPOWERED_COLORED_REDSTONE_REPEATER, "colored_redstone_repeater_item");
+        COLORED_REDSTONE_COMPARATOR = new ItemColoredRedstoneDiode(ModBlocks.UNPOWERED_COLORED_REDSTONE_COMPARATOR, "colored_redstone_comparator_item");
     }
 }

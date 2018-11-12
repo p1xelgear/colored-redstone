@@ -24,11 +24,14 @@ import pyre.coloredredstone.init.ModItems;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemColoredRedstoneComparator extends ItemBlockSpecial implements IColoredItem {
+/**
+ * Colored redstone Repeater and Comparator item.
+ */
+public class ItemColoredRedstoneDiode extends ItemBlockSpecial implements IColoredItem {
 
     private final Block block;
 
-    public ItemColoredRedstoneComparator(Block block, String name) {
+    public ItemColoredRedstoneDiode(Block block, String name) {
         super(block);
         this.block = block;
         setRegistryName(name);
