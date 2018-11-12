@@ -243,7 +243,7 @@ public class BlockColoredRedstoneComparator extends BlockRedstoneComparator impl
 
     private int calculateOutput(World worldIn, BlockPos pos, IBlockState state) {
         if (calculateOutput == null) {
-            calculateOutput = ReflectionHelper.findMethod(this.getClass().getSuperclass(), "calculateOutput", "", World.class, BlockPos.class, IBlockState.class);
+            calculateOutput = ReflectionHelper.findMethod(this.getClass().getSuperclass(), "calculateOutput", "func_176460_j", World.class, BlockPos.class, IBlockState.class);
         }
         try {
             return (int) calculateOutput.invoke(this, worldIn, pos, state);
