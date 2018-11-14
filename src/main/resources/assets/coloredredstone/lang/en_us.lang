@@ -22,3 +22,14 @@ coloredredstone.tooltip.despawnproof=Despawn-proof!
 coloredredstone.tooltip.fireproof=Fireproof!
 coloredredstone.tooltip.explosionproof=Explosion-proof!
 coloredredstone.tooltip.cactusproof=Cactus-proof!
+
+##################
+##### CONFIG #####
+##################
+
+coloredredstone.config.title=Colored Redstone Configuration
+coloredredstone.config.waterproof=Waterproof
+coloredredstone.config.despawnproof=Despawn-proof
+coloredredstone.config.fireproof=Fireproof
+coloredredstone.config.explosionproof=Explosion-proof
+coloredredstone.config.cactusproof=Cactus-proof

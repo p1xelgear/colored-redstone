@@ -10,6 +10,7 @@ import pyre.coloredredstone.init.ModEntities;
 import pyre.coloredredstone.init.ModItems;
 import pyre.coloredredstone.proxy.CommonProxy;
 import pyre.coloredredstone.util.Reference;
+import pyre.coloredredstone.util.handlers.NetworkHandler;
 import pyre.coloredredstone.util.handlers.OreDictionaryHandler;
 import pyre.coloredredstone.util.handlers.RegistryHandler;
 
@@ -28,6 +29,7 @@ public class ColoredRedstone {
         ModItems.init();
         ModEntities.init();
         RegistryHandler.registerTileEntities();
+        NetworkHandler.init();
     }
 
     @Mod.EventHandler

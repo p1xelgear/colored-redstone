@@ -84,7 +84,7 @@ public class RegistryHandler {
         GameRegistry.registerTileEntity(TileEntityColoredRedstoneRepeater.class, ModBlocks.UNPOWERED_COLORED_REDSTONE_REPEATER.getRegistryName());
         GameRegistry.registerTileEntity(TileEntityColoredRedstoneComparator.class, ModBlocks.UNPOWERED_COLORED_REDSTONE_COMPARATOR.getRegistryName());
     }
-    
+
     private static void registerItemModels() {
         for (Item item : ModItems.ITEMS) {
             if (!item.getHasSubtypes()){
