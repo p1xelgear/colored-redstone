@@ -51,9 +51,17 @@ public class RegistryHandler {
 
     @SubscribeEvent
     public static void onModelRegister(ModelRegistryEvent event) {
-        setCustomStateMappers();
         registerItemModels();
         registerItemFromBlockModels();
+    }
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public static void setCustomStateMappers(ModelRegistryEvent event) {
+        ModelLoader.setCustomStateMapper(ModBlocks.UNPOWERED_COLORED_REDSTONE_REPEATER, new CustomStateMapper("coloredredstone:unpowered_colored_redstone_repeater"));
+        ModelLoader.setCustomStateMapper(ModBlocks.POWERED_COLORED_REDSTONE_REPEATER, new CustomStateMapper("coloredredstone:powered_colored_redstone_repeater"));
+        ModelLoader.setCustomStateMapper(ModBlocks.UNPOWERED_COLORED_REDSTONE_COMPARATOR, new CustomStateMapper("coloredredstone:unpowered_colored_redstone_comparator"));
+        ModelLoader.setCustomStateMapper(ModBlocks.POWERED_COLORED_REDSTONE_COMPARATOR, new CustomStateMapper("coloredredstone:powered_colored_redstone_comparator"));
     }
 
     @SubscribeEvent
@@ -76,14 +84,7 @@ public class RegistryHandler {
         GameRegistry.registerTileEntity(TileEntityColoredRedstoneRepeater.class, ModBlocks.UNPOWERED_COLORED_REDSTONE_REPEATER.getRegistryName());
         GameRegistry.registerTileEntity(TileEntityColoredRedstoneComparator.class, ModBlocks.UNPOWERED_COLORED_REDSTONE_COMPARATOR.getRegistryName());
     }
-
-    private static void setCustomStateMappers() {
-        ModelLoader.setCustomStateMapper(ModBlocks.UNPOWERED_COLORED_REDSTONE_REPEATER, new CustomStateMapper("coloredredstone:unpowered_colored_redstone_repeater"));
-        ModelLoader.setCustomStateMapper(ModBlocks.POWERED_COLORED_REDSTONE_REPEATER, new CustomStateMapper("coloredredstone:powered_colored_redstone_repeater"));
-        ModelLoader.setCustomStateMapper(ModBlocks.UNPOWERED_COLORED_REDSTONE_COMPARATOR, new CustomStateMapper("coloredredstone:unpowered_colored_redstone_comparator"));
-        ModelLoader.setCustomStateMapper(ModBlocks.POWERED_COLORED_REDSTONE_COMPARATOR, new CustomStateMapper("coloredredstone:powered_colored_redstone_comparator"));
-    }
-
+    
     private static void registerItemModels() {
         for (Item item : ModItems.ITEMS) {
             if (!item.getHasSubtypes()){
