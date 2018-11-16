@@ -1,6 +1,10 @@
 package pyre.coloredredstone.util.handlers;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
@@ -24,7 +28,18 @@ public class ConfigSynchronizationHandler {
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
-    public static void eventClientDisconnectionFromServer﻿(FMLNetworkEvent.ClientDisconnectionFromServerEvent event){
+    public static void eventClientDisconnectionFromServer(FMLNetworkEvent.ClientDisconnectionFromServerEvent event){
         CurrentModConfig.useClientSettings();
+    }
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public static void onConfigChanged(final ConfigChangedEvent.OnConfigChangedEvent event){
+        if (event.getModID().equals(Reference.MOD_ID)){
+            ConfigManager.sync(Reference.MOD_ID, Config.Type.INSTANCE);
+            if (Minecraft.getMinecraft().isSingleplayer() || Minecraft.getMinecraft().world == null) {
+                CurrentModConfig.useClientSettings();
+            }
+        }
     }
 }

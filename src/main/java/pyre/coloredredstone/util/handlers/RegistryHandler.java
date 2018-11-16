@@ -10,10 +10,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.common.config.Config;
-import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
@@ -26,7 +23,6 @@ import pyre.coloredredstone.init.ModEntities;
 import pyre.coloredredstone.init.ModItems;
 import pyre.coloredredstone.util.CustomStateMapper;
 import pyre.coloredredstone.util.EnumColor;
-import pyre.coloredredstone.util.Reference;
 
 @Mod.EventBusSubscriber
 public class RegistryHandler {
@@ -62,13 +58,6 @@ public class RegistryHandler {
         ModelLoader.setCustomStateMapper(ModBlocks.POWERED_COLORED_REDSTONE_REPEATER, new CustomStateMapper("coloredredstone:powered_colored_redstone_repeater"));
         ModelLoader.setCustomStateMapper(ModBlocks.UNPOWERED_COLORED_REDSTONE_COMPARATOR, new CustomStateMapper("coloredredstone:unpowered_colored_redstone_comparator"));
         ModelLoader.setCustomStateMapper(ModBlocks.POWERED_COLORED_REDSTONE_COMPARATOR, new CustomStateMapper("coloredredstone:powered_colored_redstone_comparator"));
-    }
-
-    @SubscribeEvent
-    public static void onConfigChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event) {
-        if (event.getModID().equals(Reference.MOD_ID)) {
-            ConfigManager.sync(Reference.MOD_ID, Config.Type.INSTANCE);
-        }
     }
 
     @SubscribeEvent
