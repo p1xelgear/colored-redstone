@@ -27,6 +27,7 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pyre.coloredredstone.ColoredRedstone;
+import pyre.coloredredstone.config.CurrentModConfig;
 import pyre.coloredredstone.init.ModBlocks;
 import pyre.coloredredstone.init.ModItems;
 import pyre.coloredredstone.init.ModMaterials;
@@ -126,12 +127,14 @@ public class BlockColoredRedstoneTorch extends BlockRedstoneTorch implements ICo
     @SuppressWarnings("deprecation")
     @Override
     public Material getMaterial(IBlockState state) {
-        return state.getValue(COLOR) == WATERPROOF_COLOR ? ModMaterials.CIRCUITS_WATERPROOF : super.getMaterial(state);
+        return (CurrentModConfig.waterproof && state.getValue(COLOR) == WATERPROOF_COLOR) ?
+                ModMaterials.CIRCUITS_WATERPROOF : super.getMaterial(state);
     }
 
     @Override
     public float getExplosionResistance(World world, BlockPos pos, @Nullable Entity exploder, Explosion explosion) {
-        return getColor(world, pos) == EXPLOSION_PROOF_COLOR ? EXPLOSION_PROOF_BLOCK_RESISTANCE : super.getExplosionResistance(world, pos, exploder, explosion);
+        return (CurrentModConfig.explosionproof && getColor(world, pos) == EXPLOSION_PROOF_COLOR) ?
+                EXPLOSION_PROOF_BLOCK_RESISTANCE : super.getExplosionResistance(world, pos, exploder, explosion);
     }
 
     @Override

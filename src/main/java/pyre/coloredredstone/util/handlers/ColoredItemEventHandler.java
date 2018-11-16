@@ -12,6 +12,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import pyre.coloredredstone.blocks.*;
+import pyre.coloredredstone.config.CurrentModConfig;
 import pyre.coloredredstone.init.ModBlocks;
 import pyre.coloredredstone.items.IColoredItem;
 import pyre.coloredredstone.util.EnumColor;
@@ -22,10 +23,12 @@ public class ColoredItemEventHandler {
 
     @SubscribeEvent
     public static void preventDespawn(ItemExpireEvent event){
-        ItemStack itemStack = event.getEntityItem().getItem();
-        Item item = itemStack.getItem();
-        if (item instanceof IColoredItem && itemStack.getMetadata() == EnumColor.WHITE.getMetadata()) {
-            event.setCanceled(true);
+        if (CurrentModConfig.despawnproof) {
+            ItemStack itemStack = event.getEntityItem().getItem();
+            Item item = itemStack.getItem();
+            if (item instanceof IColoredItem && itemStack.getMetadata() == EnumColor.WHITE.getMetadata()) {
+                event.setCanceled(true);
+            }
         }
     }
 
