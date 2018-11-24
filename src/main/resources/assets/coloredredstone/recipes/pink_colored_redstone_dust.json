@@ -1,0 +1,78 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "colored_redstone_dust_dye",
+  "pattern": [
+    "Dd"
+  ],
+  "key": {
+    "D": [
+      {
+        "item": "minecraft:redstone"
+      },
+      {
+        "item": "coloredredstone:colored_redstone_dust",
+        "data": 1
+      },
+      {
+        "item": "coloredredstone:colored_redstone_dust",
+        "data": 2
+      },
+      {
+        "item": "coloredredstone:colored_redstone_dust",
+        "data": 3
+      },
+      {
+        "item": "coloredredstone:colored_redstone_dust",
+        "data": 4
+      },
+      {
+        "item": "coloredredstone:colored_redstone_dust",
+        "data": 5
+      },
+      {
+        "item": "coloredredstone:colored_redstone_dust",
+        "data": 6
+      },
+      {
+        "item": "coloredredstone:colored_redstone_dust",
+        "data": 7
+      },
+      {
+        "item": "coloredredstone:colored_redstone_dust",
+        "data": 8
+      },
+      {
+        "item": "coloredredstone:colored_redstone_dust",
+        "data": 10
+      },
+      {
+        "item": "coloredredstone:colored_redstone_dust",
+        "data": 11
+      },
+      {
+        "item": "coloredredstone:colored_redstone_dust",
+        "data": 12
+      },
+      {
+        "item": "coloredredstone:colored_redstone_dust",
+        "data": 13
+      },
+      {
+        "item": "coloredredstone:colored_redstone_dust",
+        "data": 14
+      },
+      {
+        "item": "coloredredstone:colored_redstone_dust",
+        "data": 15
+      }
+    ],
+    "d": {
+      "item": "#PINK_DYE"
+    }
+  },
+  "result": {
+    "item": "coloredredstone:colored_redstone_dust",
+    "count": 2,
+    "data": 9
+  }
+}

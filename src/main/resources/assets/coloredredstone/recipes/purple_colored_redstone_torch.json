@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "colored_redstone_torch",
+  "pattern": [
+    "X",
+    "s"
+  ],
+  "key": {
+    "X": {
+      "item": "coloredredstone:colored_redstone_dust",
+      "data": 5
+    },
+    "s": {
+      "item": "#STICK"
+    }
+  },
+  "result": {
+    "item": "coloredredstone:colored_redstone_torch_item",
+    "count": 1,
+    "data": 5
+  }
+}

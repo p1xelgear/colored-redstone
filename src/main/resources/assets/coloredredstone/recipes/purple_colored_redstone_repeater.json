@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "colored_redstone_repeater",
+  "pattern": [
+    "TDT",
+    "sss"
+  ],
+  "key": {
+    "T": {
+      "item": "coloredredstone:colored_redstone_torch_item",
+      "data": 5
+    },
+    "D": {
+      "item": "coloredredstone:colored_redstone_dust",
+      "data": 5
+    },
+    "s": {
+      "item": "minecraft:stone",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "coloredredstone:colored_redstone_repeater_item",
+    "data": 5
+  }
+}

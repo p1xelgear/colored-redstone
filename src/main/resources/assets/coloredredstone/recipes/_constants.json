@@ -1,0 +1,121 @@
+[
+  {
+    "name": "BLACK_DYE",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dyeBlack"
+    }
+  },
+  {
+    "name": "RED_DYE",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dyeRed"
+    }
+  },
+  {
+    "name": "GREEN_DYE",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dyeGreen"
+    }
+  },
+  {
+    "name": "BROWN_DYE",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dyeBrown"
+    }
+  },
+  {
+    "name": "BLUE_DYE",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dyeBlue"
+    }
+  },
+  {
+    "name": "PURPLE_DYE",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dyePurple"
+    }
+  },
+  {
+    "name": "CYAN_DYE",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dyeCyan"
+    }
+  },
+  {
+    "name": "LIGHT_GRAY_DYE",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dyeLightGray"
+    }
+  },
+  {
+    "name": "GRAY_DYE",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dyeGray"
+    }
+  },
+  {
+    "name": "PINK_DYE",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dyePink"
+    }
+  },
+  {
+    "name": "LIME_DYE",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dyeLime"
+    }
+  },
+  {
+    "name": "YELLOW_DYE",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dyeYellow"
+    }
+  },
+  {
+    "name": "LIGHT_BLUE_DYE",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dyeLightBlue"
+    }
+  },
+  {
+    "name": "MAGENTA_DYE",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dyeMagenta"
+    }
+  },
+  {
+    "name": "ORANGE_DYE",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dyeOrange"
+    }
+  },
+  {
+    "name": "WHITE_DYE",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dyeWhite"
+    }
+  },
+  {
+    "name": "STICK",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    }
+  }
+]

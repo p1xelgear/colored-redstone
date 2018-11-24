@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "colored_redstone_dust",
+  "ingredients": [
+    {
+      "item": "coloredredstone:colored_redstone_block",
+      "data": 12
+    }
+  ],
+  "result": {
+    "item": "coloredredstone:colored_redstone_dust",
+    "count": 9,
+    "data": 12
+  }
+}

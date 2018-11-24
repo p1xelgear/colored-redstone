@@ -1,0 +1,79 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "colored_redstone_comparator_dye",
+  "pattern": [
+    "Cd",
+    "dd"
+  ],
+  "key": {
+    "C": [
+      {
+        "item": "minecraft:comparator"
+      },
+      {
+        "item": "coloredredstone:colored_redstone_comparator_item",
+        "data": 1
+      },
+      {
+        "item": "coloredredstone:colored_redstone_comparator_item",
+        "data": 2
+      },
+      {
+        "item": "coloredredstone:colored_redstone_comparator_item",
+        "data": 3
+      },
+      {
+        "item": "coloredredstone:colored_redstone_comparator_item",
+        "data": 5
+      },
+      {
+        "item": "coloredredstone:colored_redstone_comparator_item",
+        "data": 6
+      },
+      {
+        "item": "coloredredstone:colored_redstone_comparator_item",
+        "data": 7
+      },
+      {
+        "item": "coloredredstone:colored_redstone_comparator_item",
+        "data": 8
+      },
+      {
+        "item": "coloredredstone:colored_redstone_comparator_item",
+        "data": 9
+      },
+      {
+        "item": "coloredredstone:colored_redstone_comparator_item",
+        "data": 10
+      },
+      {
+        "item": "coloredredstone:colored_redstone_comparator_item",
+        "data": 11
+      },
+      {
+        "item": "coloredredstone:colored_redstone_comparator_item",
+        "data": 12
+      },
+      {
+        "item": "coloredredstone:colored_redstone_comparator_item",
+        "data": 13
+      },
+      {
+        "item": "coloredredstone:colored_redstone_comparator_item",
+        "data": 14
+      },
+      {
+        "item": "coloredredstone:colored_redstone_comparator_item",
+        "data": 15
+      }
+    ],
+    "d": {
+      "item": "#BLUE_DYE"
+    }
+  },
+  "result": {
+    "item": "coloredredstone:colored_redstone_comparator_item",
+    "count": 1,
+    "data": 4
+  }
+}
