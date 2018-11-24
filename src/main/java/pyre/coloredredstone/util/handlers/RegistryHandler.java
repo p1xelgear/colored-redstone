@@ -7,6 +7,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -23,6 +24,7 @@ import pyre.coloredredstone.init.ModEntities;
 import pyre.coloredredstone.init.ModItems;
 import pyre.coloredredstone.util.CustomStateMapper;
 import pyre.coloredredstone.util.EnumColor;
+import pyre.coloredredstone.util.Reference;
 
 @Mod.EventBusSubscriber
 public class RegistryHandler {
@@ -68,10 +70,10 @@ public class RegistryHandler {
     }
 
     public static void registerTileEntities() {
-        GameRegistry.registerTileEntity(TileEntityColoredRedstoneWire.class, ModBlocks.COLORED_REDSTONE_WIRE.getRegistryName());
-        GameRegistry.registerTileEntity(TileEntityColoredRedstoneTorch.class, ModBlocks.COLORED_REDSTONE_TORCH.getRegistryName());
-        GameRegistry.registerTileEntity(TileEntityColoredRedstoneRepeater.class, ModBlocks.UNPOWERED_COLORED_REDSTONE_REPEATER.getRegistryName());
-        GameRegistry.registerTileEntity(TileEntityColoredRedstoneComparator.class, ModBlocks.UNPOWERED_COLORED_REDSTONE_COMPARATOR.getRegistryName());
+        GameRegistry.registerTileEntity(TileEntityColoredRedstoneWire.class, new ResourceLocation(Reference.MOD_ID, "colored_redstone_wire"));
+        GameRegistry.registerTileEntity(TileEntityColoredRedstoneTorch.class, new ResourceLocation(Reference.MOD_ID, "colored_redstone_torch"));
+        GameRegistry.registerTileEntity(TileEntityColoredRedstoneRepeater.class, new ResourceLocation(Reference.MOD_ID, "colored_redstone_repeater"));
+        GameRegistry.registerTileEntity(TileEntityColoredRedstoneComparator.class, new ResourceLocation(Reference.MOD_ID, "colored_redstone_comparator"));
     }
 
     private static void registerItemModels() {
