@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "g g",
+    "gsg",
+    "gDg"
+  ],
+  "key": {
+    "D": {
+      "item": "#COLORED_DUST"
+    },
+    "s": {
+      "item": "#STICK"
+    },
+    "g": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "minecraft:golden_rail",
+    "count": 6
+  }
+}

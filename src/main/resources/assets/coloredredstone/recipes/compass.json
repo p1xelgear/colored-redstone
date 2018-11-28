@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " i ",
+    "iDi",
+    " i "
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "D": {
+      "item": "#COLORED_DUST"
+    }
+  },
+  "result": {
+    "item": "minecraft:compass"
+  }
+}

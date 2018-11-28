@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ccc",
+    "DDq",
+    "ccc"
+  ],
+  "key": {
+    "q": {
+      "item": "minecraft:quartz"
+    },
+    "D": {
+      "item": "#COLORED_DUST"
+    },
+    "c": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "result": {
+    "item": "minecraft:observer"
+  }
+}

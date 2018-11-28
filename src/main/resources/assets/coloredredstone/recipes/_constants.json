@@ -117,5 +117,19 @@
       "type": "forge:ore_dict",
       "ore": "stickWood"
     }
+  },
+  {
+    "name": "COLORED_DUST",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dustColoredRedstone"
+    }
+  },
+  {
+    "name": "COLORED_TORCH",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "torchRedstone"
+    }
   }
 ]

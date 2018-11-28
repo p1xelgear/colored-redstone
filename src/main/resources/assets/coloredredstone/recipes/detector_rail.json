@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i i",
+    "ipi",
+    "iDi"
+  ],
+  "key": {
+    "D": {
+      "item": "#COLORED_DUST"
+    },
+    "p": {
+      "item": "minecraft:stone_pressure_plate"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "minecraft:detector_rail",
+    "count": 6
+  }
+}

@@ -8,10 +8,12 @@ import pyre.coloredredstone.init.ModItems;
 public class OreDictionaryHandler {
 
     public static void registerOreDictionary() {
-        //OreDictionary.registerOre("dustRedstone", new ItemStack(ModItems.COLORED_REDSTONE_DUST, 1, OreDictionary.WILDCARD_VALUE));
-        OreDictionary.registerOre("blockRedstone", new ItemStack(ModBlocks.COLORED_REDSTONE_BLOCK, 1, OreDictionary.WILDCARD_VALUE));
-        OreDictionary.registerOre("torchRedstone", new ItemStack(ModBlocks.COLORED_REDSTONE_TORCH, 1, OreDictionary.WILDCARD_VALUE));
-        OreDictionary.registerOre("comparator", new ItemStack(ModItems.COLORED_REDSTONE_COMPARATOR, 1, OreDictionary.WILDCARD_VALUE));
-        OreDictionary.registerOre("repeater", new ItemStack(ModItems.COLORED_REDSTONE_REPEATER, 1, OreDictionary.WILDCARD_VALUE));
+        for (int meta = 1; meta <= 15; meta++) {
+            OreDictionary.registerOre("dustColoredRedstone", new ItemStack(ModItems.COLORED_REDSTONE_DUST, 1, meta));
+            OreDictionary.registerOre("blockRedstone", new ItemStack(ModBlocks.COLORED_REDSTONE_BLOCK, 1, meta));
+            OreDictionary.registerOre("torchRedstone", new ItemStack(ModBlocks.COLORED_REDSTONE_TORCH, 1, meta));
+            OreDictionary.registerOre("comparator", new ItemStack(ModItems.COLORED_REDSTONE_COMPARATOR, 1, meta));
+            OreDictionary.registerOre("repeater", new ItemStack(ModItems.COLORED_REDSTONE_REPEATER, 1, meta));
+        }
     }
 }

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "colored_redstone_block",
+  "pattern": [
+    " D ",
+    "DgD",
+    " D "
+  ],
+  "key": {
+    "D": {
+      "item": "#COLORED_DUST"
+    },
+    "g": {
+      "item": "minecraft:glowstone"
+    }
+  },
+  "result": {
+    "item": "minecraft:redstone_lamp",
+    "count": 1
+  }
+}

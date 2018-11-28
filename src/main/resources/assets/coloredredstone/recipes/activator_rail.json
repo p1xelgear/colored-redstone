@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "activator_rail",
+  "pattern": [
+    "isi",
+    "iTi",
+    "isi"
+  ],
+  "key": {
+    "T": {
+      "item": "#COLORED_TORCH"
+    },
+    "s": {
+      "item": "#STICK"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "minecraft:activator_rail",
+    "count": 6
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ccc",
+    "cbc",
+    "cDc"
+  ],
+  "key": {
+    "D": {
+      "item": "#COLORED_DUST"
+    },
+    "c": {
+      "item": "minecraft:cobblestone"
+    },
+    "b": {
+      "item": "minecraft:bow"
+    }
+  },
+  "result": {
+    "item": "minecraft:dispenser"
+  }
+}
