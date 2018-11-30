@@ -2,14 +2,14 @@
 {
   "modid": "coloredredstone",
   "name": "Colored Redstone",
-  "description": "Some may say it's a 'colorstone' now.",
+  "description": "World of Color update for Redstone!",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "https://github.com/Pyre540/colored-redstone",
   "updateUrl": "",
   "authorList": ["Pyre540"],
   "credits": "The Forge and FML guys and whole Minecraft Community. Thank you.",
-  "logoFile": "",
+  "logoFile": "assets/coloredredstone/textures/logo.png",
   "screenshots": [],
   "dependencies": []
 }
