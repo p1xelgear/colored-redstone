@@ -8,22 +8,22 @@ import pyre.coloredredstone.util.Reference;
 public class ModConfig {
 
     @Config.LangKey("coloredredstone.config.waterproof")
-    @Config.Comment("If true, blue colored redstone components will not be washed away by water.")
+    @Config.Comment("If true, placed, blue colored redstone components will not be washed away by water.")
     public static boolean waterproof = true;
 
     @Config.LangKey("coloredredstone.config.explosionproof")
-    @Config.Comment("If true, orange colored redstone components (both in item and block form) will not be destroyed by explosions.")
+    @Config.Comment("If true, orange colored items and blocks in item form will not be destroyed by explosions, placed redstone components will not pop up.")
     public static boolean explosionproof = true;
 
     @Config.LangKey("coloredredstone.config.fireproof")
-    @Config.Comment("If true, yellow colored redstone items will not be destroyed by fire.")
+    @Config.Comment("If true, yellow items and blocks in item form will not be destroyed by fire or lava.")
     public static boolean fireproof = true;
 
     @Config.LangKey("coloredredstone.config.despawnproof")
-    @Config.Comment("If true, white colored redstone items will not despawn.")
+    @Config.Comment("If true, white items and blocks in item form will not despawn when on the ground.")
     public static boolean despawnproof = true;
 
     @Config.LangKey("coloredredstone.config.cactusproof")
-    @Config.Comment("If true, green colored redstone items will not be destroyed by cactus.")
+    @Config.Comment("If true, green items and blocks in item form will not be destroyed by Cactus.")
     public static boolean cactusproof = true;
 }
