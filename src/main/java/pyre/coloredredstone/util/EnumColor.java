@@ -5,10 +5,10 @@ import net.minecraft.util.text.TextFormatting;
 
 public enum EnumColor implements IStringSerializable {
     RED(0, "red", "RED", "dyeRed", Colors.RED, TextFormatting.DARK_RED),
-    BLACK(1, "black", "BLACK", "dyeBlack", Colors.BLACK, TextFormatting.BLACK),
+    BLACK(1, "black", "BLACK", "dyeBlack", Colors.BLACK, TextFormatting.DARK_GRAY),
     GREEN(2, "green", "GREEN", "dyeGreen", Colors.GREEN, TextFormatting.DARK_GREEN),
     BROWN(3, "brown", "BROWN", "dyeBrown", Colors.BROWN, TextFormatting.GOLD),
-    BLUE(4, "blue", "BLUE", "dyeBlue", Colors.BLUE, TextFormatting.DARK_BLUE),
+    BLUE(4, "blue", "BLUE", "dyeBlue", Colors.BLUE, TextFormatting.BLUE),
     PURPLE(5, "purple", "PURPLE", "dyePurple", Colors.PURPLE, TextFormatting.DARK_PURPLE),
     CYAN(6, "cyan", "CYAN", "dyeCyan", Colors.CYAN, TextFormatting.DARK_AQUA),
     LIGHT_GRAY(7, "light_gray", "LIGHT GRAY", "dyeLightGray", Colors.LIGHT_GRAY, TextFormatting.GRAY),
