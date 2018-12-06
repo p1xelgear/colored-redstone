@@ -2,24 +2,25 @@ package pyre.coloredredstone.util;
 
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.text.TextFormatting;
+import pyre.coloredredstone.ColoredRedstone;
 
 public enum EnumColor implements IStringSerializable {
-    RED(0, "red", "RED", "dyeRed", Colors.RED, TextFormatting.DARK_RED),
-    BLACK(1, "black", "BLACK", "dyeBlack", Colors.BLACK, TextFormatting.DARK_GRAY),
-    GREEN(2, "green", "GREEN", "dyeGreen", Colors.GREEN, TextFormatting.DARK_GREEN),
-    BROWN(3, "brown", "BROWN", "dyeBrown", Colors.BROWN, TextFormatting.GOLD),
-    BLUE(4, "blue", "BLUE", "dyeBlue", Colors.BLUE, TextFormatting.BLUE),
-    PURPLE(5, "purple", "PURPLE", "dyePurple", Colors.PURPLE, TextFormatting.DARK_PURPLE),
-    CYAN(6, "cyan", "CYAN", "dyeCyan", Colors.CYAN, TextFormatting.DARK_AQUA),
-    LIGHT_GRAY(7, "light_gray", "LIGHT GRAY", "dyeLightGray", Colors.LIGHT_GRAY, TextFormatting.GRAY),
-    GRAY(8, "gray", "GRAY", "dyeGray", Colors.GRAY, TextFormatting.DARK_GRAY),
-    PINK(9, "pink", "PINK", "dyePink", Colors.PINK, TextFormatting.LIGHT_PURPLE),
-    LIME(10, "lime", "LIME", "dyeLime", Colors.LIME, TextFormatting.GREEN),
-    YELLOW(11, "yellow", "YELLOW", "dyeYellow", Colors.YELLOW, TextFormatting.YELLOW),
-    LIGHT_BLUE(12, "light_blue", "LIGHT BLUE", "dyeLightBlue", Colors.LIGHT_BLUE, TextFormatting.BLUE),
-    MAGENTA(13, "magenta", "MAGENTA", "dyeMagenta", Colors.MAGENTA, TextFormatting.DARK_PURPLE),
-    ORANGE(14, "orange", "ORANGE", "dyeOrange", Colors.ORANGE, TextFormatting.GOLD),
-    WHITE(15, "white", "WHITE", "dyeWhite", Colors.WHITE, TextFormatting.WHITE);
+    RED(0, "red", Reference.MOD_ID + ".color.red", "dyeRed", Colors.RED, TextFormatting.DARK_RED),
+    BLACK(1, "black", Reference.MOD_ID + ".color.black", "dyeBlack", Colors.BLACK, TextFormatting.DARK_GRAY),
+    GREEN(2, "green", Reference.MOD_ID + ".color.green", "dyeGreen", Colors.GREEN, TextFormatting.DARK_GREEN),
+    BROWN(3, "brown", Reference.MOD_ID + ".color.brown", "dyeBrown", Colors.BROWN, TextFormatting.GOLD),
+    BLUE(4, "blue", Reference.MOD_ID + ".color.blue", "dyeBlue", Colors.BLUE, TextFormatting.BLUE),
+    PURPLE(5, "purple",Reference.MOD_ID + ".color.purple", "dyePurple", Colors.PURPLE, TextFormatting.DARK_PURPLE),
+    CYAN(6, "cyan", Reference.MOD_ID + ".color.cyan", "dyeCyan", Colors.CYAN, TextFormatting.DARK_AQUA),
+    LIGHT_GRAY(7, "light_gray", Reference.MOD_ID + ".color.light_gray", "dyeLightGray", Colors.LIGHT_GRAY, TextFormatting.GRAY),
+    GRAY(8, "gray", Reference.MOD_ID + ".color.gray", "dyeGray", Colors.GRAY, TextFormatting.DARK_GRAY),
+    PINK(9, "pink", Reference.MOD_ID + ".color.pink", "dyePink", Colors.PINK, TextFormatting.LIGHT_PURPLE),
+    LIME(10, "lime", Reference.MOD_ID + ".color.lime", "dyeLime", Colors.LIME, TextFormatting.GREEN),
+    YELLOW(11, "yellow", Reference.MOD_ID + ".color.yellow", "dyeYellow", Colors.YELLOW, TextFormatting.YELLOW),
+    LIGHT_BLUE(12, "light_blue", Reference.MOD_ID + ".color.light_blue", "dyeLightBlue", Colors.LIGHT_BLUE, TextFormatting.BLUE),
+    MAGENTA(13, "magenta", Reference.MOD_ID + ".color.magenta", "dyeMagenta", Colors.MAGENTA, TextFormatting.DARK_PURPLE),
+    ORANGE(14, "orange", Reference.MOD_ID + ".color.orange", "dyeOrange", Colors.ORANGE, TextFormatting.GOLD),
+    WHITE(15, "white", Reference.MOD_ID + ".color.white", "dyeWhite", Colors.WHITE, TextFormatting.WHITE);
 
     private static final EnumColor[] META_LOOKUP = new EnumColor[values().length];
 
@@ -65,7 +66,7 @@ public enum EnumColor implements IStringSerializable {
     }
 
     public String getDisplayName() {
-        return displayName;
+        return ColoredRedstone.proxy.localize(displayName);
     }
 
     public String getOreDictionaryDyeEntry() {

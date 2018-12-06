@@ -32,11 +32,11 @@ public interface IColoredItem {
     }
 
     default String getColoredItemStackDisplayName(String unlocalizedName, ItemStack stack) {
-        String result = ColoredRedstone.proxy.localize(unlocalizedName + ".name");
         int metadata = stack.getMetadata();
         EnumColor color = EnumColor.byMetadata(metadata);
-        result += " (" + color.getChatColor() + color.getDisplayName() + TextFormatting.WHITE + ")";
-        return result;
+        String localizedColor = ColoredRedstone.proxy.localize(color.getDisplayName());
+        String displayColor = color.getChatColor() + localizedColor + TextFormatting.RESET;
+        return ColoredRedstone.proxy.localize(unlocalizedName + ".name", displayColor);
     }
 
     default List<String> getColoredTooltips(ItemStack stack){

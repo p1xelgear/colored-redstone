@@ -2,20 +2,37 @@
 ##### ITEMS #####
 #################
 
-item.colored_redstone_dust.name=Colored Redstone Dust
+item.colored_redstone_dust.name=Colored Redstone Dust (%1$s)
 
 ##################
 ##### BLOCKS #####
 ##################
 
-tile.colored_redstone_block.name=Block of Colored Redstone
-tile.colored_redstone_torch.name=Colored Redstone Torch
-tile.unpowered_colored_redstone_repeater.name=Colored Redstone Repeater
-tile.unpowered_colored_redstone_comparator.name=Colored Redstone Comparator
+tile.colored_redstone_block.name=Block of Colored Redstone (%1$s)
+tile.colored_redstone_torch.name=Colored Redstone Torch (%1$s)
+tile.unpowered_colored_redstone_repeater.name=Colored Redstone Repeater (%1$s)
+tile.unpowered_colored_redstone_comparator.name=Colored Redstone Comparator (%1$s)
 
 ############################
 ##### GENERIC TOOLTIPS #####
 ############################
+
+coloredredstone.color.red=RED
+coloredredstone.color.black=BLACK
+coloredredstone.color.green=GREEN
+coloredredstone.color.brown=BROWN
+coloredredstone.color.blue=BLUE
+coloredredstone.color.purple=PURPLE
+coloredredstone.color.cyan=CYAN
+coloredredstone.color.light_gray=LIGHT GRAY
+coloredredstone.color.gray=GRAY
+coloredredstone.color.pink=PINK
+coloredredstone.color.lime=LIME
+coloredredstone.color.yellow=YELLOW
+coloredredstone.color.light_blue=LIGHT BLUE
+coloredredstone.color.magenta=MAGENTA
+coloredredstone.color.orange=ORANGE
+coloredredstone.color.white=WHITE
 
 coloredredstone.tooltip.waterproof=Waterproof!
 coloredredstone.tooltip.despawnproof=Despawn-proof!
