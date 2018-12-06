@@ -1,5 +1,5 @@
 # CHANGELOG
-## [Unreleased]
+## 1.0.1
 ### Added
 - Added translations for color names.
 ### Changed
