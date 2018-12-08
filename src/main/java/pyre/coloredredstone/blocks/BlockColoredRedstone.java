@@ -97,6 +97,9 @@ public class BlockColoredRedstone extends Block implements IColoredFeatures, IBl
     @Override
     @SuppressWarnings("deprecation")
     public IBlockState getStateFromMeta(int meta) {
+        if (meta == 0){
+            return Blocks.REDSTONE_BLOCK.getDefaultState();
+        }
         return this.getDefaultState().withProperty(COLOR, EnumColor.byMetadata(meta));
     }
 

@@ -1,4 +1,7 @@
 # CHANGELOG
+## 1.1.0
+### Added
+- Added Chisel integration for Colored Redstone Blocks (Redstone group).
 ## 1.0.1
 ### Added
 - Added translations for color names.
