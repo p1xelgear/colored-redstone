@@ -13,7 +13,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pyre.coloredredstone.config.CurrentModConfig;
 import pyre.coloredredstone.config.ModConfig;
-import pyre.coloredredstone.network.SyncConfigMessage;
+import pyre.coloredredstone.network.ColoredPropertiesSyncConfigMessage;
+import pyre.coloredredstone.network.IntegrationChiselSyncConfigMessage;
 import pyre.coloredredstone.util.Reference;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
@@ -21,21 +22,27 @@ public class ConfigSynchronizationHandler {
 
     @SubscribeEvent
     @SideOnly(Side.SERVER)
-    public static void eventClientConnectedToServer(PlayerEvent.PlayerLoggedInEvent event){
-        SyncConfigMessage msg = new SyncConfigMessage(ModConfig.waterproof, ModConfig.explosionproof, ModConfig.fireproof, ModConfig.despawnproof, ModConfig.cactusproof);
-        NetworkHandler.INSTANCE.sendTo(msg, (EntityPlayerMP) event.player);
+    public static void eventClientConnectedToServer(PlayerEvent.PlayerLoggedInEvent event) {
+        ColoredPropertiesSyncConfigMessage coloredPropertiesMessage = new ColoredPropertiesSyncConfigMessage(ModConfig.coloredPropertiesConfig.waterproof,
+                ModConfig.coloredPropertiesConfig.explosionproof,
+                ModConfig.coloredPropertiesConfig.fireproof,
+                ModConfig.coloredPropertiesConfig.despawnproof,
+                ModConfig.coloredPropertiesConfig.cactusproof);
+        IntegrationChiselSyncConfigMessage chiselMessage = new IntegrationChiselSyncConfigMessage(ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks);
+        NetworkHandler.INSTANCE.sendTo(coloredPropertiesMessage, (EntityPlayerMP) event.player);
+        NetworkHandler.INSTANCE.sendTo(chiselMessage, (EntityPlayerMP) event.player); //TODO Sync not working (client restart necessary)
     }
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
-    public static void eventClientDisconnectionFromServer(FMLNetworkEvent.ClientDisconnectionFromServerEvent event){
+    public static void eventClientDisconnectionFromServer(FMLNetworkEvent.ClientDisconnectionFromServerEvent event) {
         CurrentModConfig.useClientSettings();
     }
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
-    public static void onConfigChanged(final ConfigChangedEvent.OnConfigChangedEvent event){
-        if (event.getModID().equals(Reference.MOD_ID)){
+    public static void onConfigChanged(final ConfigChangedEvent.OnConfigChangedEvent event) {
+        if (event.getModID().equals(Reference.MOD_ID)) {
             ConfigManager.sync(Reference.MOD_ID, Config.Type.INSTANCE);
             if (Minecraft.getMinecraft().isSingleplayer() || Minecraft.getMinecraft().world == null) {
                 CurrentModConfig.useClientSettings();
