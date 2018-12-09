@@ -7,6 +7,10 @@ import pyre.coloredredstone.util.Reference;
 @Config.LangKey("coloredredstone.config.title")
 public class ModConfig {
 
+    @Config.LangKey("coloredredstone.config.colored_names")
+    @Config.Comment("Enables/disables colored names and tooltips for blocks and items.")
+    public static boolean coloredNamesAndTooltips = true;
+
     @Config.LangKey("coloredredstone.config.colored_properties")
     @Config.Comment("Colored properties configuration.")
     public static ColoredProperties coloredPropertiesConfig = new ColoredProperties();

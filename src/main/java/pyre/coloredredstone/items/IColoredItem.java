@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import pyre.coloredredstone.ColoredRedstone;
 import pyre.coloredredstone.config.CurrentModConfig;
+import pyre.coloredredstone.config.ModConfig;
 import pyre.coloredredstone.entities.EntityItemColored;
 import pyre.coloredredstone.util.EnumColor;
 import pyre.coloredredstone.util.Reference;
@@ -35,37 +36,38 @@ public interface IColoredItem {
         int metadata = stack.getMetadata();
         EnumColor color = EnumColor.byMetadata(metadata);
         String localizedColor = ColoredRedstone.proxy.localize(color.getDisplayName());
-        String displayColor = color.getChatColor() + localizedColor + TextFormatting.RESET;
+        String displayColor = ModConfig.coloredNamesAndTooltips ? color.getChatColor() + localizedColor + TextFormatting.RESET : localizedColor;
         return ColoredRedstone.proxy.localize(unlocalizedName + ".name", displayColor);
     }
 
     default List<String> getColoredTooltips(ItemStack stack){
         List<String> tooltips = new ArrayList<>();
         EnumColor color = EnumColor.byMetadata(stack.getMetadata());
+        String chatColor = ModConfig.coloredNamesAndTooltips ? color.getChatColor().toString() : "";
         switch (color) {
             case BLUE:
                 if (CurrentModConfig.waterproof) {
-                    tooltips.add(color.getChatColor() + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.waterproof"));
+                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.waterproof"));
                 }
                 break;
             case GREEN:
                 if (CurrentModConfig.cactusproof) {
-                    tooltips.add(color.getChatColor() + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.cactusproof"));
+                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.cactusproof"));
                 }
                 break;
             case YELLOW:
                 if (CurrentModConfig.fireproof) {
-                    tooltips.add(color.getChatColor() + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.fireproof"));
+                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.fireproof"));
                 }
                 break;
             case ORANGE:
                 if (CurrentModConfig.explosionproof) {
-                    tooltips.add(color.getChatColor() + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.explosionproof"));
+                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.explosionproof"));
                 }
                 break;
             case WHITE:
                 if (CurrentModConfig.despawnproof) {
-                    tooltips.add(color.getChatColor() + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.despawnproof"));
+                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.despawnproof"));
                 }
         }
         return tooltips;

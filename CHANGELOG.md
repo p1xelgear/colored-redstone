@@ -2,6 +2,7 @@
 ## 1.1.0
 ### Added
 - Added Chisel integration for Colored Redstone Blocks (Redstone group).
+- Added option to enable/disable colored names nad tooltips for blocks and items.
 ## 1.0.1
 ### Added
 - Added translations for color names.

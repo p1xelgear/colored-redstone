@@ -45,6 +45,7 @@ coloredredstone.tooltip.cactusproof=Cactus-proof!
 ##################
 
 coloredredstone.config.title=Colored Redstone Configuration
+coloredredstone.config.colored_names=Colored names/tooltips
 
 coloredredstone.config.colored_properties=Colored Properties
 coloredredstone.config.colored_properties.waterproof=Waterproof
