@@ -13,16 +13,20 @@ public class ColoredPropertiesSyncConfigMessage implements IMessage {
     private boolean fireproof;
     private boolean despawnproof;
     private boolean cactusproof;
+    private boolean burnable;
+    private int burningTime;
 
     public ColoredPropertiesSyncConfigMessage() {
     }
 
-    public ColoredPropertiesSyncConfigMessage(boolean waterproof, boolean explosionproof, boolean fireproof, boolean despawnproof, boolean cactusproof) {
+    public ColoredPropertiesSyncConfigMessage(boolean waterproof, boolean explosionproof, boolean fireproof, boolean despawnproof, boolean cactusproof, boolean burnable, int burningTime) {
         this.waterproof = waterproof;
         this.explosionproof = explosionproof;
         this.fireproof = fireproof;
         this.despawnproof = despawnproof;
         this.cactusproof = cactusproof;
+        this.burnable = burnable;
+        this.burningTime = burningTime;
     }
 
     @Override
@@ -32,6 +36,8 @@ public class ColoredPropertiesSyncConfigMessage implements IMessage {
         fireproof = buf.readBoolean();
         despawnproof = buf.readBoolean();
         cactusproof = buf.readBoolean();
+        burnable = buf.readBoolean();
+        burningTime = buf.readInt();
     }
 
     @Override
@@ -41,13 +47,21 @@ public class ColoredPropertiesSyncConfigMessage implements IMessage {
         buf.writeBoolean(fireproof);
         buf.writeBoolean(despawnproof);
         buf.writeBoolean(cactusproof);
+        buf.writeBoolean(burnable);
+        buf.writeInt(burningTime);
     }
 
     public static class ColoredPropertiesSyncConfigMessageHandler implements IMessageHandler<ColoredPropertiesSyncConfigMessage, IMessage> {
 
         @Override
         public IMessage onMessage(ColoredPropertiesSyncConfigMessage message, MessageContext ctx) {
-            CurrentModConfig.setColoredPropertiesValues(message.waterproof, message.explosionproof, message.fireproof, message.despawnproof, message.cactusproof);
+            CurrentModConfig.setColoredPropertiesValues(message.waterproof,
+                    message.explosionproof,
+                    message.fireproof,
+                    message.despawnproof,
+                    message.cactusproof,
+                    message.burnable,
+                    message.burningTime);
             return null;
         }
     }

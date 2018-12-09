@@ -113,4 +113,9 @@ public class ItemColoredRedstoneDiode extends ItemBlockSpecial implements IColor
     public String getUnlocalizedName(ItemStack stack) {
         return this.block.getUnlocalizedName();
     }
+
+    @Override
+    public int getItemBurnTime(ItemStack itemStack) {
+        return getBurnTime(itemStack);
+    }
 }

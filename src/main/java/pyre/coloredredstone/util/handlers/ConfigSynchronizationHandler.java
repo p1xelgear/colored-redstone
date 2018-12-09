@@ -27,7 +27,9 @@ public class ConfigSynchronizationHandler {
                 ModConfig.coloredPropertiesConfig.explosionproof,
                 ModConfig.coloredPropertiesConfig.fireproof,
                 ModConfig.coloredPropertiesConfig.despawnproof,
-                ModConfig.coloredPropertiesConfig.cactusproof);
+                ModConfig.coloredPropertiesConfig.cactusproof,
+                ModConfig.coloredPropertiesConfig.burnable,
+                ModConfig.coloredPropertiesConfig.burnableBurningTime);
         IntegrationChiselSyncConfigMessage chiselMessage = new IntegrationChiselSyncConfigMessage(ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks);
         NetworkHandler.INSTANCE.sendTo(coloredPropertiesMessage, (EntityPlayerMP) event.player);
         NetworkHandler.INSTANCE.sendTo(chiselMessage, (EntityPlayerMP) event.player); //TODO Sync not working (client restart necessary)

@@ -85,4 +85,9 @@ public class ItemColoredRedstoneDust extends ItemBase implements IColoredItem{
     public Entity createEntity(World world, Entity oldEntityItem, ItemStack itemstack) {
         return createColoredEntityItem(world, oldEntityItem, itemstack);
     }
+
+    @Override
+    public int getItemBurnTime(ItemStack itemStack) {
+        return getBurnTime(itemStack);
+    }
 }

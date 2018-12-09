@@ -40,5 +40,14 @@ public class ModConfig {
         @Config.LangKey("coloredredstone.config.colored_properties.cactusproof")
         @Config.Comment("If true, green items and blocks in item form will not be destroyed by Cactus.")
         public boolean cactusproof = true;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.burnable")
+        @Config.Comment("If true, brown items and blocks in item form can be used as a fuel.")
+        public boolean burnable = true;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.burnable_burning_time")
+        @Config.Comment("Burning time of burnable items in ticks.")
+        @Config.RangeInt(min = 1)
+        public int burnableBurningTime = 200;
     }
 }

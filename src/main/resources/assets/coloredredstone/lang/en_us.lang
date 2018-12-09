@@ -39,6 +39,7 @@ coloredredstone.tooltip.despawnproof=Despawn-proof!
 coloredredstone.tooltip.fireproof=Fireproof!
 coloredredstone.tooltip.explosionproof=Explosion-proof!
 coloredredstone.tooltip.cactusproof=Cactus-proof!
+coloredredstone.tooltip.burnable=Burnable!
 
 ##################
 ##### CONFIG #####
@@ -53,6 +54,8 @@ coloredredstone.config.colored_properties.despawnproof=Despawn-proof
 coloredredstone.config.colored_properties.fireproof=Fireproof
 coloredredstone.config.colored_properties.explosionproof=Explosion-proof
 coloredredstone.config.colored_properties.cactusproof=Cactus-proof
+coloredredstone.config.colored_properties.burnable=Burnable
+coloredredstone.config.colored_properties.burnable_burning_time=Burnable burning time
 
 coloredredstone.config.integration=Mods Integration
 coloredredstone.config.integration.chisel=Chisel

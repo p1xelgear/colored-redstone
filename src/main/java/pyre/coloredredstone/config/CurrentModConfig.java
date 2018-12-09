@@ -9,15 +9,20 @@ public class CurrentModConfig {
     public static boolean fireproof = ModConfig.coloredPropertiesConfig.fireproof;
     public static boolean despawnproof = ModConfig.coloredPropertiesConfig.despawnproof;
     public static boolean cactusproof = ModConfig.coloredPropertiesConfig.cactusproof;
+    public static boolean burnable = ModConfig.coloredPropertiesConfig.burnable;
+
+    public static int burnableBurningTime = ModConfig.coloredPropertiesConfig.burnableBurningTime;
 
     public static boolean integrationChiselColoredBlocks = ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks;
 
-    public static void setColoredPropertiesValues(boolean water, boolean explosion, boolean fire, boolean despawn, boolean cactus) {
+    public static void setColoredPropertiesValues(boolean water, boolean explosion, boolean fire, boolean despawn, boolean cactus, boolean burn, int burningTime) {
         waterproof = water;
         explosionproof = explosion;
         fireproof = fire;
         despawnproof = despawn;
         cactusproof = cactus;
+        burnable = burn;
+        burnableBurningTime = burningTime;
     }
 
     public static void setIntegrationChiselColoredBlocks(boolean coloredBlocks) {
@@ -34,7 +39,9 @@ public class CurrentModConfig {
                 ModConfig.coloredPropertiesConfig.explosionproof,
                 ModConfig.coloredPropertiesConfig.fireproof,
                 ModConfig.coloredPropertiesConfig.despawnproof,
-                ModConfig.coloredPropertiesConfig.cactusproof);
+                ModConfig.coloredPropertiesConfig.cactusproof,
+                ModConfig.coloredPropertiesConfig.burnable,
+                ModConfig.coloredPropertiesConfig.burnableBurningTime);
         setIntegrationChiselColoredBlocks(ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks);
     }
 }

@@ -69,6 +69,11 @@ public interface IColoredItem {
                 if (CurrentModConfig.despawnproof) {
                     tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.despawnproof"));
                 }
+                break;
+            case BROWN:
+                if (CurrentModConfig.burnable) {
+                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.burnable"));
+                }
         }
         return tooltips;
     }
@@ -89,5 +94,12 @@ public interface IColoredItem {
         }
 
         return newEntityItem;
+    }
+
+    default int getBurnTime(ItemStack itemStack){
+        if (CurrentModConfig.burnable && itemStack.getMetadata() == EnumColor.BROWN.getMetadata()){
+            return CurrentModConfig.burnableBurningTime;
+        }
+        return 0;
     }
 }
