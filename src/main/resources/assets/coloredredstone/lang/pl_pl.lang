@@ -1,0 +1,82 @@
+#################
+##### ITEMS #####
+#################
+
+item.colored_redstone_dust.name=Kolorowy sproszkowany redstone (%1$s)
+
+##################
+##### BLOCKS #####
+##################
+
+tile.colored_redstone_block.name=Blok kolorowego redstonu (%1$s)
+tile.colored_redstone_torch.name=Kolorowa pochodnia redstone (%1$s)
+tile.unpowered_colored_redstone_repeater.name=Kolorowy przekaźnik (%1$s)
+tile.unpowered_colored_redstone_comparator.name=Kolorowy komparator (%1$s)
+
+############################
+##### GENERIC TOOLTIPS #####
+############################
+
+coloredredstone.color.red=CZERWONY
+coloredredstone.color.black=CZARNY
+coloredredstone.color.green=ZIELONY
+coloredredstone.color.brown=BRĄZOWY
+coloredredstone.color.blue=NIEBIESKI
+coloredredstone.color.purple=FIOLETOWY
+coloredredstone.color.cyan=BŁĘKITNY
+coloredredstone.color.light_gray=JASNOSZARY
+coloredredstone.color.gray=SZARY
+coloredredstone.color.pink=RÓŻOWY
+coloredredstone.color.lime=JASNOZIELONY
+coloredredstone.color.yellow=ŻÓŁTY
+coloredredstone.color.light_blue=JASNONIEBIESKI
+coloredredstone.color.magenta=KARMAZYNOWY
+coloredredstone.color.orange=POMARAŃCZOWY
+coloredredstone.color.white=BIAŁY
+
+coloredredstone.tooltip.waterproof=Wodoodporny!
+coloredredstone.tooltip.despawnproof=Odporny na zniknięcie!
+coloredredstone.tooltip.fireproof=Ognioodporny!
+coloredredstone.tooltip.explosionproof=Odporny na wybuchy!
+coloredredstone.tooltip.cactusproof=Odporny na kaktusy!
+coloredredstone.tooltip.burnable=Palny!
+
+##################
+##### CONFIG #####
+##################
+
+coloredredstone.config.title=Colored Redstone Konfiguracja
+coloredredstone.config.colored_names=Kolorowe nazwy/podpowiedzi
+
+coloredredstone.config.colored_properties=Kolorowe Właściwości
+coloredredstone.config.colored_properties.waterproof=Wodoodporność
+coloredredstone.config.colored_properties.despawnproof=Odporność na zniknięcie
+coloredredstone.config.colored_properties.fireproof=Ognioodporność
+coloredredstone.config.colored_properties.explosionproof=Odporność na wybuchy
+coloredredstone.config.colored_properties.cactusproof=Odporność na kaktusy
+coloredredstone.config.colored_properties.burnable=Palność
+coloredredstone.config.colored_properties.burnable_burning_time=Palność - czas palenia
+
+coloredredstone.config.integration=Integracja z modami
+coloredredstone.config.integration.chisel=Chisel
+
+coloredredstone.config.integration.chisel.redstone_blocks=Bloki kolorowego redstonu
+
+###############
+##### JEI #####
+###############
+
+jei.description.colored_dust=Sproszkowany redstone/przewód może zostać przekolorowany na dowolny inny kolor poprzez połączenie sproszkowanego redstonu i barwnika na stole rzemieślniczym lub bezpośrednio w świecie gry bez niszczenia bloku.
+jei.description.colored_block=Blok redstonu może zostać przekolorowany na dowolny inny kolor poprzez połączenie bloku redstonu i barwnika na stole rzemieślniczym lub bezpośrednio w świecie gry bez niszczenia bloku.
+jei.description.colored_torch=Pochodnia redstone może zostać przekolorowana na dowolny inny kolor poprzez połączenie pochodni redstone i barwnika na stole rzemieślniczym lub bezpośrednio w świecie gry bez niszczenia bloku.
+jei.description.colored_repeater=Przekaźnik może zostać przekolorowany na dowolny inny kolor poprzez połączenie przekaźnika i barwnika na stole rzemieślniczym lub bezpośrednio w świecie gry bez niszczenia bloku.
+jei.description.colored_comparator=Komparator może zostać przekolorowany na dowolny inny kolor poprzez połączenie komparatora i barwnika na stole rzemieślniczym lub bezpośrednio w świecie gry bez niszczenia bloku.
+
+jei.description.colored_dust_requirements=Przekolorywanie z użyciem stołu rzemieślniczego lub w świecie gry wymaga 1 przedmiotu-barwnika.
+jei.description.colored_block_requirements=Przekolorywanie z użyciem stołu rzemieślniczego wymaga 8 przedmiotów-barwników, przekolorywanie w świecie gry wymaga 9 przedmiotów-barwników tego samego koloru.
+jei.description.colored_torch_requirements=Przekolorywanie z użyciem stołu rzemieślniczego lub w świecie gry wymaga 1 przedmiotu-barwnika.
+jei.description.colored_repeater_requirements=Przekolorywanie z użyciem stołu rzemieślniczego lub w świecie gry wymaga 3 przedmiotów-barwników tego samego koloru.
+jei.description.colored_comparator_requirements=Przekolorywanie z użyciem stołu rzemieślniczego lub w świecie gry wymaga 3 przedmiotów-barwników tego samego koloru.
+
+jei.description.in_world_recoloring=Aby zmienić kolor bloku wykorzystując mechanikę przekolorywania w świecie gry należy kliknąć wybrany blok prawym przyciskiem myszy trzymając przy tym w ręce barwnik porządanego koloru.
+jei.description.in_world_recoloring_with_shift=Aby zmienić kolor bloku wykorzystując mechanikę przekolorywania w świecie gry należy przytrzymując wciśnięty Shift, kliknąć wybrany blok prawym przyciskiem myszy trzymając przy tym w ręce barwnik porządanego koloru.
