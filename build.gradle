@@ -11,7 +11,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
-version = "1.1.0"
+version = "1.2.0"
 group = "pyre.coloredredstone" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Colored Redstone"
 
@@ -44,6 +44,9 @@ repositories {
         name = "ModMaven"
         url = "modmaven.k-4u.nl"
     }
+    maven { //Albedo lights
+        url = "https://repo.elytradev.com/"
+    }
 }
 
 dependencies {
@@ -72,6 +75,7 @@ dependencies {
     deobfProvided "mezz.jei:jei_${mc_version}:${jei_version}:api"
     // at runtime, use the full JEI jar
     runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+    deobfCompile "elucent:albedo:2.0-SNAPSHOT"
 }
 
 processResources {

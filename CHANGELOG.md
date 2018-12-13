@@ -1,4 +1,7 @@
 # CHANGELOG
+## 1.2.0
+### Added
+- Added Albedo integration for Colored Redstone Torches (colored light). Colored light for torches can be enabled/disabled in mod config. **Requires [Albedo](https://minecraft.curseforge.com/projects/albedo) mod.**
 ## 1.1.0
 ### Added
 - Added Chisel integration for Colored Redstone Blocks (Redstone group).

@@ -59,8 +59,11 @@ coloredredstone.config.colored_properties.burnable_burning_time=Burnable burning
 
 coloredredstone.config.integration=Mods Integration
 coloredredstone.config.integration.chisel=Chisel
+coloredredstone.config.integration.albedo=Albedo
 
 coloredredstone.config.integration.chisel.redstone_blocks=Colored Redstone Blocks
+
+coloredredstone.config.integration.albedo.redstone_torches=Colored Redstone Torches
 
 ###############
 ##### JEI #####

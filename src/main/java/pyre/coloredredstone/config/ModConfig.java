@@ -16,7 +16,7 @@ public class ModConfig {
     public static ColoredProperties coloredPropertiesConfig = new ColoredProperties();
 
     @Config.LangKey("coloredredstone.config.integration")
-    @Config.Comment("IntegrationConfig with another mods.")
+    @Config.Comment("Integrations with another mods.")
     public static IntegrationConfig integrationConfig = new IntegrationConfig();
 
     public static class ColoredProperties {
