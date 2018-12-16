@@ -19,6 +19,7 @@ public class ModBlocks {
     public static BlockColoredRedstoneRepeater UNPOWERED_COLORED_REDSTONE_REPEATER;
     public static BlockColoredRedstoneComparator POWERED_COLORED_REDSTONE_COMPARATOR;
     public static BlockColoredRedstoneComparator UNPOWERED_COLORED_REDSTONE_COMPARATOR;
+    public static BlockColoredRedstoneLamp COLORED_REDSTONE_LAMP;
 
     public static void init(){
         COLORED_REDSTONE_WIRE = new BlockColoredRedstoneWire();
@@ -34,5 +35,6 @@ public class ModBlocks {
         POWERED_COLORED_REDSTONE_COMPARATOR.setLightLevel(0.625F);
         UNPOWERED_COLORED_REDSTONE_COMPARATOR = new BlockColoredRedstoneComparator("minecraft:unpowered_comparator", false);
         UNPOWERED_COLORED_REDSTONE_COMPARATOR.setCreativeTab(CreativeTabs.REDSTONE).setUnlocalizedName("unpowered_colored_redstone_comparator");
+        COLORED_REDSTONE_LAMP = new BlockColoredRedstoneLamp("colored_redstone_lamp");
     }
 }

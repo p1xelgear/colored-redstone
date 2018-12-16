@@ -12,6 +12,7 @@ tile.colored_redstone_block.name=Block of Colored Redstone (%1$s)
 tile.colored_redstone_torch.name=Colored Redstone Torch (%1$s)
 tile.unpowered_colored_redstone_repeater.name=Colored Redstone Repeater (%1$s)
 tile.unpowered_colored_redstone_comparator.name=Colored Redstone Comparator (%1$s)
+tile.colored_redstone_lamp.name=Colored Redstone Lamp (%1$s)
 
 ############################
 ##### GENERIC TOOLTIPS #####

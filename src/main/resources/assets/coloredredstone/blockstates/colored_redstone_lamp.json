@@ -1,0 +1,28 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "coloredredstone:colored_redstone_lamp",
+    "textures": {
+      "face": "coloredredstone:blocks/colored_redstone_lamp"
+    }
+  },
+  "variants": {
+    "color=red": [{}],
+    "color=black": [{}],
+    "color=green": [{}],
+    "color=brown": [{}],
+    "color=blue": [{}],
+    "color=purple": [{}],
+    "color=cyan": [{}],
+    "color=light_gray": [{}],
+    "color=gray": [{}],
+    "color=pink": [{}],
+    "color=lime": [{}],
+    "color=yellow": [{}],
+    "color=light_blue": [{}],
+    "color=magenta": [{}],
+    "color=orange": [{}],
+    "color=white": [{}],
+    "normal":[{}]
+  }
+}

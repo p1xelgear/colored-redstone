@@ -22,7 +22,9 @@ import pyre.coloredredstone.blocks.*;
 import pyre.coloredredstone.init.ModBlocks;
 import pyre.coloredredstone.init.ModEntities;
 import pyre.coloredredstone.init.ModItems;
+import pyre.coloredredstone.items.ItemColoredRedstoneLamp;
 import pyre.coloredredstone.util.CustomStateMapper;
+import pyre.coloredredstone.util.CustomStateMapperNoProperties;
 import pyre.coloredredstone.util.EnumColor;
 import pyre.coloredredstone.util.Reference;
 
@@ -60,13 +62,23 @@ public class RegistryHandler {
         ModelLoader.setCustomStateMapper(ModBlocks.POWERED_COLORED_REDSTONE_REPEATER, new CustomStateMapper("coloredredstone:powered_colored_redstone_repeater"));
         ModelLoader.setCustomStateMapper(ModBlocks.UNPOWERED_COLORED_REDSTONE_COMPARATOR, new CustomStateMapper("coloredredstone:unpowered_colored_redstone_comparator"));
         ModelLoader.setCustomStateMapper(ModBlocks.POWERED_COLORED_REDSTONE_COMPARATOR, new CustomStateMapper("coloredredstone:powered_colored_redstone_comparator"));
+        ModelLoader.setCustomStateMapper(ModBlocks.COLORED_REDSTONE_LAMP, new CustomStateMapperNoProperties("coloredredstone:colored_redstone_lamp"));
     }
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
-    public static void registerColors(ColorHandlerEvent.Block event) {
+    public static void registerBlockColors(ColorHandlerEvent.Block event) {
         event.getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) ->
                 BlockColoredRedstoneWire.colorMultiplier(state.getValue(BlockColoredRedstoneWire.POWER), state.getValue(BlockColoredRedstoneWire.COLOR)), ModBlocks.COLORED_REDSTONE_WIRE);
+        event.getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) ->
+                BlockColoredRedstoneLamp.colorMultiplier(state.getValue(BlockColoredRedstoneLamp.POWER), state.getValue(BlockColoredRedstoneLamp.COLOR)), ModBlocks.COLORED_REDSTONE_LAMP);
+    }
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public static void registerItemColors(ColorHandlerEvent.Item event) {
+        event.getItemColors().registerItemColorHandler(((stack, tintIndex) ->
+                ItemColoredRedstoneLamp.colorMultiplier(EnumColor.byMetadata(stack.getMetadata()))), ModBlocks.COLORED_REDSTONE_LAMP);
     }
 
     public static void registerTileEntities() {
@@ -74,6 +86,7 @@ public class RegistryHandler {
         GameRegistry.registerTileEntity(TileEntityColoredRedstoneTorch.class, new ResourceLocation(Reference.MOD_ID, "colored_redstone_torch"));
         GameRegistry.registerTileEntity(TileEntityColoredRedstoneRepeater.class, new ResourceLocation(Reference.MOD_ID, "colored_redstone_repeater"));
         GameRegistry.registerTileEntity(TileEntityColoredRedstoneComparator.class, new ResourceLocation(Reference.MOD_ID, "colored_redstone_comparator"));
+        GameRegistry.registerTileEntity(TileEntityColoredRedstoneLamp.class, new ResourceLocation(Reference.MOD_ID, "colored_redstone_lamp"));
     }
 
     private static void registerItemModels() {
