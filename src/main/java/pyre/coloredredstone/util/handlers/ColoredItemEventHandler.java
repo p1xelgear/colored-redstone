@@ -26,6 +26,7 @@ public class ColoredItemEventHandler {
     private static final int SHRINK_TORCH = 1;
     private static final int SHRINK_REPEATER = 3;
     private static final int SHRINK_COMPARATOR = 3;
+    private static final int SHRINK_LAMP = 4;
 
     @SubscribeEvent
     public static void preventDespawn(ItemExpireEvent event){
@@ -128,6 +129,11 @@ public class ColoredItemEventHandler {
     @SubscribeEvent
     public static void changeRedstoneWireColor(PlayerInteractEvent.RightClickBlock event) {
         changeTileEntityColor(event, BlockColoredRedstoneWire.class, SHRINK_WIRE);
+    }
+
+    @SubscribeEvent
+    public static void changeRedstoneLampColor(PlayerInteractEvent.RightClickBlock event) {
+        changeTileEntityColor(event, BlockColoredRedstoneLamp.class, SHRINK_LAMP);
     }
 
     private static void changeTileEntityColor(PlayerInteractEvent.RightClickBlock event, Class clazz, int shrink) {
