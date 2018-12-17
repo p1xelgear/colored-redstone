@@ -10,11 +10,14 @@ import pyre.coloredredstone.util.EnumColor;
 
 import javax.annotation.Nullable;
 
+@SuppressWarnings("NullableProblems")
 public abstract class TileEntityColored extends TileEntity {
+
+    private static final String NBT_COLOR_TAG = "color";
 
     private EnumColor color;
 
-    public TileEntityColored(EnumColor color){
+    public TileEntityColored(EnumColor color) {
         this.color = color;
     }
 
@@ -37,14 +40,12 @@ public abstract class TileEntityColored extends TileEntity {
     }
 
     @Override
-    public NBTTagCompound getUpdateTag()
-    {
-        return writeToNBT( new NBTTagCompound());
+    public NBTTagCompound getUpdateTag() {
+        return writeToNBT(new NBTTagCompound());
     }
 
     @Override
-    public void handleUpdateTag(NBTTagCompound tag)
-    {
+    public void handleUpdateTag(NBTTagCompound tag) {
         this.readFromNBT(tag);
     }
 
@@ -52,9 +53,9 @@ public abstract class TileEntityColored extends TileEntity {
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
 
-        if (this.color != null){
+        if (this.color != null) {
             int metadata = this.color.getMetadata();
-            compound.setInteger("color", metadata);
+            compound.setInteger(NBT_COLOR_TAG, metadata);
         }
 
         return compound;
@@ -64,9 +65,9 @@ public abstract class TileEntityColored extends TileEntity {
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
 
-        if (compound.hasKey("color")){
-            int colorMeta = compound.getInteger("color");
-            if (colorMeta >= 0 && colorMeta <= 15){
+        if (compound.hasKey(NBT_COLOR_TAG)) {
+            int colorMeta = compound.getInteger(NBT_COLOR_TAG);
+            if (colorMeta >= 0 && colorMeta <= 15) {
                 this.color = EnumColor.byMetadata(colorMeta);
             }
         }
@@ -93,8 +94,9 @@ public abstract class TileEntityColored extends TileEntity {
         setActualState();
     }
 
+    @SuppressWarnings("deprecation")
     private void setActualState() {
-        if (!world.isRemote){
+        if (!world.isRemote) {
             IBlockState blockState = world.getBlockState(pos);
             Block block = blockState.getBlock();
             IBlockState actualState = block.getActualState(blockState, world, pos);

@@ -13,6 +13,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -30,7 +31,7 @@ import java.util.Random;
 import static pyre.coloredredstone.util.EnumColor.RED;
 
 @SuppressWarnings("NullableProblems")
-public class BlockColoredRedstoneWire extends BlockRedstoneWire implements IColoredFeatures, IBlockColoredTE<TileEntityColoredRedstoneWire>{
+public class BlockColoredRedstoneWire extends BlockRedstoneWire implements IColoredFeatures, IBlockColoredTE<TileEntityColoredRedstoneWire> {
 
     public BlockColoredRedstoneWire() {
         super();
@@ -45,7 +46,7 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire implements IColo
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos){
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
         state = super.getActualState(state, worldIn, pos);
         return state.withProperty(COLOR, getColor(worldIn, pos));
     }
@@ -75,8 +76,8 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire implements IColo
     }
 
     @Override
-    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
-        EnumColor color = getColor(worldIn, pos);
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+        EnumColor color = getColor(world, pos);
         return color != EnumColor.RED ? new ItemStack(ModItems.COLORED_REDSTONE_DUST, 1, color.getMetadata()) : new ItemStack(Items.REDSTONE);
     }
 
@@ -121,14 +122,13 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire implements IColo
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
-    {
+    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
         int power = stateIn.getValue(POWER);
 
         if (power != 0) {
-            double posX = (double)pos.getX() + 0.5D + (rand.nextDouble() - 0.5D) * 0.2D;
-            double posY = (double)((float)pos.getY() + 0.0625F);
-            double posZ = (double)pos.getZ() + 0.5D + (rand.nextDouble() - 0.5D) * 0.2D;
+            double posX = (double) pos.getX() + 0.5D + (rand.nextDouble() - 0.5D) * 0.2D;
+            double posY = (double) ((float) pos.getY() + 0.0625F);
+            double posZ = (double) pos.getZ() + 0.5D + (rand.nextDouble() - 0.5D) * 0.2D;
 
             EnumColor color = getColor(worldIn, pos);
             double red = color.getShades()[power].getR() / 255.0F;

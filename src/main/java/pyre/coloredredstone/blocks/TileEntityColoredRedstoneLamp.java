@@ -13,7 +13,7 @@ import pyre.coloredredstone.util.EnumColor;
 
 import javax.annotation.Nullable;
 
-@Optional.Interface(iface="elucent.albedo.lighting.ILightProvider", modid="albedo")
+@Optional.Interface(iface = "elucent.albedo.lighting.ILightProvider", modid = "albedo")
 public class TileEntityColoredRedstoneLamp extends TileEntityColored implements ILightProvider {
 
     public TileEntityColoredRedstoneLamp() {
@@ -25,11 +25,12 @@ public class TileEntityColoredRedstoneLamp extends TileEntityColored implements 
     }
 
     @Override
+    @SuppressWarnings("NullableProblems")
     public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
         return !(newState.getBlock() instanceof BlockColoredRedstoneLamp);
     }
 
-    @Optional.Method(modid="albedo")
+    @Optional.Method(modid = "albedo")
     @Nullable
     @Override
     public Light provideLight() {

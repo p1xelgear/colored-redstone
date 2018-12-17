@@ -16,6 +16,7 @@ public class TileEntityColoredRedstoneWire extends TileEntityColored {
     }
 
     @Override
+    @SuppressWarnings("NullableProblems")
     public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
         return oldState.getBlock() != newState.getBlock();
     }

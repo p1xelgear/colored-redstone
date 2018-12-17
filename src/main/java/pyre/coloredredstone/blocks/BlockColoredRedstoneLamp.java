@@ -136,6 +136,7 @@ public class BlockColoredRedstoneLamp extends Block implements IColoredFeatures,
         worldIn.setBlockToAir(pos);
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(POWER, meta);
@@ -148,8 +149,7 @@ public class BlockColoredRedstoneLamp extends Block implements IColoredFeatures,
 
     @Override
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
-        if (!worldIn.isRemote)
-        {
+        if (!worldIn.isRemote) {
             int power = getBlockPower(worldIn, pos);
             Integer value = state.getValue(POWER);
             if (power != value) {
@@ -159,11 +159,12 @@ public class BlockColoredRedstoneLamp extends Block implements IColoredFeatures,
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
         if (!worldIn.isRemote) {
             int power = getBlockPower(worldIn, pos);
             Integer value = state.getValue(POWER);
-            if (value != 0 && power == 0){
+            if (value != 0 && power == 0) {
                 worldIn.scheduleUpdate(pos, this, 4);
             } else {
                 worldIn.setBlockState(pos, getActualState(state, worldIn, pos).withProperty(POWER, power), 2);

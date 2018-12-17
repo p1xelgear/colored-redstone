@@ -8,12 +8,14 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -45,7 +47,7 @@ public class BlockColoredRedstone extends Block implements IColoredFeatures, IBl
     @Override
     public void setColor(World world, BlockPos pos, EnumColor color) {
         IBlockState state;
-        if (color == EnumColor.RED){
+        if (color == EnumColor.RED) {
             state = Blocks.REDSTONE_BLOCK.getDefaultState();
         } else {
             state = ModBlocks.COLORED_REDSTONE_BLOCK.getDefaultState()
@@ -78,9 +80,8 @@ public class BlockColoredRedstone extends Block implements IColoredFeatures, IBl
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
-        EnumColor color = getColor(worldIn, pos);
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+        EnumColor color = getColor(world, pos);
         return color != EnumColor.RED ? new ItemStack(ModItems.COLORED_REDSTONE_BLOCK, 1, color.getMetadata()) : new ItemStack(Blocks.REDSTONE_BLOCK);
     }
 
@@ -97,7 +98,7 @@ public class BlockColoredRedstone extends Block implements IColoredFeatures, IBl
     @Override
     @SuppressWarnings("deprecation")
     public IBlockState getStateFromMeta(int meta) {
-        if (meta == 0){
+        if (meta == 0) {
             return Blocks.REDSTONE_BLOCK.getDefaultState();
         }
         return this.getDefaultState().withProperty(COLOR, EnumColor.byMetadata(meta));

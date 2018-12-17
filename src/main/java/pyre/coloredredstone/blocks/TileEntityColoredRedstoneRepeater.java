@@ -16,6 +16,7 @@ public class TileEntityColoredRedstoneRepeater extends TileEntityColored {
     }
 
     @Override
+    @SuppressWarnings("NullableProblems")
     public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
         return !(newState.getBlock() instanceof BlockColoredRedstoneRepeater);
     }

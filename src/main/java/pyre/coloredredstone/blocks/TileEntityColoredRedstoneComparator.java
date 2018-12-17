@@ -8,6 +8,8 @@ import pyre.coloredredstone.util.EnumColor;
 
 public class TileEntityColoredRedstoneComparator extends TileEntityColored {
 
+    private static final String NBT_OUTPUT_SIGNAL_TAG = "OutputSignal";
+
     private int outputSignal;
 
     public TileEntityColoredRedstoneComparator() {
@@ -19,18 +21,16 @@ public class TileEntityColoredRedstoneComparator extends TileEntityColored {
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound)
-    {
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
-        compound.setInteger("OutputSignal", this.outputSignal);
+        compound.setInteger(NBT_OUTPUT_SIGNAL_TAG, this.outputSignal);
         return compound;
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound)
-    {
+    public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
-        this.outputSignal = compound.getInteger("OutputSignal");
+        this.outputSignal = compound.getInteger(NBT_OUTPUT_SIGNAL_TAG);
     }
 
     @Override

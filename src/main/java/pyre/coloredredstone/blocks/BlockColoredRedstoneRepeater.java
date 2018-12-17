@@ -14,9 +14,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -35,7 +37,7 @@ import java.util.Random;
 import static pyre.coloredredstone.util.EnumColor.RED;
 
 @SuppressWarnings("NullableProblems")
-public class BlockColoredRedstoneRepeater extends BlockRedstoneRepeater implements IColoredFeatures, IBlockColoredTE<TileEntityColoredRedstoneRepeater>{
+public class BlockColoredRedstoneRepeater extends BlockRedstoneRepeater implements IColoredFeatures, IBlockColoredTE<TileEntityColoredRedstoneRepeater> {
 
     public BlockColoredRedstoneRepeater(String name, boolean powered) {
         super(powered);
@@ -61,8 +63,8 @@ public class BlockColoredRedstoneRepeater extends BlockRedstoneRepeater implemen
     }
 
     @Override
-    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-        return super.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(COLOR, EnumColor.byMetadata(meta));
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
+        return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(COLOR, EnumColor.byMetadata(meta));
     }
 
     @Override
@@ -90,8 +92,8 @@ public class BlockColoredRedstoneRepeater extends BlockRedstoneRepeater implemen
     }
 
     @Override
-    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
-        EnumColor color = getColor(worldIn, pos);
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+        EnumColor color = getColor(world, pos);
         return color != EnumColor.RED ? new ItemStack(ModItems.COLORED_REDSTONE_REPEATER, 1, color.getMetadata()) : new ItemStack(Items.REPEATER);
     }
 
@@ -138,8 +140,7 @@ public class BlockColoredRedstoneRepeater extends BlockRedstoneRepeater implemen
     }
 
     @Override
-    protected IBlockState getPoweredState(IBlockState unpoweredState)
-    {
+    protected IBlockState getPoweredState(IBlockState unpoweredState) {
         int delay = unpoweredState.getValue(DELAY);
         boolean isLocked = unpoweredState.getValue(LOCKED);
         EnumFacing facing = unpoweredState.getValue(FACING);
@@ -152,8 +153,7 @@ public class BlockColoredRedstoneRepeater extends BlockRedstoneRepeater implemen
     }
 
     @Override
-    protected IBlockState getUnpoweredState(IBlockState poweredState)
-    {
+    protected IBlockState getUnpoweredState(IBlockState poweredState) {
         int delay = poweredState.getValue(DELAY);
         boolean isLocked = poweredState.getValue(LOCKED);
         EnumFacing facing = poweredState.getValue(FACING);
@@ -167,24 +167,21 @@ public class BlockColoredRedstoneRepeater extends BlockRedstoneRepeater implemen
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
-    {
-        if (this.isRepeaterPowered)
-        {
+    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+        if (this.isRepeaterPowered) {
             EnumFacing enumfacing = stateIn.getValue(FACING);
-            double posX = (double)((float)pos.getX() + 0.5F) + (rand.nextDouble() - 0.5F) * 0.2D;
-            double posY = (double)((float)pos.getY() + 0.4F) + (rand.nextDouble() - 0.5F) * 0.2D;
-            double posZ = (double)((float)pos.getZ() + 0.5F) + (rand.nextDouble() - 0.5F) * 0.2D;
+            double posX = (double) ((float) pos.getX() + 0.5F) + (rand.nextDouble() - 0.5F) * 0.2D;
+            double posY = (double) ((float) pos.getY() + 0.4F) + (rand.nextDouble() - 0.5F) * 0.2D;
+            double posZ = (double) ((float) pos.getZ() + 0.5F) + (rand.nextDouble() - 0.5F) * 0.2D;
             float f = -5.0F;
 
-            if (rand.nextBoolean())
-            {
-                f = (float)(stateIn.getValue(DELAY) * 2 - 1);
+            if (rand.nextBoolean()) {
+                f = (float) (stateIn.getValue(DELAY) * 2 - 1);
             }
 
             f = f / 16.0F;
-            double offsetX = (double)(f * (float)enumfacing.getFrontOffsetX());
-            double offsetZ = (double)(f * (float)enumfacing.getFrontOffsetZ());
+            double offsetX = (double) (f * (float) enumfacing.getFrontOffsetX());
+            double offsetZ = (double) (f * (float) enumfacing.getFrontOffsetZ());
 
             EnumColor color = getColor(worldIn, pos);
             double red = color.getShades()[15].getR() / 255.0F;
