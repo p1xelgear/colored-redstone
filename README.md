@@ -7,7 +7,7 @@
 Colored Redstone is a [Minecraft](https://minecraft.net/) mod that adds new color variants for various Minecraft redstone components with simple recoloring mechanism.
 
 ## More Info
-[Minecraft Forum](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-mods/2937297)  
+[Minecraft Forum](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-mods/2937297)<br/>
 [CurseForge](https://minecraft.curseforge.com/projects/colored-redstone)
 
 ## Downloads

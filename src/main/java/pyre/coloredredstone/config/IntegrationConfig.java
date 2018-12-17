@@ -25,5 +25,9 @@ public class IntegrationConfig {
         @Config.LangKey("coloredredstone.config.integration.albedo.redstone_torches")
         @Config.Comment("If true, enables colored lighting for Colored Redstone Torches.")
         public boolean albedoRedstoneTorches = true;
+
+        @Config.LangKey("coloredredstone.config.integration.albedo.redstone_lamps")
+        @Config.Comment("If true, enables colored lighting for Colored Redstone Lamps.")
+        public boolean albedoRedstoneLamps = true;
     }
 }

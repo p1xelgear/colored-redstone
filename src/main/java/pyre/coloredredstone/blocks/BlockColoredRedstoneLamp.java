@@ -21,6 +21,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pyre.coloredredstone.config.CurrentModConfig;
@@ -52,7 +53,10 @@ public class BlockColoredRedstoneLamp extends Block implements IColoredFeatures,
 
     @Override
     public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
-        return state.getValue(POWER);
+        if (FMLCommonHandler.instance().getEffectiveSide().isServer()) {
+            return state.getValue(POWER);
+        }
+        return super.getLightValue(state, world, pos);
     }
 
     @Override
@@ -132,6 +136,7 @@ public class BlockColoredRedstoneLamp extends Block implements IColoredFeatures,
         worldIn.setBlockToAir(pos);
     }
 
+    @SuppressWarnings("deprecation")
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(POWER, meta);
     }
@@ -150,7 +155,6 @@ public class BlockColoredRedstoneLamp extends Block implements IColoredFeatures,
             if (power != value) {
                 worldIn.setBlockState(pos, getActualState(state, worldIn, pos).withProperty(POWER, power), 2);
             }
-            //TODO może sprawdzić state czy power ten sam
         }
     }
 

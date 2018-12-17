@@ -65,6 +65,7 @@ coloredredstone.config.integration.albedo=Albedo
 coloredredstone.config.integration.chisel.redstone_blocks=Bloki kolorowego redstonu
 
 coloredredstone.config.integration.albedo.redstone_torches=Kolorowe pochodnie redstone
+coloredredstone.config.integration.albedo.redstone_torches=Kolorowe lampy
 
 ###############
 ##### JEI #####
