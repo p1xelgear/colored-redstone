@@ -133,7 +133,21 @@ public class ColoredItemEventHandler {
 
     @SubscribeEvent
     public static void changeRedstoneLampColor(PlayerInteractEvent.RightClickBlock event) {
-        changeTileEntityColor(event, BlockColoredRedstoneLamp.class, SHRINK_LAMP);
+        Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
+        if (block == Blocks.REDSTONE_LAMP || block == Blocks.LIT_REDSTONE_LAMP){
+            ItemStack heldItemMainhand = event.getEntityPlayer().getHeldItemMainhand();
+            if (!heldItemMainhand.isEmpty() && heldItemMainhand.getCount() >= SHRINK_LAMP) {
+                EnumColor dyeColor = OreDictionaryUtils.getDyeColor(heldItemMainhand);
+                if (dyeColor != null) {
+                    IBlockState stateToSet = ModBlocks.COLORED_REDSTONE_LAMP.getDefaultState()
+                            .withProperty(BlockColoredRedstoneLamp.COLOR, dyeColor);
+                    setBlockState(event, stateToSet, 3);
+                    heldItemMainhand.shrink(SHRINK_LAMP);
+                }
+            }
+        } else if (block == ModBlocks.COLORED_REDSTONE_LAMP) {
+            changeTileEntityColor(event, BlockColoredRedstoneLamp.class, SHRINK_LAMP);
+        }
     }
 
     private static void changeTileEntityColor(PlayerInteractEvent.RightClickBlock event, Class clazz, int shrink) {
