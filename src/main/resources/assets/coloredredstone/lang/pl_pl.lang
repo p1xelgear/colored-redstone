@@ -76,12 +76,14 @@ jei.description.colored_block=Blok redstonu może zostać przekolorowany na dowo
 jei.description.colored_torch=Pochodnia redstone może zostać przekolorowana na dowolny inny kolor poprzez połączenie pochodni redstone i barwnika na stole rzemieślniczym lub bezpośrednio w świecie gry bez niszczenia bloku.
 jei.description.colored_repeater=Przekaźnik może zostać przekolorowany na dowolny inny kolor poprzez połączenie przekaźnika i barwnika na stole rzemieślniczym lub bezpośrednio w świecie gry bez niszczenia bloku.
 jei.description.colored_comparator=Komparator może zostać przekolorowany na dowolny inny kolor poprzez połączenie komparatora i barwnika na stole rzemieślniczym lub bezpośrednio w świecie gry bez niszczenia bloku.
+jei.description.colored_lamp=Lampa może zostać przekolorowana na dowolny inny kolor poprzez połączenie lampy i barwnika na stole rzemieślniczym lub bezpośrednio w świecie gry bez niszczenia bloku.
 
 jei.description.colored_dust_requirements=Przekolorywanie z użyciem stołu rzemieślniczego lub w świecie gry wymaga 1 przedmiotu-barwnika.
 jei.description.colored_block_requirements=Przekolorywanie z użyciem stołu rzemieślniczego wymaga 8 przedmiotów-barwników, przekolorywanie w świecie gry wymaga 9 przedmiotów-barwników tego samego koloru.
 jei.description.colored_torch_requirements=Przekolorywanie z użyciem stołu rzemieślniczego lub w świecie gry wymaga 1 przedmiotu-barwnika.
 jei.description.colored_repeater_requirements=Przekolorywanie z użyciem stołu rzemieślniczego lub w świecie gry wymaga 3 przedmiotów-barwników tego samego koloru.
 jei.description.colored_comparator_requirements=Przekolorywanie z użyciem stołu rzemieślniczego lub w świecie gry wymaga 3 przedmiotów-barwników tego samego koloru.
+jei.description.colored_lamp_requirements=Przekolorywanie z użyciem stołu rzemieślniczego lub w świecie gry wymaga 4 przedmiotów-barwników tego samego koloru.
 
 jei.description.in_world_recoloring=Aby zmienić kolor bloku wykorzystując mechanikę przekolorywania w świecie gry należy kliknąć wybrany blok prawym przyciskiem myszy trzymając przy tym w ręce barwnik porządanego koloru.
 jei.description.in_world_recoloring_with_shift=Aby zmienić kolor bloku wykorzystując mechanikę przekolorywania w świecie gry należy przytrzymując wciśnięty Shift, kliknąć wybrany blok prawym przyciskiem myszy trzymając przy tym w ręce barwnik porządanego koloru.

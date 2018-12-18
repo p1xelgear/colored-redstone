@@ -76,12 +76,14 @@ jei.description.colored_block=Redstone block can be recolored to any other color
 jei.description.colored_torch=Redstone torch can be recolored to any other color by using redstone torch and dye in crafting table or in-world without breaking actual block.
 jei.description.colored_repeater=Redstone repeater can be recolored to any other color by using redstone repeater and dye in crafting table or in-world without breaking actual block.
 jei.description.colored_comparator=Redstone comparator can be recolored to any other color by using redstone comparator and dye in crafting table or in-world without breaking actual block.
+jei.description.colored_lamp=Redstone lamp can be recolored to any other color by using redstone lamp and dye in crafting table or in-world without breaking actual block.
 
 jei.description.colored_dust_requirements=Recoloring using crafting table or in-world requires 1 dye item.
 jei.description.colored_block_requirements=Recoloring using crafting table requires 8 dye items and in-world recoloring requires 9 dye items of the same color.
 jei.description.colored_torch_requirements=Recoloring using crafting table or in-world requires 1 dye item.
 jei.description.colored_repeater_requirements=Recoloring using crafting table or in-world requires 3 dye items of the same color.
 jei.description.colored_comparator_requirements=Recoloring using crafting table or in-world requires 3 dye items of the same color.
+jei.description.colored_lamp_requirements=Recoloring using crafting table or in-world requires 4 dye items of the same color.
 
 jei.description.in_world_recoloring=To apply new color to the block using in-world mechanic simply right click the block with the desire dye.
 jei.description.in_world_recoloring_with_shift=To apply new color to the block using in-world mechanic simply shift + right click the block with the desire dye.
