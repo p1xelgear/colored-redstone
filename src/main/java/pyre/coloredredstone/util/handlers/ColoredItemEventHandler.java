@@ -29,7 +29,7 @@ public class ColoredItemEventHandler {
     private static final int SHRINK_LAMP = 4;
 
     @SubscribeEvent
-    public static void preventDespawn(ItemExpireEvent event){
+    public static void preventDespawn(ItemExpireEvent event) {
         if (CurrentModConfig.despawnproof) {
             ItemStack itemStack = event.getEntityItem().getItem();
             Item item = itemStack.getItem();
@@ -41,9 +41,9 @@ public class ColoredItemEventHandler {
 
     @SubscribeEvent
     public static void changeRedstoneTorchColor(PlayerInteractEvent.RightClickBlock event) {
-        if (!event.getWorld().isRemote && event.getHand() == EnumHand.MAIN_HAND) {
+        if (CurrentModConfig.inWorldRecoloring && !event.getWorld().isRemote && event.getHand() == EnumHand.MAIN_HAND) {
             ItemStack heldItemMainhand = event.getEntityPlayer().getHeldItemMainhand();
-            if (heldItemMainhand.isEmpty()){
+            if (heldItemMainhand.isEmpty()) {
                 return;
             }
             EnumColor dyeColor = OreDictionaryUtils.getDyeColor(heldItemMainhand);
@@ -63,7 +63,7 @@ public class ColoredItemEventHandler {
                             .withProperty(BlockColoredRedstoneTorch.COLOR, dyeColor);
                     setBlockState(event, stateToSet, 3);
                     heldItemMainhand.shrink(SHRINK_TORCH);
-                } else if (block == ModBlocks.COLORED_REDSTONE_TORCH || block == ModBlocks.UNLIT_COLORED_REDSTONE_TORCH){
+                } else if (block == ModBlocks.COLORED_REDSTONE_TORCH || block == ModBlocks.UNLIT_COLORED_REDSTONE_TORCH) {
                     if (dyeColor != EnumColor.RED) {
                         setTileEntityColor(event, dyeColor, SHRINK_TORCH);
                     } else {
@@ -85,9 +85,9 @@ public class ColoredItemEventHandler {
 
     @SubscribeEvent
     public static void changeRedstoneBlockColor(PlayerInteractEvent.RightClickBlock event) {
-        if (!event.getWorld().isRemote && event.getHand() == EnumHand.MAIN_HAND) {
+        if (CurrentModConfig.inWorldRecoloring && !event.getWorld().isRemote && event.getHand() == EnumHand.MAIN_HAND) {
             ItemStack heldItemMainhand = event.getEntityPlayer().getHeldItemMainhand();
-            if (heldItemMainhand.isEmpty() || heldItemMainhand.getCount() < SHRINK_BLOCK){
+            if (heldItemMainhand.isEmpty() || heldItemMainhand.getCount() < SHRINK_BLOCK) {
                 return;
             }
             EnumColor dyeColor = OreDictionaryUtils.getDyeColor(heldItemMainhand);
@@ -96,13 +96,13 @@ public class ColoredItemEventHandler {
 
             if (dyeColor != null) {
                 if (dyeColor != EnumColor.RED &&
-                        (block == Blocks.REDSTONE_BLOCK || (block == ModBlocks.COLORED_REDSTONE_BLOCK && dyeColor != blockState.getValue(BlockColoredRedstone.COLOR)))){
+                        (block == Blocks.REDSTONE_BLOCK || (block == ModBlocks.COLORED_REDSTONE_BLOCK && dyeColor != blockState.getValue(BlockColoredRedstone.COLOR)))) {
                     IBlockState stateToSet = ModBlocks.COLORED_REDSTONE_BLOCK
                             .getDefaultState()
                             .withProperty(BlockColoredRedstone.COLOR, dyeColor);
                     setBlockState(event, stateToSet, 2);
                     heldItemMainhand.shrink(SHRINK_BLOCK);
-                } else if (block == ModBlocks.COLORED_REDSTONE_BLOCK && dyeColor == EnumColor.RED){
+                } else if (block == ModBlocks.COLORED_REDSTONE_BLOCK && dyeColor == EnumColor.RED) {
                     IBlockState stateToSet = Blocks.REDSTONE_BLOCK
                             .getDefaultState();
                     setBlockState(event, stateToSet, 2);
@@ -114,52 +114,56 @@ public class ColoredItemEventHandler {
 
     @SubscribeEvent
     public static void changeRedstoneRepeaterColor(PlayerInteractEvent.RightClickBlock event) {
-        if (event.getEntityPlayer().isSneaking()){
+        if (CurrentModConfig.inWorldRecoloring && event.getEntityPlayer().isSneaking()) {
             changeTileEntityColor(event, BlockColoredRedstoneRepeater.class, SHRINK_REPEATER);
         }
     }
 
     @SubscribeEvent
     public static void changeRedstoneComparatorColor(PlayerInteractEvent.RightClickBlock event) {
-        if (event.getEntityPlayer().isSneaking()){
+        if (CurrentModConfig.inWorldRecoloring && event.getEntityPlayer().isSneaking()) {
             changeTileEntityColor(event, BlockColoredRedstoneComparator.class, SHRINK_COMPARATOR);
         }
     }
 
     @SubscribeEvent
     public static void changeRedstoneWireColor(PlayerInteractEvent.RightClickBlock event) {
-        changeTileEntityColor(event, BlockColoredRedstoneWire.class, SHRINK_WIRE);
+        if (CurrentModConfig.inWorldRecoloring) {
+            changeTileEntityColor(event, BlockColoredRedstoneWire.class, SHRINK_WIRE);
+        }
     }
 
     @SubscribeEvent
     public static void changeRedstoneLampColor(PlayerInteractEvent.RightClickBlock event) {
-        Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
-        if (block == Blocks.REDSTONE_LAMP || block == Blocks.LIT_REDSTONE_LAMP){
-            ItemStack heldItemMainhand = event.getEntityPlayer().getHeldItemMainhand();
-            if (!heldItemMainhand.isEmpty() && heldItemMainhand.getCount() >= SHRINK_LAMP) {
-                EnumColor dyeColor = OreDictionaryUtils.getDyeColor(heldItemMainhand);
-                if (dyeColor != null) {
-                    IBlockState stateToSet = ModBlocks.COLORED_REDSTONE_LAMP.getDefaultState()
-                            .withProperty(BlockColoredRedstoneLamp.COLOR, dyeColor);
-                    setBlockState(event, stateToSet, 3);
-                    heldItemMainhand.shrink(SHRINK_LAMP);
+        if (CurrentModConfig.inWorldRecoloring) {
+            Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
+            if (block == Blocks.REDSTONE_LAMP || block == Blocks.LIT_REDSTONE_LAMP) {
+                ItemStack heldItemMainhand = event.getEntityPlayer().getHeldItemMainhand();
+                if (!heldItemMainhand.isEmpty() && heldItemMainhand.getCount() >= SHRINK_LAMP) {
+                    EnumColor dyeColor = OreDictionaryUtils.getDyeColor(heldItemMainhand);
+                    if (dyeColor != null) {
+                        IBlockState stateToSet = ModBlocks.COLORED_REDSTONE_LAMP.getDefaultState()
+                                .withProperty(BlockColoredRedstoneLamp.COLOR, dyeColor);
+                        setBlockState(event, stateToSet, 3);
+                        heldItemMainhand.shrink(SHRINK_LAMP);
+                    }
                 }
+            } else if (block == ModBlocks.COLORED_REDSTONE_LAMP) {
+                changeTileEntityColor(event, BlockColoredRedstoneLamp.class, SHRINK_LAMP);
             }
-        } else if (block == ModBlocks.COLORED_REDSTONE_LAMP) {
-            changeTileEntityColor(event, BlockColoredRedstoneLamp.class, SHRINK_LAMP);
         }
     }
 
     private static void changeTileEntityColor(PlayerInteractEvent.RightClickBlock event, Class clazz, int shrink) {
-        if (!event.getWorld().isRemote && event.getHand() == EnumHand.MAIN_HAND) {
+        if (CurrentModConfig.inWorldRecoloring && !event.getWorld().isRemote && event.getHand() == EnumHand.MAIN_HAND) {
             ItemStack heldItemMainhand = event.getEntityPlayer().getHeldItemMainhand();
-            if (heldItemMainhand.isEmpty() || heldItemMainhand.getCount() < shrink){
+            if (heldItemMainhand.isEmpty() || heldItemMainhand.getCount() < shrink) {
                 return;
             }
             EnumColor dyeColor = OreDictionaryUtils.getDyeColor(heldItemMainhand);
             Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
 
-            if (clazz.isInstance(block) && dyeColor != null){
+            if (clazz.isInstance(block) && dyeColor != null) {
                 setTileEntityColor(event, dyeColor, shrink);
             }
         }

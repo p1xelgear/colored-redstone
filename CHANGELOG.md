@@ -1,6 +1,7 @@
 # CHANGELOG
 ## 1.2.0
 ### Added
+- Added option to enable/disable in-world recoloring in mod config.
 - Added Albedo integration for Colored Redstone Torches (colored light). Colored light for torches can be enabled/disabled in mod config. **Requires [Albedo](https://minecraft.curseforge.com/projects/albedo) mod.**
 - Added Colored Redstone Lamps (16 color variants). Shade of the lamp and it's light level depends of the power of provided redstone signal.
 - Added Albedo integration for Colored Redstone Lamps (colored light). Colored light for lamps can be enabled/disabled in mod config. **Requires [Albedo](https://minecraft.curseforge.com/projects/albedo) mod.**

@@ -11,6 +11,10 @@ public class ModConfig {
     @Config.Comment("Enables/disables colored names and tooltips for blocks and items.")
     public static boolean coloredNamesAndTooltips = true;
 
+    @Config.LangKey("coloredredstone.config.in_world_recoloring")
+    @Config.Comment("Enables/disables in-world recoloring.")
+    public static boolean inWorldRecoloring = true;
+
     @Config.LangKey("coloredredstone.config.colored_properties")
     @Config.Comment("Colored properties configuration.")
     public static ColoredProperties coloredPropertiesConfig = new ColoredProperties();

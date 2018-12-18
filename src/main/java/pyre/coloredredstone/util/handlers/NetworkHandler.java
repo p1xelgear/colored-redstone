@@ -4,6 +4,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import pyre.coloredredstone.network.ColoredPropertiesSyncConfigMessage;
+import pyre.coloredredstone.network.InWorldRecoloringSyncConfigMessage;
 import pyre.coloredredstone.network.IntegrationChiselSyncConfigMessage;
 import pyre.coloredredstone.util.Reference;
 
@@ -17,7 +18,8 @@ public class NetworkHandler {
     }
 
     private static void registerMessages() {
-        INSTANCE.registerMessage(ColoredPropertiesSyncConfigMessage.ColoredPropertiesSyncConfigMessageHandler.class, ColoredPropertiesSyncConfigMessage.class, 0, Side.CLIENT);
-        INSTANCE.registerMessage(IntegrationChiselSyncConfigMessage.IntegrationChiselSyncConfigMessageHandler.class, IntegrationChiselSyncConfigMessage.class, 1, Side.CLIENT);
+        INSTANCE.registerMessage(InWorldRecoloringSyncConfigMessage.InWorldRecoloringSyncConfigMessageHandler.class, InWorldRecoloringSyncConfigMessage.class, 0, Side.CLIENT);
+        INSTANCE.registerMessage(ColoredPropertiesSyncConfigMessage.ColoredPropertiesSyncConfigMessageHandler.class, ColoredPropertiesSyncConfigMessage.class, 1, Side.CLIENT);
+        INSTANCE.registerMessage(IntegrationChiselSyncConfigMessage.IntegrationChiselSyncConfigMessageHandler.class, IntegrationChiselSyncConfigMessage.class, 2, Side.CLIENT);
     }
 }

@@ -48,6 +48,7 @@ coloredredstone.tooltip.burnable=Palny!
 
 coloredredstone.config.title=Colored Redstone Konfiguracja
 coloredredstone.config.colored_names=Kolorowe nazwy/podpowiedzi
+coloredredstone.config.in_world_recoloring=Przekolorywanie w świecie
 
 coloredredstone.config.colored_properties=Kolorowe Właściwości
 coloredredstone.config.colored_properties.waterproof=Wodoodporność

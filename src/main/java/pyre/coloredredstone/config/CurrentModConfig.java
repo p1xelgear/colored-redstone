@@ -4,6 +4,8 @@ import pyre.coloredredstone.integration.chisel.ModIntegrationChisel;
 
 public class CurrentModConfig {
 
+    public static boolean inWorldRecoloring = ModConfig.inWorldRecoloring;
+
     public static boolean waterproof = ModConfig.coloredPropertiesConfig.waterproof;
     public static boolean explosionproof = ModConfig.coloredPropertiesConfig.explosionproof;
     public static boolean fireproof = ModConfig.coloredPropertiesConfig.fireproof;
@@ -14,6 +16,10 @@ public class CurrentModConfig {
     public static int burnableBurningTime = ModConfig.coloredPropertiesConfig.burnableBurningTime;
 
     public static boolean integrationChiselColoredBlocks = ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks;
+
+    public static void setInWorldRecoloring(boolean recoloring) {
+        inWorldRecoloring = recoloring;
+    }
 
     public static void setColoredPropertiesValues(boolean water, boolean explosion, boolean fire, boolean despawn, boolean cactus, boolean burn, int burningTime) {
         waterproof = water;
@@ -35,6 +41,7 @@ public class CurrentModConfig {
     }
 
     public static void useClientSettings() {
+        setInWorldRecoloring(ModConfig.inWorldRecoloring);
         setColoredPropertiesValues(ModConfig.coloredPropertiesConfig.waterproof,
                 ModConfig.coloredPropertiesConfig.explosionproof,
                 ModConfig.coloredPropertiesConfig.fireproof,

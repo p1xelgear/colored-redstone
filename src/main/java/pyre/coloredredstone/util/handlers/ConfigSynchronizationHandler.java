@@ -14,6 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import pyre.coloredredstone.config.CurrentModConfig;
 import pyre.coloredredstone.config.ModConfig;
 import pyre.coloredredstone.network.ColoredPropertiesSyncConfigMessage;
+import pyre.coloredredstone.network.InWorldRecoloringSyncConfigMessage;
 import pyre.coloredredstone.network.IntegrationChiselSyncConfigMessage;
 import pyre.coloredredstone.util.Reference;
 
@@ -23,6 +24,7 @@ public class ConfigSynchronizationHandler {
     @SubscribeEvent
     @SideOnly(Side.SERVER)
     public static void eventClientConnectedToServer(PlayerEvent.PlayerLoggedInEvent event) {
+        InWorldRecoloringSyncConfigMessage inWorldRecoloringMessage = new InWorldRecoloringSyncConfigMessage(ModConfig.inWorldRecoloring);
         ColoredPropertiesSyncConfigMessage coloredPropertiesMessage = new ColoredPropertiesSyncConfigMessage(ModConfig.coloredPropertiesConfig.waterproof,
                 ModConfig.coloredPropertiesConfig.explosionproof,
                 ModConfig.coloredPropertiesConfig.fireproof,
@@ -31,6 +33,7 @@ public class ConfigSynchronizationHandler {
                 ModConfig.coloredPropertiesConfig.burnable,
                 ModConfig.coloredPropertiesConfig.burnableBurningTime);
         IntegrationChiselSyncConfigMessage chiselMessage = new IntegrationChiselSyncConfigMessage(ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks);
+        NetworkHandler.INSTANCE.sendTo(inWorldRecoloringMessage, (EntityPlayerMP) event.player);
         NetworkHandler.INSTANCE.sendTo(coloredPropertiesMessage, (EntityPlayerMP) event.player);
         NetworkHandler.INSTANCE.sendTo(chiselMessage, (EntityPlayerMP) event.player); //TODO Sync not working (client restart necessary)
     }
