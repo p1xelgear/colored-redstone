@@ -64,8 +64,8 @@ public class BlockColoredRedstoneComparator extends BlockRedstoneComparator impl
     @SuppressWarnings("deprecation")
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        state = super.getActualState(state, worldIn, pos);
-        return state.withProperty(COLOR, getColor(worldIn, pos));
+        IBlockState newState = super.getActualState(state, worldIn, pos);
+        return newState.withProperty(COLOR, getColor(worldIn, pos));
     }
 
     @Override
@@ -100,29 +100,29 @@ public class BlockColoredRedstoneComparator extends BlockRedstoneComparator impl
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         EnumColor color = getColor(world, pos);
-        return color != EnumColor.RED ? new ItemStack(ModItems.COLORED_REDSTONE_COMPARATOR, 1, color.getMetadata()) : new ItemStack(Items.COMPARATOR);
+        return color != RED ? new ItemStack(ModItems.COLORED_REDSTONE_COMPARATOR, 1, color.getMetadata()) : new ItemStack(Items.COMPARATOR);
     }
 
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-        state = getActualState(state, world, pos);
-        super.getDrops(drops, world, pos, state, fortune);
+        IBlockState actualState = getActualState(state, world, pos);
+        super.getDrops(drops, world, pos, actualState, fortune);
     }
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return state.getValue(COLOR) != EnumColor.RED ? ModItems.COLORED_REDSTONE_COMPARATOR : Items.COMPARATOR;
+        return state.getValue(COLOR) != RED ? ModItems.COLORED_REDSTONE_COMPARATOR : Items.COMPARATOR;
     }
 
     @Override
     public int damageDropped(IBlockState state) {
-        return state.getValue(COLOR) != EnumColor.RED ? state.getValue(COLOR).getMetadata() : 0;
+        return state.getValue(COLOR) != RED ? state.getValue(COLOR).getMetadata() : 0;
     }
 
     @Override
     public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
         Arrays.stream(EnumColor.values())
-                .filter(color -> color != EnumColor.RED)
+                .filter(color -> color != RED)
                 .forEach(color -> items.add(new ItemStack(this, 1, color.getMetadata())));
     }
 
@@ -155,11 +155,11 @@ public class BlockColoredRedstoneComparator extends BlockRedstoneComparator impl
         if (!playerIn.capabilities.allowEdit) {
             return false;
         } else {
-            state = state.cycleProperty(MODE);
-            float f = state.getValue(MODE) == BlockRedstoneComparator.Mode.SUBTRACT ? 0.55F : 0.5F;
+            IBlockState newState = state.cycleProperty(MODE);
+            float f = newState.getValue(MODE) == BlockRedstoneComparator.Mode.SUBTRACT ? 0.55F : 0.5F;
             worldIn.playSound(playerIn, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, f);
-            worldIn.setBlockState(pos, state, 2);
-            this.onStateChange(worldIn, pos, state);
+            worldIn.setBlockState(pos, newState, 2);
+            this.onStateChange(worldIn, pos, newState);
             return true;
         }
     }

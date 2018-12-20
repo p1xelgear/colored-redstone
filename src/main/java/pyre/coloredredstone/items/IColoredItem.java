@@ -22,7 +22,7 @@ import java.util.List;
 
 public interface IColoredItem {
 
-    default List<ItemStack> getSubItemsList(CreativeTabs tab, Item item){
+    default List<ItemStack> getSubItemsList(CreativeTabs tab, Item item) {
         List<ItemStack> result = new ArrayList<>();
         if (tab == CreativeTabs.REDSTONE) {
             Arrays.stream(EnumColor.values())
@@ -40,7 +40,7 @@ public interface IColoredItem {
         return ColoredRedstone.proxy.localize(unlocalizedName + ".name", displayColor);
     }
 
-    default List<String> getColoredTooltips(ItemStack stack){
+    default List<String> getColoredTooltips(ItemStack stack) {
         List<String> tooltips = new ArrayList<>();
         EnumColor color = EnumColor.byMetadata(stack.getMetadata());
         String chatColor = ModConfig.coloredNamesAndTooltips ? color.getChatColor().toString() : "";
@@ -74,11 +74,13 @@ public interface IColoredItem {
                 if (CurrentModConfig.burnable) {
                     tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.burnable"));
                 }
+                break;
+            default:
         }
         return tooltips;
     }
 
-    default EntityItem createColoredEntityItem(World world, Entity oldEntityItem, ItemStack itemstack){
+    default EntityItem createColoredEntityItem(World world, Entity oldEntityItem, ItemStack itemstack) {
         EntityItemColored newEntityItem = new EntityItemColored(world, oldEntityItem.posX, oldEntityItem.posY, oldEntityItem.posZ, itemstack);
         newEntityItem.motionX = oldEntityItem.motionX;
         newEntityItem.motionY = oldEntityItem.motionY;
@@ -88,7 +90,7 @@ public interface IColoredItem {
         try {
             Field field = ReflectionHelper.findField(EntityItem.class, "pickupDelay", "field_145804_b");
             newEntityItem.setPickupDelay((Integer) field.get(oldEntityItem));
-        } catch (IllegalAccessException  e) {
+        } catch (IllegalAccessException e) {
             ColoredRedstone.logger.error("Cannot get 'pickupDelay' value for ColoredEntityItem.", e);
             newEntityItem.setDefaultPickupDelay();
         }
@@ -96,8 +98,8 @@ public interface IColoredItem {
         return newEntityItem;
     }
 
-    default int getBurnTime(ItemStack itemStack){
-        if (CurrentModConfig.burnable && itemStack.getMetadata() == EnumColor.BROWN.getMetadata()){
+    default int getBurnTime(ItemStack itemStack) {
+        if (CurrentModConfig.burnable && itemStack.getMetadata() == EnumColor.BROWN.getMetadata()) {
             return CurrentModConfig.burnableBurningTime;
         }
         return 0;

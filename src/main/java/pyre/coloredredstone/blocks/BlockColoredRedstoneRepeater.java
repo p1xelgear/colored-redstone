@@ -58,8 +58,8 @@ public class BlockColoredRedstoneRepeater extends BlockRedstoneRepeater implemen
     @SuppressWarnings("deprecation")
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        state = super.getActualState(state, worldIn, pos);
-        return state.withProperty(COLOR, getColor(worldIn, pos));
+        IBlockState newState = super.getActualState(state, worldIn, pos);
+        return newState.withProperty(COLOR, getColor(worldIn, pos));
     }
 
     @Override
@@ -94,29 +94,29 @@ public class BlockColoredRedstoneRepeater extends BlockRedstoneRepeater implemen
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         EnumColor color = getColor(world, pos);
-        return color != EnumColor.RED ? new ItemStack(ModItems.COLORED_REDSTONE_REPEATER, 1, color.getMetadata()) : new ItemStack(Items.REPEATER);
+        return color != RED ? new ItemStack(ModItems.COLORED_REDSTONE_REPEATER, 1, color.getMetadata()) : new ItemStack(Items.REPEATER);
     }
 
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-        state = getActualState(state, world, pos);
-        super.getDrops(drops, world, pos, state, fortune);
+        IBlockState newState = getActualState(state, world, pos);
+        super.getDrops(drops, world, pos, newState, fortune);
     }
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return state.getValue(COLOR) != EnumColor.RED ? ModItems.COLORED_REDSTONE_REPEATER : Items.REPEATER;
+        return state.getValue(COLOR) != RED ? ModItems.COLORED_REDSTONE_REPEATER : Items.REPEATER;
     }
 
     @Override
     public int damageDropped(IBlockState state) {
-        return state.getValue(COLOR) != EnumColor.RED ? state.getValue(COLOR).getMetadata() : 0;
+        return state.getValue(COLOR) != RED ? state.getValue(COLOR).getMetadata() : 0;
     }
 
     @Override
     public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
         Arrays.stream(EnumColor.values())
-                .filter(color -> color != EnumColor.RED)
+                .filter(color -> color != RED)
                 .forEach(color -> items.add(new ItemStack(this, 1, color.getMetadata())));
     }
 

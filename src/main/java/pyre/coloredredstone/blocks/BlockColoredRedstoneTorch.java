@@ -66,8 +66,8 @@ public class BlockColoredRedstoneTorch extends BlockRedstoneTorch implements ICo
     @SuppressWarnings("deprecation")
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        state = super.getActualState(state, worldIn, pos);
-        return state.withProperty(COLOR, getColor(worldIn, pos));
+        IBlockState newState = super.getActualState(state, worldIn, pos);
+        return newState.withProperty(COLOR, getColor(worldIn, pos));
     }
 
     @Override
@@ -143,8 +143,8 @@ public class BlockColoredRedstoneTorch extends BlockRedstoneTorch implements ICo
 
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-        state = getActualState(state, world, pos);
-        super.getDrops(drops, world, pos, state, fortune);
+        IBlockState actualState = getActualState(state, world, pos);
+        super.getDrops(drops, world, pos, actualState, fortune);
     }
 
     @Override

@@ -10,7 +10,7 @@ public enum EnumColor implements IStringSerializable {
     GREEN(2, "green", Reference.MOD_ID + ".color.green", "dyeGreen", Colors.GREEN, TextFormatting.DARK_GREEN),
     BROWN(3, "brown", Reference.MOD_ID + ".color.brown", "dyeBrown", Colors.BROWN, TextFormatting.GOLD),
     BLUE(4, "blue", Reference.MOD_ID + ".color.blue", "dyeBlue", Colors.BLUE, TextFormatting.BLUE),
-    PURPLE(5, "purple",Reference.MOD_ID + ".color.purple", "dyePurple", Colors.PURPLE, TextFormatting.DARK_PURPLE),
+    PURPLE(5, "purple", Reference.MOD_ID + ".color.purple", "dyePurple", Colors.PURPLE, TextFormatting.DARK_PURPLE),
     CYAN(6, "cyan", Reference.MOD_ID + ".color.cyan", "dyeCyan", Colors.CYAN, TextFormatting.DARK_AQUA),
     LIGHT_GRAY(7, "light_gray", Reference.MOD_ID + ".color.light_gray", "dyeLightGray", Colors.LIGHT_GRAY, TextFormatting.GRAY),
     GRAY(8, "gray", Reference.MOD_ID + ".color.gray", "dyeGray", Colors.GRAY, TextFormatting.DARK_GRAY),
@@ -40,17 +40,15 @@ public enum EnumColor implements IStringSerializable {
         this.chatColor = chatColor;
     }
 
-    public static EnumColor byMetadata(int meta)
-    {
-        if (meta < 0 || meta >= META_LOOKUP.length)
-        {
+    public static EnumColor byMetadata(int meta) {
+        if (meta < 0 || meta >= META_LOOKUP.length) {
             meta = 0;
         }
 
         return META_LOOKUP[meta];
     }
 
-    public static String getNameByMetadata(int meta){
+    public static String getNameByMetadata(int meta) {
         return byMetadata(meta).getName();
     }
 
@@ -81,10 +79,8 @@ public enum EnumColor implements IStringSerializable {
         return chatColor;
     }
 
-    static
-    {
-        for (EnumColor enumColor : values())
-        {
+    static {
+        for (EnumColor enumColor : values()) {
             META_LOOKUP[enumColor.getMetadata()] = enumColor;
         }
     }

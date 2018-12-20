@@ -78,23 +78,23 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire implements IColo
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         EnumColor color = getColor(world, pos);
-        return color != EnumColor.RED ? new ItemStack(ModItems.COLORED_REDSTONE_DUST, 1, color.getMetadata()) : new ItemStack(Items.REDSTONE);
+        return color != RED ? new ItemStack(ModItems.COLORED_REDSTONE_DUST, 1, color.getMetadata()) : new ItemStack(Items.REDSTONE);
     }
 
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-        state = getActualState(state, world, pos);
-        super.getDrops(drops, world, pos, state, fortune);
+        IBlockState actualState = getActualState(state, world, pos);
+        super.getDrops(drops, world, pos, actualState, fortune);
     }
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return state.getValue(COLOR) != EnumColor.RED ? ModItems.COLORED_REDSTONE_DUST : Items.REDSTONE;
+        return state.getValue(COLOR) != RED ? ModItems.COLORED_REDSTONE_DUST : Items.REDSTONE;
     }
 
     @Override
     public int damageDropped(IBlockState state) {
-        return state.getValue(COLOR) != EnumColor.RED ? state.getValue(COLOR).getMetadata() : 0;
+        return state.getValue(COLOR) != RED ? state.getValue(COLOR).getMetadata() : 0;
     }
 
     //preserved TileEntity until after #getDrops has been called

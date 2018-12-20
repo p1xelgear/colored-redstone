@@ -27,6 +27,7 @@ import java.util.List;
 /**
  * Colored redstone Repeater and Comparator item.
  */
+@SuppressWarnings("NullableProblems")
 public class ItemColoredRedstoneDiode extends ItemBlockSpecial implements IColoredItem {
 
     private final Block block;
@@ -55,7 +56,7 @@ public class ItemColoredRedstoneDiode extends ItemBlockSpecial implements IColor
 
         ItemStack itemstack = player.getHeldItem(hand);
 
-        if (!itemstack.isEmpty() && player.canPlayerEdit(pos, facing, itemstack) && worldIn.mayPlace(this.block, pos, false, facing, (Entity) null)) {
+        if (!itemstack.isEmpty() && player.canPlayerEdit(pos, facing, itemstack) && worldIn.mayPlace(this.block, pos, false, facing, null)) {
             IBlockState iblockstate1 = this.block.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, itemstack.getMetadata(), player, hand);
 
             if (!worldIn.setBlockState(pos, iblockstate1, 11)) {

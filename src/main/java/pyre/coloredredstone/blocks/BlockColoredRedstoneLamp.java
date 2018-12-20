@@ -102,8 +102,8 @@ public class BlockColoredRedstoneLamp extends Block implements IColoredFeatures,
 
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-        state = getActualState(state, world, pos);
-        super.getDrops(drops, world, pos, state, fortune);
+        IBlockState actualState = getActualState(state, world, pos);
+        super.getDrops(drops, world, pos, actualState, fortune);
     }
 
     @Override
