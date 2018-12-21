@@ -40,7 +40,7 @@ public class ItemColoredRedstoneTorch extends ItemColored implements IColoredIte
 
         if (player.canPlayerEdit(blockpos, facing, itemstack) && worldIn.mayPlace(worldIn.getBlockState(blockpos).getBlock(), blockpos, false, facing, null) && ModBlocks.COLORED_REDSTONE_TORCH.canPlaceBlockAt(worldIn, blockpos)) {
 
-            IBlockState state = ModBlocks.COLORED_REDSTONE_TORCH.getStateForPlacement(worldIn, blockpos, facing, hitX, hitY, hitZ, itemstack.getMetadata(), player);
+            IBlockState state = ModBlocks.COLORED_REDSTONE_TORCH.getStateForPlacement(worldIn, blockpos, facing, hitX, hitY, hitZ, itemstack.getMetadata(), player, hand);
             worldIn.setBlockState(blockpos, state, 3);
 
             if (player instanceof EntityPlayerMP) {
