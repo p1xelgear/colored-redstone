@@ -3,12 +3,16 @@ package pyre.coloredredstone.util.handlers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRedstoneTorch;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import pyre.coloredredstone.blocks.*;
@@ -17,6 +21,8 @@ import pyre.coloredredstone.init.ModBlocks;
 import pyre.coloredredstone.items.IColoredItem;
 import pyre.coloredredstone.util.EnumColor;
 import pyre.coloredredstone.util.OreDictionaryUtils;
+
+import java.util.Random;
 
 @Mod.EventBusSubscriber
 public class ColoredItemEventHandler {
@@ -35,6 +41,24 @@ public class ColoredItemEventHandler {
             Item item = itemStack.getItem();
             if (item instanceof IColoredItem && itemStack.getMetadata() == EnumColor.WHITE.getMetadata()) {
                 event.setCanceled(true);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void spawnSlime(BlockEvent.BreakEvent event){
+        if (CurrentModConfig.slimy) {
+            int i = new Random().nextInt(100) + 1;
+            if (i < CurrentModConfig.slimyChance) {
+                World world = event.getWorld();
+                BlockPos pos = event.getPos();
+                Block block = world.getBlockState(pos).getBlock();
+                if ((block instanceof IBlockColored && ((IBlockColored) block).getColor(world, pos) == EnumColor.LIME) ||
+                        (block instanceof IBlockColoredWithoutRed && ((IBlockColoredWithoutRed) block).getColor(world, pos) == EnumColor.LIME)) {
+                    EntitySlime entitySlime = new EntitySlime(world);
+                    entitySlime.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+                    world.spawnEntity(entitySlime);
+                }
             }
         }
     }

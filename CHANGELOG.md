@@ -5,6 +5,7 @@
 - Added Albedo integration for Colored Redstone Torches (colored light). Colored light for torches can be enabled/disabled in mod config. **Requires [Albedo](https://minecraft.curseforge.com/projects/albedo) mod.**
 - Added Colored Redstone Lamps (16 color variants). Shade of the lamp and it's light level depends of the power of provided redstone signal.
 - Added Albedo integration for Colored Redstone Lamps (colored light). Colored light for lamps can be enabled/disabled in mod config. **Requires [Albedo](https://minecraft.curseforge.com/projects/albedo) mod.**
+- New colored property - Slimy - lime blocks have a chance to spawn slime when broken. Property can be enabled/disabled in config. In addition, slime spawn chance can be set in config (default: 5%).
 ## 1.1.0
 ### Added
 - Added Chisel integration for Colored Redstone Blocks (Redstone group).

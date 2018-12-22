@@ -53,5 +53,14 @@ public class ModConfig {
         @Config.Comment("Burning time of burnable items in ticks.")
         @Config.RangeInt(min = 1)
         public int burnableBurningTime = 200;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.slimy")
+        @Config.Comment("If true, lime blocks have a chance to spawn slime when broken.")
+        public boolean slimy = true;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.slimy_chance")
+        @Config.Comment("Chance of spawning slime.")
+        @Config.RangeInt(min = 1, max = 100)
+        public int slimyChance = 10;
     }
 }

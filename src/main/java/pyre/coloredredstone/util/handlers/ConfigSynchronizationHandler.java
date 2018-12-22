@@ -31,7 +31,9 @@ public class ConfigSynchronizationHandler {
                 ModConfig.coloredPropertiesConfig.despawnproof,
                 ModConfig.coloredPropertiesConfig.cactusproof,
                 ModConfig.coloredPropertiesConfig.burnable,
-                ModConfig.coloredPropertiesConfig.burnableBurningTime);
+                ModConfig.coloredPropertiesConfig.burnableBurningTime,
+                ModConfig.coloredPropertiesConfig.slimy,
+                ModConfig.coloredPropertiesConfig.slimyChance);
         IntegrationChiselSyncConfigMessage chiselMessage = new IntegrationChiselSyncConfigMessage(ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks);
         NetworkHandler.INSTANCE.sendTo(inWorldRecoloringMessage, (EntityPlayerMP) event.player);
         NetworkHandler.INSTANCE.sendTo(coloredPropertiesMessage, (EntityPlayerMP) event.player);

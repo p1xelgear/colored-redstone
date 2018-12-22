@@ -12,8 +12,10 @@ public class CurrentModConfig {
     public static boolean despawnproof = ModConfig.coloredPropertiesConfig.despawnproof;
     public static boolean cactusproof = ModConfig.coloredPropertiesConfig.cactusproof;
     public static boolean burnable = ModConfig.coloredPropertiesConfig.burnable;
+    public static boolean slimy = ModConfig.coloredPropertiesConfig.slimy;
 
     public static int burnableBurningTime = ModConfig.coloredPropertiesConfig.burnableBurningTime;
+    public static int slimyChance = ModConfig.coloredPropertiesConfig.slimyChance;
 
     public static boolean integrationChiselColoredBlocks = ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks;
 
@@ -21,7 +23,8 @@ public class CurrentModConfig {
         inWorldRecoloring = recoloring;
     }
 
-    public static void setColoredPropertiesValues(boolean water, boolean explosion, boolean fire, boolean despawn, boolean cactus, boolean burn, int burningTime) {
+    public static void setColoredPropertiesValues(boolean water, boolean explosion, boolean fire, boolean despawn,
+                                                  boolean cactus, boolean burn, int burningTime, boolean slime, int slimeChance) {
         waterproof = water;
         explosionproof = explosion;
         fireproof = fire;
@@ -29,6 +32,8 @@ public class CurrentModConfig {
         cactusproof = cactus;
         burnable = burn;
         burnableBurningTime = burningTime;
+        slimy = slime;
+        slimyChance = slimeChance;
     }
 
     public static void setIntegrationChiselColoredBlocks(boolean coloredBlocks) {
@@ -48,7 +53,9 @@ public class CurrentModConfig {
                 ModConfig.coloredPropertiesConfig.despawnproof,
                 ModConfig.coloredPropertiesConfig.cactusproof,
                 ModConfig.coloredPropertiesConfig.burnable,
-                ModConfig.coloredPropertiesConfig.burnableBurningTime);
+                ModConfig.coloredPropertiesConfig.burnableBurningTime,
+                ModConfig.coloredPropertiesConfig.slimy,
+                ModConfig.coloredPropertiesConfig.slimyChance);
         setIntegrationChiselColoredBlocks(ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks);
     }
 }

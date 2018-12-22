@@ -15,11 +15,14 @@ public class ColoredPropertiesSyncConfigMessage implements IMessage {
     private boolean cactusproof;
     private boolean burnable;
     private int burningTime;
+    private boolean slimy;
+    private int slimyChance;
 
     public ColoredPropertiesSyncConfigMessage() {
     }
 
-    public ColoredPropertiesSyncConfigMessage(boolean waterproof, boolean explosionproof, boolean fireproof, boolean despawnproof, boolean cactusproof, boolean burnable, int burningTime) {
+    public ColoredPropertiesSyncConfigMessage(boolean waterproof, boolean explosionproof, boolean fireproof, boolean despawnproof,
+                                              boolean cactusproof, boolean burnable, int burningTime, boolean slimy, int slimyChance) {
         this.waterproof = waterproof;
         this.explosionproof = explosionproof;
         this.fireproof = fireproof;
@@ -27,6 +30,8 @@ public class ColoredPropertiesSyncConfigMessage implements IMessage {
         this.cactusproof = cactusproof;
         this.burnable = burnable;
         this.burningTime = burningTime;
+        this.slimy = slimy;
+        this.slimyChance = slimyChance;
     }
 
     @Override
@@ -38,6 +43,8 @@ public class ColoredPropertiesSyncConfigMessage implements IMessage {
         cactusproof = buf.readBoolean();
         burnable = buf.readBoolean();
         burningTime = buf.readInt();
+        slimy = buf.readBoolean();
+        slimyChance = buf.readInt();
     }
 
     @Override
@@ -49,6 +56,8 @@ public class ColoredPropertiesSyncConfigMessage implements IMessage {
         buf.writeBoolean(cactusproof);
         buf.writeBoolean(burnable);
         buf.writeInt(burningTime);
+        buf.writeBoolean(slimy);
+        buf.writeInt(slimyChance);
     }
 
     public static class ColoredPropertiesSyncConfigMessageHandler implements IMessageHandler<ColoredPropertiesSyncConfigMessage, IMessage> {
@@ -61,7 +70,9 @@ public class ColoredPropertiesSyncConfigMessage implements IMessage {
                     message.despawnproof,
                     message.cactusproof,
                     message.burnable,
-                    message.burningTime);
+                    message.burningTime,
+                    message.slimy,
+                    message.slimyChance);
             return null;
         }
     }

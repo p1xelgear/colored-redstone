@@ -75,6 +75,11 @@ public interface IColoredItem {
                     tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.burnable"));
                 }
                 break;
+            case LIME:
+                if (CurrentModConfig.slimy) {
+                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.slimy"));
+                }
+                break;
             default:
         }
         return tooltips;
