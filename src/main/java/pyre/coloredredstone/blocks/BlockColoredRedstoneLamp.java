@@ -183,6 +183,12 @@ public class BlockColoredRedstoneLamp extends Block implements IColoredFeatures,
         }
     }
 
+    @Override
+    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
+        super.onEntityWalk(worldIn, pos, entityIn);
+        withering(worldIn, entityIn, getColor(worldIn, pos));
+    }
+
     @SideOnly(Side.CLIENT)
     public static int colorMultiplier(int power, EnumColor color) {
         int red = color.getShades()[power].getR();

@@ -17,12 +17,16 @@ public class ColoredPropertiesSyncConfigMessage implements IMessage {
     private int burningTime;
     private boolean slimy;
     private int slimyChance;
+    private boolean withering;
+    private int witheringChance;
+    private int witheringDuration;
 
     public ColoredPropertiesSyncConfigMessage() {
     }
 
     public ColoredPropertiesSyncConfigMessage(boolean waterproof, boolean explosionproof, boolean fireproof, boolean despawnproof,
-                                              boolean cactusproof, boolean burnable, int burningTime, boolean slimy, int slimyChance) {
+                                              boolean cactusproof, boolean burnable, int burningTime, boolean slimy, int slimyChance,
+                                              boolean withering, int witheringChance, int witheringDuration) {
         this.waterproof = waterproof;
         this.explosionproof = explosionproof;
         this.fireproof = fireproof;
@@ -32,6 +36,9 @@ public class ColoredPropertiesSyncConfigMessage implements IMessage {
         this.burningTime = burningTime;
         this.slimy = slimy;
         this.slimyChance = slimyChance;
+        this.withering = withering;
+        this.witheringChance = witheringChance;
+        this.witheringDuration = witheringDuration;
     }
 
     @Override
@@ -45,6 +52,9 @@ public class ColoredPropertiesSyncConfigMessage implements IMessage {
         burningTime = buf.readInt();
         slimy = buf.readBoolean();
         slimyChance = buf.readInt();
+        withering = buf.readBoolean();
+        witheringChance = buf.readInt();
+        witheringDuration = buf.readInt();
     }
 
     @Override
@@ -58,6 +68,9 @@ public class ColoredPropertiesSyncConfigMessage implements IMessage {
         buf.writeInt(burningTime);
         buf.writeBoolean(slimy);
         buf.writeInt(slimyChance);
+        buf.writeBoolean(withering);
+        buf.writeInt(witheringChance);
+        buf.writeInt(witheringDuration);
     }
 
     public static class ColoredPropertiesSyncConfigMessageHandler implements IMessageHandler<ColoredPropertiesSyncConfigMessage, IMessage> {
@@ -72,7 +85,10 @@ public class ColoredPropertiesSyncConfigMessage implements IMessage {
                     message.burnable,
                     message.burningTime,
                     message.slimy,
-                    message.slimyChance);
+                    message.slimyChance,
+                    message.withering,
+                    message.witheringChance,
+                    message.witheringDuration);
             return null;
         }
     }

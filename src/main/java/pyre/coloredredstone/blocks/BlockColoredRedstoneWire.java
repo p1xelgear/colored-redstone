@@ -111,6 +111,12 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire implements IColo
         worldIn.setBlockToAir(pos);
     }
 
+    @Override
+    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+        super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
+        withering(worldIn, entityIn, getColor(worldIn, pos));
+    }
+
     @SideOnly(Side.CLIENT)
     public static int colorMultiplier(int power, EnumColor color) {
         int red = color.getShades()[power].getR();

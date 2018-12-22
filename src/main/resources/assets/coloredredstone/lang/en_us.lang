@@ -42,6 +42,7 @@ coloredredstone.tooltip.explosionproof=Explosion-proof!
 coloredredstone.tooltip.cactusproof=Cactus-proof!
 coloredredstone.tooltip.burnable=Burnable!
 coloredredstone.tooltip.slimy=Slimy!
+coloredredstone.tooltip.withering=Withering!
 
 ##################
 ##### CONFIG #####
@@ -61,6 +62,9 @@ coloredredstone.config.colored_properties.burnable=Burnable
 coloredredstone.config.colored_properties.burnable_burning_time=Burnable burning time
 coloredredstone.config.colored_properties.slimy=Slimy
 coloredredstone.config.colored_properties.slimy_chance=Slimy spawn chance
+coloredredstone.config.colored_properties.withering=Withering
+coloredredstone.config.colored_properties.withering_chance=Withering chance
+coloredredstone.config.colored_properties.withering_duration=Withering duration
 
 coloredredstone.config.integration=Mods Integration
 coloredredstone.config.integration.chisel=Chisel

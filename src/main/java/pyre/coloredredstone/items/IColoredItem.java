@@ -80,6 +80,11 @@ public interface IColoredItem {
                     tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.slimy"));
                 }
                 break;
+            case BLACK:
+                if (CurrentModConfig.withering) {
+                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.withering"));
+                }
+                break;
             default:
         }
         return tooltips;

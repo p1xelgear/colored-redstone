@@ -165,6 +165,12 @@ public class BlockColoredRedstoneRepeater extends BlockRedstoneRepeater implemen
                 .withProperty(COLOR, color);
     }
 
+    @Override
+    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+        super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
+        withering(worldIn, entityIn, getColor(worldIn, pos));
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {

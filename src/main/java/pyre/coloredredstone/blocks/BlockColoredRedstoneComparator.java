@@ -256,4 +256,10 @@ public class BlockColoredRedstoneComparator extends BlockRedstoneComparator impl
             throw new RuntimeException("Cannot invoke 'calculateOutput' method for ColoredRedstoneComparator.", e);
         }
     }
+
+    @Override
+    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+        super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
+        withering(worldIn, entityIn, getColor(worldIn, pos));
+    }
 }

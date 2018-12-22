@@ -183,6 +183,12 @@ public class BlockColoredRedstoneTorch extends BlockRedstoneTorch implements ICo
         return super.isAssociatedBlock(other) || other == ModBlocks.COLORED_REDSTONE_TORCH || other == ModBlocks.UNLIT_COLORED_REDSTONE_TORCH;
     }
 
+    @Override
+    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+        super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
+        withering(worldIn, entityIn, getColor(worldIn, pos));
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {

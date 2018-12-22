@@ -61,6 +61,20 @@ public class ModConfig {
         @Config.LangKey("coloredredstone.config.colored_properties.slimy_chance")
         @Config.Comment("Chance of spawning slime.")
         @Config.RangeInt(min = 1, max = 100)
-        public int slimyChance = 10;
+        public int slimyChance = 5;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.withering")
+        @Config.Comment("If true, black blocks have a chance to apply wither effect on entity standing on them.")
+        public boolean withering = true;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.withering_chance")
+        @Config.Comment("Chance of applying wither effect.")
+        @Config.RangeInt(min = 1, max = 100)
+        public int witheringChance = 15;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.withering_duration")
+        @Config.Comment("Wither effect duration in ticks.")
+        @Config.RangeInt(min = 1)
+        public int witheringDuration = 100;
     }
 }

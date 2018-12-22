@@ -1,5 +1,7 @@
 package pyre.coloredredstone.config;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import pyre.coloredredstone.integration.chisel.ModIntegrationChisel;
 
 public class CurrentModConfig {
@@ -13,9 +15,12 @@ public class CurrentModConfig {
     public static boolean cactusproof = ModConfig.coloredPropertiesConfig.cactusproof;
     public static boolean burnable = ModConfig.coloredPropertiesConfig.burnable;
     public static boolean slimy = ModConfig.coloredPropertiesConfig.slimy;
+    public static boolean withering = ModConfig.coloredPropertiesConfig.withering;
 
     public static int burnableBurningTime = ModConfig.coloredPropertiesConfig.burnableBurningTime;
     public static int slimyChance = ModConfig.coloredPropertiesConfig.slimyChance;
+    public static int witheringChance = ModConfig.coloredPropertiesConfig.witheringChance;
+    public static int witheringDuration = ModConfig.coloredPropertiesConfig.witheringDuration;
 
     public static boolean integrationChiselColoredBlocks = ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks;
 
@@ -24,7 +29,8 @@ public class CurrentModConfig {
     }
 
     public static void setColoredPropertiesValues(boolean water, boolean explosion, boolean fire, boolean despawn,
-                                                  boolean cactus, boolean burn, int burningTime, boolean slime, int slimeChance) {
+                                                  boolean cactus, boolean burn, int burningTime, boolean slime, int slimeChance,
+                                                  boolean wither, int witherChance, int witherDuration) {
         waterproof = water;
         explosionproof = explosion;
         fireproof = fire;
@@ -34,6 +40,9 @@ public class CurrentModConfig {
         burnableBurningTime = burningTime;
         slimy = slime;
         slimyChance = slimeChance;
+        withering = wither;
+        witheringChance = witherChance;
+        witheringDuration = witherDuration;
     }
 
     public static void setIntegrationChiselColoredBlocks(boolean coloredBlocks) {
@@ -45,6 +54,7 @@ public class CurrentModConfig {
         }
     }
 
+    @SideOnly(Side.CLIENT)
     public static void useClientSettings() {
         setInWorldRecoloring(ModConfig.inWorldRecoloring);
         setColoredPropertiesValues(ModConfig.coloredPropertiesConfig.waterproof,
@@ -55,7 +65,10 @@ public class CurrentModConfig {
                 ModConfig.coloredPropertiesConfig.burnable,
                 ModConfig.coloredPropertiesConfig.burnableBurningTime,
                 ModConfig.coloredPropertiesConfig.slimy,
-                ModConfig.coloredPropertiesConfig.slimyChance);
+                ModConfig.coloredPropertiesConfig.slimyChance,
+                ModConfig.coloredPropertiesConfig.withering,
+                ModConfig.coloredPropertiesConfig.witheringChance,
+                ModConfig.coloredPropertiesConfig.witheringDuration);
         setIntegrationChiselColoredBlocks(ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks);
     }
 }
