@@ -43,6 +43,9 @@ coloredredstone.tooltip.cactusproof=Odporny na kaktusy!
 coloredredstone.tooltip.burnable=Palny!
 coloredredstone.tooltip.slimy=Śluzowaty!
 coloredredstone.tooltip.withering=Obumierający!
+coloredredstone.tooltip.sluggish=Powolny!
+coloredredstone.tooltip.speedy=Szybki!
+coloredredstone.tooltip.healthy=Zdrowy!
 
 ##################
 ##### CONFIG #####
@@ -65,6 +68,15 @@ coloredredstone.config.colored_properties.slimy_chance=Śluzowaty - szansa pojaw
 coloredredstone.config.colored_properties.withering=Obumieranie
 coloredredstone.config.colored_properties.withering_chance=Obumieranie - szansa wystąpienia
 coloredredstone.config.colored_properties.withering_duration=Obumieranie - czas działania
+coloredredstone.config.colored_properties.sluggish=Powolny
+coloredredstone.config.colored_properties.sluggish_chance=Powolny - szansa wystąpienia
+coloredredstone.config.colored_properties.sluggish_duration=Powolny - czas działania
+coloredredstone.config.colored_properties.speedy=Szybki
+coloredredstone.config.colored_properties.speedy_chance=Szybki - szansa wystąpienia
+coloredredstone.config.colored_properties.speedy_duration=Szybki - czas działania
+coloredredstone.config.colored_properties.healthy=Zdrowy
+coloredredstone.config.colored_properties.healthy_chance=Zdrowy - szansa wystąpienia
+coloredredstone.config.colored_properties.healthy_duration=Zdrowy - czas działania
 
 coloredredstone.config.integration=Integracja z modami
 coloredredstone.config.integration.chisel=Chisel
