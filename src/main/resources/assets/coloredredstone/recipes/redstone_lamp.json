@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "colored_redstone_lamp",
+  "group": "redstone_lamp",
   "pattern": [
     " D ",
     "DgD",

@@ -15,5 +15,8 @@ public class OreDictionaryHandler {
             OreDictionary.registerOre("comparator", new ItemStack(ModItems.COLORED_REDSTONE_COMPARATOR, 1, meta));
             OreDictionary.registerOre("repeater", new ItemStack(ModItems.COLORED_REDSTONE_REPEATER, 1, meta));
         }
+        for (int meta = 0; meta <= 15; meta++) {
+            OreDictionary.registerOre("lampRedstone", new ItemStack(ModItems.COLORED_REDSTONE_LAMP, 1, meta));
+        }
     }
 }

@@ -1,0 +1,84 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "colored_redstone_lamp_dye",
+  "pattern": [
+    " d ",
+    "dLd",
+    " d "
+  ],
+  "key": {
+    "L": [
+      {
+        "item": "minecraft:redstone_lamp"
+      },
+      {
+        "item": "coloredredstone:colored_redstone_lamp",
+        "data": 0
+      },
+      {
+        "item": "coloredredstone:colored_redstone_lamp",
+        "data": 1
+      },
+      {
+        "item": "coloredredstone:colored_redstone_lamp",
+        "data": 2
+      },
+      {
+        "item": "coloredredstone:colored_redstone_lamp",
+        "data": 3
+      },
+      {
+        "item": "coloredredstone:colored_redstone_lamp",
+        "data": 4
+      },
+      {
+        "item": "coloredredstone:colored_redstone_lamp",
+        "data": 5
+      },
+      {
+        "item": "coloredredstone:colored_redstone_lamp",
+        "data": 6
+      },
+      {
+        "item": "coloredredstone:colored_redstone_lamp",
+        "data": 7
+      },
+      {
+        "item": "coloredredstone:colored_redstone_lamp",
+        "data": 8
+      },
+      {
+        "item": "coloredredstone:colored_redstone_lamp",
+        "data": 9
+      },
+      {
+        "item": "coloredredstone:colored_redstone_lamp",
+        "data": 10
+      },
+      {
+        "item": "coloredredstone:colored_redstone_lamp",
+        "data": 11
+      },
+      {
+        "item": "coloredredstone:colored_redstone_lamp",
+        "data": 12
+      },
+      {
+        "item": "coloredredstone:colored_redstone_lamp",
+        "data": 14
+      },
+      {
+        "item": "coloredredstone:colored_redstone_lamp",
+        "data": 15
+      }
+    ],
+    "d": {
+      "item": "#MAGENTA_DYE"
+    }
+  },
+  "result": {
+    "item": "coloredredstone:colored_redstone_lamp",
+    "count": 1,
+    "data": 13
+  }
+}
