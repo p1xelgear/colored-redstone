@@ -13,9 +13,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pyre.coloredredstone.config.CurrentModConfig;
 import pyre.coloredredstone.config.ModConfig;
-import pyre.coloredredstone.network.ColoredPropertiesSyncConfigMessage;
 import pyre.coloredredstone.network.InWorldRecoloringSyncConfigMessage;
 import pyre.coloredredstone.network.IntegrationChiselSyncConfigMessage;
+import pyre.coloredredstone.network.coloredproperties.*;
 import pyre.coloredredstone.util.Reference;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
@@ -25,22 +25,34 @@ public class ConfigSynchronizationHandler {
     @SideOnly(Side.SERVER)
     public static void eventClientConnectedToServer(PlayerEvent.PlayerLoggedInEvent event) {
         InWorldRecoloringSyncConfigMessage inWorldRecoloringMessage = new InWorldRecoloringSyncConfigMessage(ModConfig.inWorldRecoloring);
-        ColoredPropertiesSyncConfigMessage coloredPropertiesMessage = new ColoredPropertiesSyncConfigMessage(ModConfig.coloredPropertiesConfig.waterproof,
-                ModConfig.coloredPropertiesConfig.explosionproof,
-                ModConfig.coloredPropertiesConfig.fireproof,
-                ModConfig.coloredPropertiesConfig.despawnproof,
-                ModConfig.coloredPropertiesConfig.cactusproof,
-                ModConfig.coloredPropertiesConfig.burnable,
-                ModConfig.coloredPropertiesConfig.burnableBurningTime,
-                ModConfig.coloredPropertiesConfig.slimy,
-                ModConfig.coloredPropertiesConfig.slimyChance,
-                ModConfig.coloredPropertiesConfig.withering,
+
+        WaterproofSyncMessage waterproofSyncMessage = new WaterproofSyncMessage(ModConfig.coloredPropertiesConfig.waterproof);
+        ExplosionproofSyncMessage explosionproofSyncMessage = new ExplosionproofSyncMessage(ModConfig.coloredPropertiesConfig.explosionproof);
+        FireproofSyncMessage fireproofSyncMessage = new FireproofSyncMessage(ModConfig.coloredPropertiesConfig.fireproof);
+        DespawnproofSyncMessage despawnproofSyncMessage = new DespawnproofSyncMessage(ModConfig.coloredPropertiesConfig.despawnproof);
+        CactusproofSyncMessage cactusproofSyncMessage = new CactusproofSyncMessage(ModConfig.coloredPropertiesConfig.cactusproof);
+        BurnableSyncMessage burnableSyncMessage = new BurnableSyncMessage(ModConfig.coloredPropertiesConfig.burnable,
+                ModConfig.coloredPropertiesConfig.burnableBurningTime);
+        SlimySyncMessage slimySyncMessage = new SlimySyncMessage(ModConfig.coloredPropertiesConfig.slimy,
+                ModConfig.coloredPropertiesConfig.slimyChance);
+        WitheringSyncMessage witheringSyncMessage = new WitheringSyncMessage(ModConfig.coloredPropertiesConfig.withering,
                 ModConfig.coloredPropertiesConfig.witheringChance,
                 ModConfig.coloredPropertiesConfig.witheringDuration);
+
         IntegrationChiselSyncConfigMessage chiselMessage = new IntegrationChiselSyncConfigMessage(ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks);
-        NetworkHandler.INSTANCE.sendTo(inWorldRecoloringMessage, (EntityPlayerMP) event.player);
-        NetworkHandler.INSTANCE.sendTo(coloredPropertiesMessage, (EntityPlayerMP) event.player);
-        NetworkHandler.INSTANCE.sendTo(chiselMessage, (EntityPlayerMP) event.player); //TODO Sync not working (client restart necessary)
+
+        NetworkHandler.sendTo(inWorldRecoloringMessage, (EntityPlayerMP) event.player);
+
+        NetworkHandler.sendTo(waterproofSyncMessage, (EntityPlayerMP) event.player);
+        NetworkHandler.sendTo(explosionproofSyncMessage, (EntityPlayerMP) event.player);
+        NetworkHandler.sendTo(fireproofSyncMessage, (EntityPlayerMP) event.player);
+        NetworkHandler.sendTo(despawnproofSyncMessage, (EntityPlayerMP) event.player);
+        NetworkHandler.sendTo(cactusproofSyncMessage, (EntityPlayerMP) event.player);
+        NetworkHandler.sendTo(burnableSyncMessage, (EntityPlayerMP) event.player);
+        NetworkHandler.sendTo(slimySyncMessage, (EntityPlayerMP) event.player);
+        NetworkHandler.sendTo(witheringSyncMessage, (EntityPlayerMP) event.player);
+
+        NetworkHandler.sendTo(chiselMessage, (EntityPlayerMP) event.player); //Sync not working (client restart necessary)
     }
 
     @SubscribeEvent

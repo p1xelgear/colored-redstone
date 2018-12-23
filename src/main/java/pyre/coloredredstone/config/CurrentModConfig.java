@@ -28,21 +28,40 @@ public class CurrentModConfig {
         inWorldRecoloring = recoloring;
     }
 
-    public static void setColoredPropertiesValues(boolean water, boolean explosion, boolean fire, boolean despawn,
-                                                  boolean cactus, boolean burn, int burningTime, boolean slime, int slimeChance,
-                                                  boolean wither, int witherChance, int witherDuration) {
-        waterproof = water;
-        explosionproof = explosion;
-        fireproof = fire;
-        despawnproof = despawn;
-        cactusproof = cactus;
-        burnable = burn;
+    public static void setWaterproof(boolean isWaterproof) {
+        waterproof = isWaterproof;
+    }
+
+    public static void setExplosionproof(boolean isExplosionproof) {
+        explosionproof = isExplosionproof;
+    }
+
+    public static void setFireproof(boolean isFireproof) {
+        fireproof = isFireproof;
+    }
+
+    public static void setDespawnproof(boolean isDespawnproof) {
+        despawnproof = isDespawnproof;
+    }
+
+    public static void setCactusproof(boolean isCactusproof) {
+        cactusproof = isCactusproof;
+    }
+
+    public static void setBurnable(boolean isBurnable, int burningTime) {
+        burnable = isBurnable;
         burnableBurningTime = burningTime;
-        slimy = slime;
-        slimyChance = slimeChance;
-        withering = wither;
-        witheringChance = witherChance;
-        witheringDuration = witherDuration;
+    }
+
+    public static void setSlimy(boolean isSlimy, int chance) {
+        slimy = isSlimy;
+        slimyChance = chance;
+    }
+
+    public static void setWithering(boolean isWithering, int chance, int duration) {
+        withering = isWithering;
+        witheringChance = chance;
+        witheringDuration = duration;
     }
 
     public static void setIntegrationChiselColoredBlocks(boolean coloredBlocks) {
@@ -57,16 +76,16 @@ public class CurrentModConfig {
     @SideOnly(Side.CLIENT)
     public static void useClientSettings() {
         setInWorldRecoloring(ModConfig.inWorldRecoloring);
-        setColoredPropertiesValues(ModConfig.coloredPropertiesConfig.waterproof,
-                ModConfig.coloredPropertiesConfig.explosionproof,
-                ModConfig.coloredPropertiesConfig.fireproof,
-                ModConfig.coloredPropertiesConfig.despawnproof,
-                ModConfig.coloredPropertiesConfig.cactusproof,
-                ModConfig.coloredPropertiesConfig.burnable,
-                ModConfig.coloredPropertiesConfig.burnableBurningTime,
-                ModConfig.coloredPropertiesConfig.slimy,
-                ModConfig.coloredPropertiesConfig.slimyChance,
-                ModConfig.coloredPropertiesConfig.withering,
+        setWaterproof(ModConfig.coloredPropertiesConfig.waterproof);
+        setExplosionproof(ModConfig.coloredPropertiesConfig.explosionproof);
+        setFireproof(ModConfig.coloredPropertiesConfig.fireproof);
+        setDespawnproof(ModConfig.coloredPropertiesConfig.despawnproof);
+        setCactusproof(ModConfig.coloredPropertiesConfig.cactusproof);
+        setBurnable(ModConfig.coloredPropertiesConfig.burnable,
+                ModConfig.coloredPropertiesConfig.burnableBurningTime);
+        setSlimy(ModConfig.coloredPropertiesConfig.slimy,
+                ModConfig.coloredPropertiesConfig.slimyChance);
+        setWithering(ModConfig.coloredPropertiesConfig.withering,
                 ModConfig.coloredPropertiesConfig.witheringChance,
                 ModConfig.coloredPropertiesConfig.witheringDuration);
         setIntegrationChiselColoredBlocks(ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks);

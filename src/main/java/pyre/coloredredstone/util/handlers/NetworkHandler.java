@@ -1,14 +1,18 @@
 package pyre.coloredredstone.util.handlers;
 
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
-import pyre.coloredredstone.network.ColoredPropertiesSyncConfigMessage;
 import pyre.coloredredstone.network.InWorldRecoloringSyncConfigMessage;
 import pyre.coloredredstone.network.IntegrationChiselSyncConfigMessage;
+import pyre.coloredredstone.network.coloredproperties.*;
 import pyre.coloredredstone.util.Reference;
 
 public class NetworkHandler {
+
+    private static int id = 0;
 
     public static SimpleNetworkWrapper INSTANCE;
 
@@ -17,9 +21,20 @@ public class NetworkHandler {
         registerMessages();
     }
 
+    public static void sendTo(IMessage message, EntityPlayerMP player) {
+        INSTANCE.sendTo(message, player);
+    }
+
     private static void registerMessages() {
-        INSTANCE.registerMessage(InWorldRecoloringSyncConfigMessage.InWorldRecoloringSyncConfigMessageHandler.class, InWorldRecoloringSyncConfigMessage.class, 0, Side.CLIENT);
-        INSTANCE.registerMessage(ColoredPropertiesSyncConfigMessage.ColoredPropertiesSyncConfigMessageHandler.class, ColoredPropertiesSyncConfigMessage.class, 1, Side.CLIENT);
-        INSTANCE.registerMessage(IntegrationChiselSyncConfigMessage.IntegrationChiselSyncConfigMessageHandler.class, IntegrationChiselSyncConfigMessage.class, 2, Side.CLIENT);
+        INSTANCE.registerMessage(InWorldRecoloringSyncConfigMessage.InWorldRecoloringSyncConfigMessageHandler.class, InWorldRecoloringSyncConfigMessage.class, id, Side.CLIENT);
+        INSTANCE.registerMessage(WaterproofSyncMessage.WaterproofSyncMessageHandler.class, WaterproofSyncMessage.class, id++, Side.CLIENT);
+        INSTANCE.registerMessage(ExplosionproofSyncMessage.ExplosionproofSyncMessageHandler.class, ExplosionproofSyncMessage.class, id++, Side.CLIENT);
+        INSTANCE.registerMessage(FireproofSyncMessage.FireproofSyncMessageHandler.class, FireproofSyncMessage.class, id++, Side.CLIENT);
+        INSTANCE.registerMessage(DespawnproofSyncMessage.DespawnproofSyncMessageHandler.class, DespawnproofSyncMessage.class, id++, Side.CLIENT);
+        INSTANCE.registerMessage(CactusproofSyncMessage.CactusproofSyncMessageHandler.class, CactusproofSyncMessage.class, id++, Side.CLIENT);
+        INSTANCE.registerMessage(BurnableSyncMessage.BurnableSyncMessageHandler.class, BurnableSyncMessage.class, id++, Side.CLIENT);
+        INSTANCE.registerMessage(SlimySyncMessage.SlimySyncMessageHandler.class, SlimySyncMessage.class, id++, Side.CLIENT);
+        INSTANCE.registerMessage(WitheringSyncMessage.WitheringSyncMessageHandler.class, WitheringSyncMessage.class, id++, Side.CLIENT);
+        INSTANCE.registerMessage(IntegrationChiselSyncConfigMessage.IntegrationChiselSyncConfigMessageHandler.class, IntegrationChiselSyncConfigMessage.class, id++, Side.CLIENT);
     }
 }
