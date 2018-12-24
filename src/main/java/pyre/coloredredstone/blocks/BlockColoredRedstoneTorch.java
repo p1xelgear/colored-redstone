@@ -30,6 +30,8 @@ import pyre.coloredredstone.init.ModBlocks;
 import pyre.coloredredstone.init.ModItems;
 import pyre.coloredredstone.init.ModMaterials;
 import pyre.coloredredstone.util.EnumColor;
+import pyre.coloredredstone.util.exceptions.GetPrivateFieldValueException;
+import pyre.coloredredstone.util.exceptions.PrivateMethodInvocationException;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Field;
@@ -223,7 +225,7 @@ public class BlockColoredRedstoneTorch extends BlockRedstoneTorch implements ICo
             return (boolean) isBurnedOut.invoke(this, worldIn, pos, turnOff);
         } catch (IllegalAccessException | InvocationTargetException e) {
             ColoredRedstone.logger.error("Cannot invoke 'isBurnedOut' method for ColoredRedstoneTorch.", e);
-            throw new RuntimeException("Cannot invoke 'isBurnedOut' method for ColoredRedstoneTorch.", e);
+            throw new PrivateMethodInvocationException("Cannot invoke 'isBurnedOut' method for ColoredRedstoneTorch.", e);
         }
     }
 
@@ -236,7 +238,7 @@ public class BlockColoredRedstoneTorch extends BlockRedstoneTorch implements ICo
             return (boolean) shouldBeOff.invoke(this, worldIn, pos, state);
         } catch (IllegalAccessException | InvocationTargetException e) {
             ColoredRedstone.logger.error("Cannot invoke 'shouldBeOff' method for ColoredRedstoneTorch.", e);
-            throw new RuntimeException("Cannot invoke 'shouldBeOff' method for ColoredRedstoneTorch.", e);
+            throw new PrivateMethodInvocationException("Cannot invoke 'shouldBeOff' method for ColoredRedstoneTorch.", e);
         }
     }
 
@@ -248,7 +250,7 @@ public class BlockColoredRedstoneTorch extends BlockRedstoneTorch implements ICo
             return (boolean) isOn.get(this);
         } catch (IllegalAccessException e) {
             ColoredRedstone.logger.error("Cannot get 'isOn' value for ColoredRedstoneTorch.", e);
-            throw new RuntimeException("Cannot get 'isOn' value for ColoredRedstoneTorch.", e);
+            throw new GetPrivateFieldValueException("Cannot get 'isOn' value for ColoredRedstoneTorch.", e);
         }
     }
 
@@ -262,7 +264,7 @@ public class BlockColoredRedstoneTorch extends BlockRedstoneTorch implements ICo
             return toggle;
         } catch (IllegalAccessException e) {
             ColoredRedstone.logger.error("Cannot get 'toggles' value for ColoredRedstoneTorch.", e);
-            throw new RuntimeException("Cannot get 'toggles' value for ColoredRedstoneTorch.", e);
+            throw new GetPrivateFieldValueException("Cannot get 'toggles' value for ColoredRedstoneTorch.", e);
         }
     }
 
@@ -272,7 +274,7 @@ public class BlockColoredRedstoneTorch extends BlockRedstoneTorch implements ICo
             return (long) time.get(toggle);
         } catch (IllegalAccessException e) {
             ColoredRedstone.logger.error("Cannot get 'toggles.time' value for ColoredRedstoneTorch.", e);
-            throw new RuntimeException("Cannot get 'toggles.time' value for ColoredRedstoneTorch.", e);
+            throw new GetPrivateFieldValueException("Cannot get 'toggles.time' value for ColoredRedstoneTorch.", e);
         }
     }
 }

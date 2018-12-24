@@ -1,18 +1,25 @@
 package pyre.coloredredstone.proxy;
 
-import net.minecraft.item.Item;
 import net.minecraft.util.text.TextComponentTranslation;
 
-public class CommonProxy {
+public class DedicatedServerProxy implements IProxy {
 
-    public void registerItemRenderer(Item item, int meta, String id) {
-
+    @Override
+    public void preInit() {
+        //nothing to do
     }
 
-    public void registerRenderers(){
-
+    @Override
+    public void init() {
+        //nothing to do
     }
 
+    @Override
+    public void postInit() {
+        //nothing to do
+    }
+
+    @Override
     public String localize(String unlocalized, Object... args) {
         return new TextComponentTranslation(unlocalized, args).getUnformattedComponentText();
     }

@@ -23,7 +23,7 @@ public interface IColoredFeatures {
     EnumColor WITHERING_COLOR = EnumColor.BLACK;
 
     default void withering(World worldIn, Entity entityIn, EnumColor color) {
-        if (CurrentModConfig.withering && !worldIn.isRemote && entityIn instanceof EntityLivingBase && (worldIn.getWorldTime() % 20 == 0) && color == WITHERING_COLOR) {
+        if (CurrentModConfig.withering && !worldIn.isRemote && entityIn instanceof EntityLivingBase && (worldIn.getWorldTime() % 20 == 0) && color.equals(WITHERING_COLOR)) {
             int i = new Random().nextInt(100) + 1;
             if (i < CurrentModConfig.witheringChance) {
                 ((EntityLivingBase) entityIn).addPotionEffect(new PotionEffect(MobEffects.WITHER, CurrentModConfig.witheringDuration));

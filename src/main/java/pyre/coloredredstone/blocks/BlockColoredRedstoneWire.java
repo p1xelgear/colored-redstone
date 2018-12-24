@@ -47,8 +47,8 @@ public class BlockColoredRedstoneWire extends BlockRedstoneWire implements IColo
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        state = super.getActualState(state, worldIn, pos);
-        return state.withProperty(COLOR, getColor(worldIn, pos));
+        IBlockState actualState = super.getActualState(state, worldIn, pos);
+        return actualState.withProperty(COLOR, getColor(worldIn, pos));
     }
 
     @Override

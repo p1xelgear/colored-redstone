@@ -17,7 +17,7 @@ public class ModIntegrationChisel extends ModIntegration {
 
     @Override
     public void preInit() {
-
+        //nothing to do
     }
 
     @Override
@@ -29,7 +29,7 @@ public class ModIntegrationChisel extends ModIntegration {
 
     @Override
     public void postInit() {
-
+        //nothing to do
     }
 
     public static void addColoredBlocksVariations() {

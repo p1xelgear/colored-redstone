@@ -31,6 +31,7 @@ import pyre.coloredredstone.init.ModBlocks;
 import pyre.coloredredstone.init.ModItems;
 import pyre.coloredredstone.init.ModMaterials;
 import pyre.coloredredstone.util.EnumColor;
+import pyre.coloredredstone.util.exceptions.PrivateMethodInvocationException;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.InvocationTargetException;
@@ -221,6 +222,12 @@ public class BlockColoredRedstoneComparator extends BlockRedstoneComparator impl
         }
     }
 
+    @Override
+    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+        super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
+        withering(worldIn, entityIn, getColor(worldIn, pos));
+    }
+
     private void onStateChange(World worldIn, BlockPos pos, IBlockState state) {
         int i = this.calculateOutput(worldIn, pos, state);
         TileEntityColoredRedstoneComparator tileEntity = getTileEntity(worldIn, pos);
@@ -253,13 +260,7 @@ public class BlockColoredRedstoneComparator extends BlockRedstoneComparator impl
             return (int) calculateOutput.invoke(this, worldIn, pos, state);
         } catch (IllegalAccessException | InvocationTargetException e) {
             ColoredRedstone.logger.error("Cannot invoke 'calculateOutput' method for ColoredRedstoneComparator.", e);
-            throw new RuntimeException("Cannot invoke 'calculateOutput' method for ColoredRedstoneComparator.", e);
+            throw new PrivateMethodInvocationException("Cannot invoke 'calculateOutput' method for ColoredRedstoneComparator.", e);
         }
-    }
-
-    @Override
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-        super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
-        withering(worldIn, entityIn, getColor(worldIn, pos));
     }
 }

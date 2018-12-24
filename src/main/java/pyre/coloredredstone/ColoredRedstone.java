@@ -10,19 +10,19 @@ import pyre.coloredredstone.init.ModBlocks;
 import pyre.coloredredstone.init.ModEntities;
 import pyre.coloredredstone.init.ModItems;
 import pyre.coloredredstone.integration.ModIntegration;
-import pyre.coloredredstone.proxy.CommonProxy;
+import pyre.coloredredstone.proxy.IProxy;
 import pyre.coloredredstone.util.Reference;
 import pyre.coloredredstone.util.handlers.NetworkHandler;
 import pyre.coloredredstone.util.handlers.OreDictionaryHandler;
 import pyre.coloredredstone.util.handlers.RegistryHandler;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION)
+@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS)
 public class ColoredRedstone {
 
     public static Logger logger;
 
-    @SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.COMMON_PROXY)
-    public static CommonProxy proxy;
+    @SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.SERVER_PROXY)
+    public static IProxy proxy;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -33,16 +33,19 @@ public class ColoredRedstone {
         RegistryHandler.registerTileEntities();
         NetworkHandler.init();
         ModIntegration.doIntegrationsPreInit();
+        proxy.preInit();
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         OreDictionaryHandler.registerOreDictionary();
         ModIntegration.doIntegrationsInit();
+        proxy.init();
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         ModIntegration.doIntegrationsPostInit();
+        proxy.postInit();
     }
 }

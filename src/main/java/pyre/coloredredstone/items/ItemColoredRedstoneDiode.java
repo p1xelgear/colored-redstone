@@ -46,35 +46,36 @@ public class ItemColoredRedstoneDiode extends ItemBlockSpecial implements IColor
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         IBlockState iblockstate = worldIn.getBlockState(pos);
-        Block block = iblockstate.getBlock();
+        Block clickedBlock = iblockstate.getBlock();
+        BlockPos blockPos = pos;
 
-        if (block == Blocks.SNOW_LAYER && iblockstate.getValue(BlockSnow.LAYERS) < 1) {
+        if (clickedBlock == Blocks.SNOW_LAYER && iblockstate.getValue(BlockSnow.LAYERS) < 1) {
             facing = EnumFacing.UP;
-        } else if (!block.isReplaceable(worldIn, pos)) {
-            pos = pos.offset(facing);
+        } else if (!clickedBlock.isReplaceable(worldIn, pos)) {
+            blockPos = pos.offset(facing);
         }
 
         ItemStack itemstack = player.getHeldItem(hand);
 
-        if (!itemstack.isEmpty() && player.canPlayerEdit(pos, facing, itemstack) && worldIn.mayPlace(this.block, pos, false, facing, null)) {
-            IBlockState iblockstate1 = this.block.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, itemstack.getMetadata(), player, hand);
+        if (!itemstack.isEmpty() && player.canPlayerEdit(blockPos, facing, itemstack) && worldIn.mayPlace(this.block, blockPos, false, facing, null)) {
+            IBlockState stateForPlacement = this.block.getStateForPlacement(worldIn, blockPos, facing, hitX, hitY, hitZ, itemstack.getMetadata(), player, hand);
 
-            if (!worldIn.setBlockState(pos, iblockstate1, 11)) {
+            if (!worldIn.setBlockState(blockPos, stateForPlacement, 11)) {
                 return EnumActionResult.FAIL;
             } else {
-                iblockstate1 = worldIn.getBlockState(pos);
+                stateForPlacement = worldIn.getBlockState(blockPos);
 
-                if (iblockstate1.getBlock() == this.block) {
-                    ItemBlock.setTileEntityNBT(worldIn, player, pos, itemstack);
-                    iblockstate1.getBlock().onBlockPlacedBy(worldIn, pos, iblockstate1, player, itemstack);
+                if (stateForPlacement.getBlock() == this.block) {
+                    ItemBlock.setTileEntityNBT(worldIn, player, blockPos, itemstack);
+                    stateForPlacement.getBlock().onBlockPlacedBy(worldIn, blockPos, stateForPlacement, player, itemstack);
 
                     if (player instanceof EntityPlayerMP) {
-                        CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP) player, pos, itemstack);
+                        CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP) player, blockPos, itemstack);
                     }
                 }
 
-                SoundType soundtype = iblockstate1.getBlock().getSoundType(iblockstate1, worldIn, pos, player);
-                worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                SoundType soundtype = stateForPlacement.getBlock().getSoundType(stateForPlacement, worldIn, blockPos, player);
+                worldIn.playSound(player, blockPos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
                 itemstack.shrink(1);
                 return EnumActionResult.SUCCESS;
             }

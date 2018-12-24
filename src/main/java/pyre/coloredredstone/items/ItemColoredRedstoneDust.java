@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 @SuppressWarnings("NullableProblems")
-public class ItemColoredRedstoneDust extends ItemBase implements IColoredItem{
+public class ItemColoredRedstoneDust extends ItemBase implements IColoredItem {
 
     public ItemColoredRedstoneDust(String name) {
         super(name);

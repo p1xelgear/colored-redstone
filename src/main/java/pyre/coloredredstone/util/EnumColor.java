@@ -42,9 +42,8 @@ public enum EnumColor implements IStringSerializable {
 
     public static EnumColor byMetadata(int meta) {
         if (meta < 0 || meta >= META_LOOKUP.length) {
-            meta = 0;
+            return META_LOOKUP[0];
         }
-
         return META_LOOKUP[meta];
     }
 
