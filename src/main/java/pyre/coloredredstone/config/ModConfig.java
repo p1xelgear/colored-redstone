@@ -68,7 +68,7 @@ public class ModConfig {
         public int slimyChance = 5;
 
         @Config.LangKey("coloredredstone.config.colored_properties.withering")
-        @Config.Comment("If true, black blocks have a chance to apply wither effect on entity standing on them.")
+        @Config.Comment("If true, black blocks have a chance to apply wither effect to entity standing on them.")
         public boolean withering = true;
 
         @Config.LangKey("coloredredstone.config.colored_properties.withering_chance")
@@ -82,7 +82,7 @@ public class ModConfig {
         public int witheringDuration = 100;
 
         @Config.LangKey("coloredredstone.config.colored_properties.sluggish")
-        @Config.Comment("If true, gray blocks have a chance to apply slowness effect on entity standing on them.")
+        @Config.Comment("If true, gray blocks have a chance to apply slowness effect to entity standing on them.")
         public boolean sluggish = true;
 
         @Config.LangKey("coloredredstone.config.colored_properties.sluggish_chance")
@@ -96,7 +96,7 @@ public class ModConfig {
         public int sluggishDuration = 100;
 
         @Config.LangKey("coloredredstone.config.colored_properties.speedy")
-        @Config.Comment("If true, light gray blocks have a chance to apply speed effect on entity standing on them.")
+        @Config.Comment("If true, light gray blocks have a chance to apply speed effect to entity standing on them.")
         public boolean speedy = true;
 
         @Config.LangKey("coloredredstone.config.colored_properties.speedy_chance")
@@ -110,7 +110,7 @@ public class ModConfig {
         public int speedyDuration = 100;
 
         @Config.LangKey("coloredredstone.config.colored_properties.healthy")
-        @Config.Comment("If true, pink blocks have a chance to apply regeneration effect on entity standing on them.")
+        @Config.Comment("If true, pink blocks have a chance to apply regeneration effect to entity standing on them.")
         public boolean healthy = true;
 
         @Config.LangKey("coloredredstone.config.colored_properties.healthy_chance")
