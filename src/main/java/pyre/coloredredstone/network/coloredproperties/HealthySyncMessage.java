@@ -37,7 +37,7 @@ public class HealthySyncMessage extends ColoredPropertySyncConfigMessage {
 
         @Override
         public IMessage onMessage(HealthySyncMessage healthySyncMessage, MessageContext messageContext) {
-            CurrentModConfig.setWithering(healthySyncMessage.propertyEnabled,
+            CurrentModConfig.setHealthy(healthySyncMessage.propertyEnabled,
                     healthySyncMessage.healthyChance,
                     healthySyncMessage.healthyDuration);
             return null;

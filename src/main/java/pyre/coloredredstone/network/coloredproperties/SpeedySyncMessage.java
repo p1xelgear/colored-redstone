@@ -37,7 +37,7 @@ public class SpeedySyncMessage extends ColoredPropertySyncConfigMessage {
 
         @Override
         public IMessage onMessage(SpeedySyncMessage speedySyncMessage, MessageContext messageContext) {
-            CurrentModConfig.setWithering(speedySyncMessage.propertyEnabled,
+            CurrentModConfig.setSpeedy(speedySyncMessage.propertyEnabled,
                     speedySyncMessage.speedyChance,
                     speedySyncMessage.speedyDuration);
             return null;

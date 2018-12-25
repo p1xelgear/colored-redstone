@@ -37,7 +37,7 @@ public class SluggishSyncMessage extends ColoredPropertySyncConfigMessage {
 
         @Override
         public IMessage onMessage(SluggishSyncMessage sluggishSyncMessage, MessageContext messageContext) {
-            CurrentModConfig.setWithering(sluggishSyncMessage.propertyEnabled,
+            CurrentModConfig.setSluggish(sluggishSyncMessage.propertyEnabled,
                     sluggishSyncMessage.sluggishChance,
                     sluggishSyncMessage.sluggishDuration);
             return null;
