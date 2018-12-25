@@ -27,6 +27,6 @@ public class ColoredRedstoneJEIPlugin implements IModPlugin {
         registry.addIngredientInfo(new ItemStack(ModItems.COLORED_REDSTONE_TORCH, 1, OreDictionary.WILDCARD_VALUE), VanillaTypes.ITEM, "jei.description.colored_torch", "jei.description.in_world_recoloring", "jei.description.colored_torch_requirements");
         registry.addIngredientInfo(new ItemStack(ModItems.COLORED_REDSTONE_REPEATER, 1, OreDictionary.WILDCARD_VALUE), VanillaTypes.ITEM, "jei.description.colored_repeater", "jei.description.in_world_recoloring_with_shift", "jei.description.colored_repeater_requirements");
         registry.addIngredientInfo(new ItemStack(ModItems.COLORED_REDSTONE_COMPARATOR, 1, OreDictionary.WILDCARD_VALUE), VanillaTypes.ITEM, "jei.description.colored_comparator", "jei.description.in_world_recoloring_with_shift", "jei.description.colored_comparator_requirements");
-        registry.addIngredientInfo(new ItemStack(ModItems.COLORED_REDSTONE_LAMP, 1, OreDictionary.WILDCARD_VALUE), VanillaTypes.ITEM, "jei.description.colored_lamp", "jei.description.in_world_recoloring", "jei.description.colored_lamp_requirements");
+        registry.addIngredientInfo(new ItemStack(ModItems.COLORED_REDSTONE_LAMP, 1, OreDictionary.WILDCARD_VALUE), VanillaTypes.ITEM, "jei.description.colored_lamp.light_level", "jei.description.colored_lamp", "jei.description.in_world_recoloring", "jei.description.colored_lamp_requirements");
     }
 }

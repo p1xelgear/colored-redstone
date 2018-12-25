@@ -91,6 +91,8 @@ coloredredstone.config.integration.albedo.redstone_torches=Kolorowe lampy
 ##### JEI #####
 ###############
 
+jei.description.colored_lamp.light_level=Poziom światła zasilonej Kolorowej Lampy zależy ściśle od siły dostarczonego sygnału redstone. Dla przykładu, sygnał redstone o mocy 15 daje poziom światła 15, a sygnał redstone o mocy 8 daje poziom światła 8.
+
 jei.description.colored_dust=Sproszkowany redstone/przewód może zostać przekolorowany na dowolny inny kolor poprzez połączenie sproszkowanego redstonu i barwnika na stole rzemieślniczym lub bezpośrednio w świecie gry bez niszczenia bloku.
 jei.description.colored_block=Blok redstonu może zostać przekolorowany na dowolny inny kolor poprzez połączenie bloku redstonu i barwnika na stole rzemieślniczym lub bezpośrednio w świecie gry bez niszczenia bloku.
 jei.description.colored_torch=Pochodnia redstone może zostać przekolorowana na dowolny inny kolor poprzez połączenie pochodni redstone i barwnika na stole rzemieślniczym lub bezpośrednio w świecie gry bez niszczenia bloku.
