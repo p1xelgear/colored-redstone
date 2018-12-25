@@ -38,6 +38,15 @@ public class ConfigSynchronizationHandler {
         WitheringSyncMessage witheringSyncMessage = new WitheringSyncMessage(ModConfig.coloredPropertiesConfig.withering,
                 ModConfig.coloredPropertiesConfig.witheringChance,
                 ModConfig.coloredPropertiesConfig.witheringDuration);
+        SluggishSyncMessage sluggishSyncMessage = new SluggishSyncMessage(ModConfig.coloredPropertiesConfig.sluggish,
+                ModConfig.coloredPropertiesConfig.sluggishChance,
+                ModConfig.coloredPropertiesConfig.sluggishDuration);
+        SpeedySyncMessage speedySyncMessage = new SpeedySyncMessage(ModConfig.coloredPropertiesConfig.speedy,
+                ModConfig.coloredPropertiesConfig.speedyChance,
+                ModConfig.coloredPropertiesConfig.speedyDuration);
+        HealthySyncMessage healthySyncMessage = new HealthySyncMessage(ModConfig.coloredPropertiesConfig.healthy,
+                ModConfig.coloredPropertiesConfig.healthyChance,
+                ModConfig.coloredPropertiesConfig.healthyDuration);
 
         IntegrationChiselSyncConfigMessage chiselMessage = new IntegrationChiselSyncConfigMessage(ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks);
 
@@ -51,6 +60,9 @@ public class ConfigSynchronizationHandler {
         NetworkHandler.sendTo(burnableSyncMessage, (EntityPlayerMP) event.player);
         NetworkHandler.sendTo(slimySyncMessage, (EntityPlayerMP) event.player);
         NetworkHandler.sendTo(witheringSyncMessage, (EntityPlayerMP) event.player);
+        NetworkHandler.sendTo(sluggishSyncMessage, (EntityPlayerMP) event.player);
+        NetworkHandler.sendTo(speedySyncMessage, (EntityPlayerMP) event.player);
+        NetworkHandler.sendTo(healthySyncMessage, (EntityPlayerMP) event.player);
 
         NetworkHandler.sendTo(chiselMessage, (EntityPlayerMP) event.player); //Sync not working (client restart necessary)
     }

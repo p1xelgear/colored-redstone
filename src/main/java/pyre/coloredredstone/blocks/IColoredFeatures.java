@@ -8,8 +8,6 @@ import net.minecraft.world.World;
 import pyre.coloredredstone.config.CurrentModConfig;
 import pyre.coloredredstone.util.EnumColor;
 
-import java.util.Random;
-
 public interface IColoredFeatures {
     float EXPLOSION_PROOF_BLOCK_RESISTANCE = 6000.0F;
 
@@ -21,12 +19,42 @@ public interface IColoredFeatures {
     EnumColor BURNABLE_COLOR = EnumColor.BROWN;
     EnumColor SLIMY_COLOR = EnumColor.LIME;
     EnumColor WITHERING_COLOR = EnumColor.BLACK;
+    EnumColor SLUGGISH_COLOR = EnumColor.GRAY;
+    EnumColor SPEEDY_COLOR = EnumColor.LIGHT_GRAY;
+    EnumColor HEALTHY_COLOR = EnumColor.PINK;
 
-    default void withering(World worldIn, Entity entityIn, EnumColor color) {
-        if (CurrentModConfig.withering && !worldIn.isRemote && entityIn instanceof EntityLivingBase && (worldIn.getWorldTime() % 20 == 0) && color.equals(WITHERING_COLOR)) {
-            int i = new Random().nextInt(100) + 1;
+    default void withering(World worldIn, Entity entityIn) {
+        if (CurrentModConfig.withering) {
+            int i = worldIn.rand.nextInt(100) + 1;
             if (i < CurrentModConfig.witheringChance) {
                 ((EntityLivingBase) entityIn).addPotionEffect(new PotionEffect(MobEffects.WITHER, CurrentModConfig.witheringDuration));
+            }
+        }
+    }
+
+    default void sluggish(World worldIn, Entity entityIn) {
+        if (CurrentModConfig.sluggish) {
+            int i = worldIn.rand.nextInt(100) + 1;
+            if (i < CurrentModConfig.sluggishChance) {
+                ((EntityLivingBase) entityIn).addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, CurrentModConfig.sluggishDuration));
+            }
+        }
+    }
+
+    default void speedy(World worldIn, Entity entityIn) {
+        if (CurrentModConfig.speedy) {
+            int i = worldIn.rand.nextInt(100) + 1;
+            if (i < CurrentModConfig.speedyChance) {
+                ((EntityLivingBase) entityIn).addPotionEffect(new PotionEffect(MobEffects.SPEED, CurrentModConfig.speedyDuration));
+            }
+        }
+    }
+
+    default void healthy(World worldIn, Entity entityIn) {
+        if (CurrentModConfig.healthy) {
+            int i = worldIn.rand.nextInt(100) + 1;
+            if (i < CurrentModConfig.healthyChance) {
+                ((EntityLivingBase) entityIn).addPotionEffect(new PotionEffect(MobEffects.REGENERATION, CurrentModConfig.healthyDuration));
             }
         }
     }

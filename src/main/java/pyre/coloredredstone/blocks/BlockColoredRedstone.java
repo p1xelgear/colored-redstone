@@ -8,6 +8,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -119,6 +120,19 @@ public class BlockColoredRedstone extends Block implements IColoredFeatures, IBl
     @Override
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
         super.onEntityWalk(worldIn, pos, entityIn);
-        withering(worldIn, entityIn, getColor(worldIn, pos));
+
+        if (!worldIn.isRemote && entityIn instanceof EntityLivingBase && (worldIn.getWorldTime() % 20 == 0)) {
+            EnumColor color = getColor(worldIn, pos);
+
+            if (color.equals(WITHERING_COLOR)) {
+                withering(worldIn, entityIn);
+            } else if (color.equals(SLUGGISH_COLOR)) {
+                sluggish(worldIn, entityIn);
+            } else if (color.equals(SPEEDY_COLOR)) {
+                speedy(worldIn, entityIn);
+            } else if (color.equals(HEALTHY_COLOR)) {
+                healthy(worldIn, entityIn);
+            }
+        }
     }
 }

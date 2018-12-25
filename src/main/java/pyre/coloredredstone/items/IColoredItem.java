@@ -85,6 +85,21 @@ public interface IColoredItem {
                     tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.withering"));
                 }
                 break;
+            case GRAY:
+                if (CurrentModConfig.sluggish) {
+                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.sluggish"));
+                }
+                break;
+            case LIGHT_GRAY:
+                if (CurrentModConfig.speedy) {
+                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.speedy"));
+                }
+                break;
+            case PINK:
+                if (CurrentModConfig.healthy) {
+                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.healthy"));
+                }
+                break;
             default:
         }
         return tooltips;

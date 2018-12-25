@@ -16,11 +16,20 @@ public class CurrentModConfig {
     public static boolean burnable = ModConfig.coloredPropertiesConfig.burnable;
     public static boolean slimy = ModConfig.coloredPropertiesConfig.slimy;
     public static boolean withering = ModConfig.coloredPropertiesConfig.withering;
+    public static boolean sluggish = ModConfig.coloredPropertiesConfig.sluggish;
+    public static boolean speedy = ModConfig.coloredPropertiesConfig.speedy;
+    public static boolean healthy = ModConfig.coloredPropertiesConfig.healthy;
 
     public static int burnableBurningTime = ModConfig.coloredPropertiesConfig.burnableBurningTime;
     public static int slimyChance = ModConfig.coloredPropertiesConfig.slimyChance;
     public static int witheringChance = ModConfig.coloredPropertiesConfig.witheringChance;
     public static int witheringDuration = ModConfig.coloredPropertiesConfig.witheringDuration;
+    public static int sluggishChance = ModConfig.coloredPropertiesConfig.sluggishChance;
+    public static int sluggishDuration = ModConfig.coloredPropertiesConfig.sluggishDuration;
+    public static int speedyChance = ModConfig.coloredPropertiesConfig.speedyChance;
+    public static int speedyDuration = ModConfig.coloredPropertiesConfig.speedyDuration;
+    public static int healthyChance = ModConfig.coloredPropertiesConfig.healthyChance;
+    public static int healthyDuration = ModConfig.coloredPropertiesConfig.healthyDuration;
 
     public static boolean integrationChiselColoredBlocks = ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks;
 
@@ -64,6 +73,24 @@ public class CurrentModConfig {
         witheringDuration = duration;
     }
 
+    public static void setSluggish(boolean isSluggish, int chance, int duration) {
+        sluggish = isSluggish;
+        sluggishChance = chance;
+        sluggishDuration = duration;
+    }
+
+    public static void setSpeedy(boolean isSpeedy, int chance, int duration) {
+        speedy = isSpeedy;
+        speedyChance = chance;
+        speedyDuration = duration;
+    }
+
+    public static void setHealthy(boolean isHealthy, int chance, int duration) {
+        healthy = isHealthy;
+        healthyChance = chance;
+        healthyDuration = duration;
+    }
+
     public static void setIntegrationChiselColoredBlocks(boolean coloredBlocks) {
         integrationChiselColoredBlocks = coloredBlocks;
         if (coloredBlocks) {
@@ -88,6 +115,15 @@ public class CurrentModConfig {
         setWithering(ModConfig.coloredPropertiesConfig.withering,
                 ModConfig.coloredPropertiesConfig.witheringChance,
                 ModConfig.coloredPropertiesConfig.witheringDuration);
+        setSluggish(ModConfig.coloredPropertiesConfig.sluggish,
+                ModConfig.coloredPropertiesConfig.sluggishChance,
+                ModConfig.coloredPropertiesConfig.sluggishDuration);
+        setSpeedy(ModConfig.coloredPropertiesConfig.speedy,
+                ModConfig.coloredPropertiesConfig.speedyChance,
+                ModConfig.coloredPropertiesConfig.speedyDuration);
+        setHealthy(ModConfig.coloredPropertiesConfig.healthy,
+                ModConfig.coloredPropertiesConfig.healthyChance,
+                ModConfig.coloredPropertiesConfig.healthyDuration);
         setIntegrationChiselColoredBlocks(ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks);
     }
 }

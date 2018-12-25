@@ -7,6 +7,9 @@
 - Added Albedo integration for Colored Redstone Lamps (colored light). Colored light for lamps can be enabled/disabled in mod config. **Requires [Albedo](https://minecraft.curseforge.com/projects/albedo) mod.**
 - New colored property - Slimy - lime blocks have a chance to spawn slime when broken. Property can be enabled/disabled in config. In addition, slime spawn chance can be set in config (default: 5%).
 - New colored property - Withering - black blocks have a chance to apply wither effect on entity standing on them. Property can be enabled/disabled in config. In addition, chance and duration of effect can be set in config (default: 15% and 100 ticks).
+- New colored property - Sluggish - gray blocks have a chance to apply slowness effect on entity standing on them. Property can be enabled/disabled in config. In addition, chance and duration of effect can be set in config (default: 15% and 100 ticks).
+- New colored property - Speedy - light gray blocks have a chance to apply speed effect on entity standing on them. Property can be enabled/disabled in config. In addition, chance and duration of effect can be set in config (default: 15% and 100 ticks).
+- New colored property - Healthy - pink blocks have a chance to apply regeneration effect on entity standing on them. Property can be enabled/disabled in config. In addition, chance and duration of effect can be set in config (default: 15% and 100 ticks).
 ### Fixed
 - Fixed Redstone Lamp recipe being incorrectly displayed in Colored Redstone Block group in recipe book.
 ## 1.1.0

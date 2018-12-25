@@ -188,7 +188,20 @@ public class BlockColoredRedstoneTorch extends BlockRedstoneTorch implements ICo
     @Override
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
         super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
-        withering(worldIn, entityIn, getColor(worldIn, pos));
+
+        if (!worldIn.isRemote && entityIn instanceof EntityLivingBase && (worldIn.getWorldTime() % 20 == 0)) {
+            EnumColor color = getColor(worldIn, pos);
+
+            if (color.equals(WITHERING_COLOR)) {
+                withering(worldIn, entityIn);
+            } else if (color.equals(SLUGGISH_COLOR)) {
+                sluggish(worldIn, entityIn);
+            } else if (color.equals(SPEEDY_COLOR)) {
+                speedy(worldIn, entityIn);
+            } else if (color.equals(HEALTHY_COLOR)) {
+                healthy(worldIn, entityIn);
+            }
+        }
     }
 
     @SideOnly(Side.CLIENT)

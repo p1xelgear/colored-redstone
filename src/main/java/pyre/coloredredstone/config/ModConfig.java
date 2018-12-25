@@ -76,5 +76,47 @@ public class ModConfig {
         @Config.Comment("Wither effect duration in ticks.")
         @Config.RangeInt(min = 1)
         public int witheringDuration = 100;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.sluggish")
+        @Config.Comment("If true, gray blocks have a chance to apply slowness effect on entity standing on them.")
+        public boolean sluggish = true;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.sluggish_chance")
+        @Config.Comment("Chance of applying slowness effect.")
+        @Config.RangeInt(min = 1, max = 100)
+        public int sluggishChance = 15;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.sluggish_duration")
+        @Config.Comment("Slowness effect duration in ticks.")
+        @Config.RangeInt(min = 1)
+        public int sluggishDuration = 100;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.speedy")
+        @Config.Comment("If true, light gray blocks have a chance to apply speed effect on entity standing on them.")
+        public boolean speedy = true;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.speedy_chance")
+        @Config.Comment("Chance of applying speed effect.")
+        @Config.RangeInt(min = 1, max = 100)
+        public int speedyChance = 15;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.speedy_duration")
+        @Config.Comment("Speed effect duration in ticks.")
+        @Config.RangeInt(min = 1)
+        public int speedyDuration = 100;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.healthy")
+        @Config.Comment("If true, pink blocks have a chance to apply regeneration effect on entity standing on them.")
+        public boolean healthy = true;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.healthy_chance")
+        @Config.Comment("Chance of applying regeneration effect.")
+        @Config.RangeInt(min = 1, max = 100)
+        public int healthyChance = 15;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.healthy_duration")
+        @Config.Comment("Regeneration effect duration in ticks.")
+        @Config.RangeInt(min = 1)
+        public int healthyDuration = 100;
     }
 }
