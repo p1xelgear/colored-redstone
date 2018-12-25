@@ -21,6 +21,7 @@ public class CurrentModConfig {
     public static boolean healthy = ModConfig.coloredPropertiesConfig.healthy;
 
     public static int burnableBurningTime = ModConfig.coloredPropertiesConfig.burnableBurningTime;
+    public static boolean burnableCatchFire = ModConfig.coloredPropertiesConfig.burnableCatchFire;
     public static int slimyChance = ModConfig.coloredPropertiesConfig.slimyChance;
     public static int witheringChance = ModConfig.coloredPropertiesConfig.witheringChance;
     public static int witheringDuration = ModConfig.coloredPropertiesConfig.witheringDuration;
@@ -57,9 +58,10 @@ public class CurrentModConfig {
         cactusproof = isCactusproof;
     }
 
-    public static void setBurnable(boolean isBurnable, int burningTime) {
+    public static void setBurnable(boolean isBurnable, int burningTime, boolean catchFire) {
         burnable = isBurnable;
         burnableBurningTime = burningTime;
+        burnableCatchFire = catchFire;
     }
 
     public static void setSlimy(boolean isSlimy, int chance) {
@@ -109,7 +111,8 @@ public class CurrentModConfig {
         setDespawnproof(ModConfig.coloredPropertiesConfig.despawnproof);
         setCactusproof(ModConfig.coloredPropertiesConfig.cactusproof);
         setBurnable(ModConfig.coloredPropertiesConfig.burnable,
-                ModConfig.coloredPropertiesConfig.burnableBurningTime);
+                ModConfig.coloredPropertiesConfig.burnableBurningTime,
+                ModConfig.coloredPropertiesConfig.burnableCatchFire);
         setSlimy(ModConfig.coloredPropertiesConfig.slimy,
                 ModConfig.coloredPropertiesConfig.slimyChance);
         setWithering(ModConfig.coloredPropertiesConfig.withering,

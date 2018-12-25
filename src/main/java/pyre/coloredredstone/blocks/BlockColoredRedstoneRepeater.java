@@ -184,6 +184,24 @@ public class BlockColoredRedstoneRepeater extends BlockRedstoneRepeater implemen
         }
     }
 
+    @Override
+    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
+        EnumColor color = getColor(world, pos);
+        if (CurrentModConfig.burnable && CurrentModConfig.burnableCatchFire && color.equals(BURNABLE_COLOR)) {
+            return BURNABLE_FLAMMABILITY;
+        }
+        return 0;
+    }
+
+    @Override
+    public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
+        EnumColor color = getColor(world, pos);
+        if (CurrentModConfig.burnable && CurrentModConfig.burnableCatchFire && color.equals(BURNABLE_COLOR)) {
+            return BURNABLE_FIRE_SPREAD_SPEED;
+        }
+        return 0;
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {

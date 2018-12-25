@@ -202,6 +202,24 @@ public class BlockColoredRedstoneLamp extends Block implements IColoredFeatures,
         }
     }
 
+    @Override
+    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
+        EnumColor color = getColor(world, pos);
+        if (CurrentModConfig.burnable && CurrentModConfig.burnableCatchFire && color.equals(BURNABLE_COLOR)) {
+            return BURNABLE_FLAMMABILITY;
+        }
+        return 0;
+    }
+
+    @Override
+    public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
+        EnumColor color = getColor(world, pos);
+        if (CurrentModConfig.burnable && CurrentModConfig.burnableCatchFire && color.equals(BURNABLE_COLOR)) {
+            return BURNABLE_FIRE_SPREAD_SPEED;
+        }
+        return 0;
+    }
+
     @SideOnly(Side.CLIENT)
     public static int colorMultiplier(int power, EnumColor color) {
         int red = color.getShades()[power].getR();

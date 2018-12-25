@@ -10,6 +10,8 @@
 - New colored property - Sluggish - gray blocks have a chance to apply slowness effect on entity standing on them. Property can be enabled/disabled in config. In addition, chance and duration of effect can be set in config (default: 15% and 100 ticks).
 - New colored property - Speedy - light gray blocks have a chance to apply speed effect on entity standing on them. Property can be enabled/disabled in config. In addition, chance and duration of effect can be set in config (default: 15% and 100 ticks).
 - New colored property - Healthy - pink blocks have a chance to apply regeneration effect on entity standing on them. Property can be enabled/disabled in config. In addition, chance and duration of effect can be set in config (default: 15% and 100 ticks).
+### Changed
+- Colored property Burnable - now brown blocks can also catch on fire. This can be enable/disable in mod config.
 ### Fixed
 - Fixed Redstone Lamp recipe being incorrectly displayed in Colored Redstone Block group in recipe book.
 ## 1.1.0

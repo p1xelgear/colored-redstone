@@ -54,6 +54,10 @@ public class ModConfig {
         @Config.RangeInt(min = 1)
         public int burnableBurningTime = 200;
 
+        @Config.LangKey("coloredredstone.config.colored_properties.burnable_catch_fire")
+        @Config.Comment("If true, brown blocks can catch on fire.")
+        public boolean burnableCatchFire = true;
+
         @Config.LangKey("coloredredstone.config.colored_properties.slimy")
         @Config.Comment("If true, lime blocks have a chance to spawn slime when broken.")
         public boolean slimy = true;

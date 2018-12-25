@@ -63,6 +63,7 @@ coloredredstone.config.colored_properties.explosionproof=Explosion-proof
 coloredredstone.config.colored_properties.cactusproof=Cactus-proof
 coloredredstone.config.colored_properties.burnable=Burnable
 coloredredstone.config.colored_properties.burnable_burning_time=Burnable burning time
+coloredredstone.config.colored_properties.burnable_catch_fire=Burnable catch fire
 coloredredstone.config.colored_properties.slimy=Slimy
 coloredredstone.config.colored_properties.slimy_chance=Slimy spawn chance
 coloredredstone.config.colored_properties.withering=Withering

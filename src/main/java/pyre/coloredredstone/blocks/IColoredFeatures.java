@@ -10,6 +10,8 @@ import pyre.coloredredstone.util.EnumColor;
 
 public interface IColoredFeatures {
     float EXPLOSION_PROOF_BLOCK_RESISTANCE = 6000.0F;
+    int BURNABLE_FLAMMABILITY = 20;
+    int BURNABLE_FIRE_SPREAD_SPEED = 5;
 
     EnumColor EXPLOSION_PROOF_COLOR = EnumColor.ORANGE;
     EnumColor CACTUS_PROOF_COLOR = EnumColor.GREEN;

@@ -63,6 +63,7 @@ coloredredstone.config.colored_properties.explosionproof=Odporność na wybuchy
 coloredredstone.config.colored_properties.cactusproof=Odporność na kaktusy
 coloredredstone.config.colored_properties.burnable=Palność
 coloredredstone.config.colored_properties.burnable_burning_time=Palność - czas palenia
+coloredredstone.config.colored_properties.burnable_catch_fire=Palność - zapalenie się
 coloredredstone.config.colored_properties.slimy=Śluzowany
 coloredredstone.config.colored_properties.slimy_chance=Śluzowaty - szansa pojawienia się
 coloredredstone.config.colored_properties.withering=Obumieranie

@@ -32,7 +32,8 @@ public class ConfigSynchronizationHandler {
         DespawnproofSyncMessage despawnproofSyncMessage = new DespawnproofSyncMessage(ModConfig.coloredPropertiesConfig.despawnproof);
         CactusproofSyncMessage cactusproofSyncMessage = new CactusproofSyncMessage(ModConfig.coloredPropertiesConfig.cactusproof);
         BurnableSyncMessage burnableSyncMessage = new BurnableSyncMessage(ModConfig.coloredPropertiesConfig.burnable,
-                ModConfig.coloredPropertiesConfig.burnableBurningTime);
+                ModConfig.coloredPropertiesConfig.burnableBurningTime,
+                ModConfig.coloredPropertiesConfig.burnableCatchFire);
         SlimySyncMessage slimySyncMessage = new SlimySyncMessage(ModConfig.coloredPropertiesConfig.slimy,
                 ModConfig.coloredPropertiesConfig.slimyChance);
         WitheringSyncMessage witheringSyncMessage = new WitheringSyncMessage(ModConfig.coloredPropertiesConfig.withering,

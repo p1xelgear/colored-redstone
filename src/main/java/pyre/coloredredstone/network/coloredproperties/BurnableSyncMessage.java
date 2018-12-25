@@ -9,12 +9,14 @@ import pyre.coloredredstone.config.CurrentModConfig;
 public class BurnableSyncMessage extends ColoredPropertySyncConfigMessage {
 
     private int burnableBurningTime;
+    private boolean burnableCatchFire;
 
     public BurnableSyncMessage(){}
 
-    public BurnableSyncMessage(boolean isEnabled, int burningTime) {
+    public BurnableSyncMessage(boolean isEnabled, int burningTime, boolean catchFire) {
         propertyEnabled = isEnabled;
         burnableBurningTime = burningTime;
+        burnableCatchFire = catchFire;
     }
 
     @Override
@@ -34,7 +36,8 @@ public class BurnableSyncMessage extends ColoredPropertySyncConfigMessage {
         @Override
         public IMessage onMessage(BurnableSyncMessage burnableSyncMessage, MessageContext messageContext) {
             CurrentModConfig.setBurnable(burnableSyncMessage.propertyEnabled,
-                    burnableSyncMessage.burnableBurningTime);
+                    burnableSyncMessage.burnableBurningTime,
+                    burnableSyncMessage.burnableCatchFire);
             return null;
         }
     }
