@@ -1,4 +1,8 @@
 # CHANGELOG
+## 1.2.1
+### Fixed
+- Added missing entry in polish translation.
+- Fixed the issue with Colored Redstone Lamp not emitting light (client-side visual bug).
 ## 1.2.0
 ### Added
 - Added option to enable/disable in-world recoloring in mod config.

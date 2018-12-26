@@ -21,7 +21,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pyre.coloredredstone.config.CurrentModConfig;
@@ -53,10 +52,7 @@ public class BlockColoredRedstoneLamp extends Block implements IColoredFeatures,
 
     @Override
     public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
-        if (FMLCommonHandler.instance().getEffectiveSide().isServer()) {
-            return state.getValue(POWER);
-        }
-        return super.getLightValue(state, world, pos);
+        return state.getValue(POWER);
     }
 
     @Override
