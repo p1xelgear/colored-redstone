@@ -4,6 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockRedstoneTorch;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -20,8 +22,10 @@ import pyre.coloredredstone.config.CurrentModConfig;
 import pyre.coloredredstone.init.ModBlocks;
 import pyre.coloredredstone.items.IColoredItem;
 import pyre.coloredredstone.util.EnumColor;
+import pyre.coloredredstone.util.LootTableHelper;
 import pyre.coloredredstone.util.OreDictionaryUtils;
 
+import java.util.List;
 import java.util.Random;
 
 @Mod.EventBusSubscriber
@@ -46,19 +50,52 @@ public class ColoredItemEventHandler {
     }
 
     @SubscribeEvent
-    public static void spawnSlime(BlockEvent.BreakEvent event){
-        if (CurrentModConfig.slimy) {
-            int i = new Random().nextInt(100) + 1;
-            if (i < CurrentModConfig.slimyChance) {
-                World world = event.getWorld();
+    public static void alienatedLoot(BlockEvent.HarvestDropsEvent event) {
+        if (CurrentModConfig.alienated && hasChance(CurrentModConfig.alienatedChance)) {
+            World world = event.getWorld();
+            EntityPlayer player = event.getHarvester();
+            if (!world.isRemote && player instanceof EntityPlayerMP) {
                 BlockPos pos = event.getPos();
-                Block block = world.getBlockState(pos).getBlock();
-                if ((block instanceof IBlockColored && ((IBlockColored) block).getColor(world, pos) == EnumColor.LIME) ||
-                        (block instanceof IBlockColoredWithoutRed && ((IBlockColoredWithoutRed) block).getColor(world, pos) == EnumColor.LIME)) {
-                    EntitySlime entitySlime = new EntitySlime(world);
-                    entitySlime.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-                    world.spawnEntity(entitySlime);
+                if (isCorrectColor(world, pos, EnumColor.CYAN)) {
+                    List<ItemStack> loot = LootTableHelper.generateEndermanLoot((EntityPlayerMP) player, world);
+                    if (!loot.isEmpty()) {
+                        List<ItemStack> drops = event.getDrops();
+                        drops.clear();
+                        drops.addAll(loot);
+                    }
                 }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void fishyLoot(BlockEvent.HarvestDropsEvent event) {
+        if (CurrentModConfig.fishy && hasChance(CurrentModConfig.fishyChance)) {
+            World world = event.getWorld();
+            EntityPlayer player = event.getHarvester();
+            if (!world.isRemote && player instanceof EntityPlayerMP) {
+                BlockPos pos = event.getPos();
+                if (isCorrectColor(world, pos, EnumColor.LIGHT_BLUE)) {
+                    List<ItemStack> loot = LootTableHelper.generateFishingLoot((EntityPlayerMP) player, world);
+                    if (!loot.isEmpty()) {
+                        List<ItemStack> drops = event.getDrops();
+                        drops.clear();
+                        drops.addAll(loot);
+                    }
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void spawnSlime(BlockEvent.BreakEvent event) {
+        if (CurrentModConfig.slimy && hasChance(CurrentModConfig.slimyChance)) {
+            World world = event.getWorld();
+            BlockPos pos = event.getPos();
+            if (isCorrectColor(world, pos, EnumColor.LIME)) {
+                EntitySlime entitySlime = new EntitySlime(world);
+                entitySlime.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+                world.spawnEntity(entitySlime);
             }
         }
     }
@@ -205,5 +242,16 @@ public class ColoredItemEventHandler {
     private static void setBlockState(PlayerInteractEvent.RightClickBlock event, IBlockState stateToSet, int flags) {
         event.getWorld().setBlockState(event.getPos(), stateToSet, flags);
         event.setCanceled(true);
+    }
+
+    private static boolean isCorrectColor(World world, BlockPos pos, EnumColor color) {
+        Block block = world.getBlockState(pos).getBlock();
+        return (block instanceof IBlockColored && ((IBlockColored) block).getColor(world, pos) == color) ||
+                (block instanceof IBlockColoredWithoutRed && ((IBlockColoredWithoutRed) block).getColor(world, pos) == color);
+    }
+
+    private static boolean hasChance(int chance) {
+        int i = new Random().nextInt(100) + 1;
+        return i < chance;
     }
 }

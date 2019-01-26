@@ -122,5 +122,23 @@ public class ModConfig {
         @Config.Comment("Regeneration effect duration in ticks.")
         @Config.RangeInt(min = 1)
         public int healthyDuration = 100;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.alienated")
+        @Config.Comment("If true, cyan blocks have a chance to drop Enderman loot instead of actual block item.")
+        public boolean alienated = true;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.alienated_chance")
+        @Config.Comment("Chance of dropping Enderman loot.")
+        @Config.RangeInt(min = 1, max = 100)
+        public int alienatedChance = 5;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.fishy")
+        @Config.Comment("If true, light blue blocks have a chance to drop fishing loot instead of actual block item.")
+        public boolean fishy = true;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.fishy_chance")
+        @Config.Comment("Chance of dropping fishing loot.")
+        @Config.RangeInt(min = 1, max = 100)
+        public int fishyChance = 5;
     }
 }

@@ -48,6 +48,10 @@ public class ConfigSynchronizationHandler {
         HealthySyncMessage healthySyncMessage = new HealthySyncMessage(ModConfig.coloredPropertiesConfig.healthy,
                 ModConfig.coloredPropertiesConfig.healthyChance,
                 ModConfig.coloredPropertiesConfig.healthyDuration);
+        AlienatedSyncMessage alienatedSyncMessage = new AlienatedSyncMessage(ModConfig.coloredPropertiesConfig.alienated,
+                ModConfig.coloredPropertiesConfig.alienatedChance);
+        FishySyncMessage fishySyncMessage = new FishySyncMessage(ModConfig.coloredPropertiesConfig.fishy,
+                ModConfig.coloredPropertiesConfig.fishyChance);
 
         IntegrationChiselSyncConfigMessage chiselMessage = new IntegrationChiselSyncConfigMessage(ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks);
 
@@ -64,6 +68,8 @@ public class ConfigSynchronizationHandler {
         NetworkHandler.sendTo(sluggishSyncMessage, (EntityPlayerMP) event.player);
         NetworkHandler.sendTo(speedySyncMessage, (EntityPlayerMP) event.player);
         NetworkHandler.sendTo(healthySyncMessage, (EntityPlayerMP) event.player);
+        NetworkHandler.sendTo(alienatedSyncMessage, (EntityPlayerMP) event.player);
+        NetworkHandler.sendTo(fishySyncMessage, (EntityPlayerMP) event.player);
 
         NetworkHandler.sendTo(chiselMessage, (EntityPlayerMP) event.player); //Sync not working (client restart necessary)
     }

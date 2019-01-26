@@ -46,6 +46,8 @@ coloredredstone.tooltip.withering=Obumierający!
 coloredredstone.tooltip.sluggish=Powolny!
 coloredredstone.tooltip.speedy=Szybki!
 coloredredstone.tooltip.healthy=Zdrowy!
+coloredredstone.tooltip.alienated=Wyobcowany!
+coloredredstone.tooltip.fishy=Rybi!
 
 ##################
 ##### CONFIG #####
@@ -78,6 +80,10 @@ coloredredstone.config.colored_properties.speedy_duration=Szybki - czas działan
 coloredredstone.config.colored_properties.healthy=Zdrowy
 coloredredstone.config.colored_properties.healthy_chance=Zdrowy - szansa wystąpienia
 coloredredstone.config.colored_properties.healthy_duration=Zdrowy - czas działania
+coloredredstone.config.colored_properties.alienated=Wyobcowany
+coloredredstone.config.colored_properties.alienated_chance=Wyobcowany - szansa wystąpienia
+coloredredstone.config.colored_properties.fishy=Rybi
+coloredredstone.config.colored_properties.fishy_chance=Rybi - szansa wystąpienia
 
 coloredredstone.config.integration=Integracja z modami
 coloredredstone.config.integration.chisel=Chisel

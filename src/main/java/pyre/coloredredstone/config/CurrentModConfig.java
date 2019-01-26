@@ -19,6 +19,8 @@ public class CurrentModConfig {
     public static boolean sluggish = ModConfig.coloredPropertiesConfig.sluggish;
     public static boolean speedy = ModConfig.coloredPropertiesConfig.speedy;
     public static boolean healthy = ModConfig.coloredPropertiesConfig.healthy;
+    public static boolean alienated = ModConfig.coloredPropertiesConfig.alienated;
+    public static boolean fishy = ModConfig.coloredPropertiesConfig.fishy;
 
     public static int burnableBurningTime = ModConfig.coloredPropertiesConfig.burnableBurningTime;
     public static boolean burnableCatchFire = ModConfig.coloredPropertiesConfig.burnableCatchFire;
@@ -31,6 +33,8 @@ public class CurrentModConfig {
     public static int speedyDuration = ModConfig.coloredPropertiesConfig.speedyDuration;
     public static int healthyChance = ModConfig.coloredPropertiesConfig.healthyChance;
     public static int healthyDuration = ModConfig.coloredPropertiesConfig.healthyDuration;
+    public static int alienatedChance = ModConfig.coloredPropertiesConfig.alienatedChance;
+    public static int fishyChance = ModConfig.coloredPropertiesConfig.fishyChance;
 
     public static boolean integrationChiselColoredBlocks = ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks;
 
@@ -93,6 +97,16 @@ public class CurrentModConfig {
         healthyDuration = duration;
     }
 
+    public static void setAlienated(boolean isAlienated, int chance) {
+        alienated = isAlienated;
+        alienatedChance = chance;
+    }
+
+    public static void setFishy(boolean isFishy, int chance) {
+        fishy = isFishy;
+        fishyChance = chance;
+    }
+
     public static void setIntegrationChiselColoredBlocks(boolean coloredBlocks) {
         integrationChiselColoredBlocks = coloredBlocks;
         if (coloredBlocks) {
@@ -127,6 +141,10 @@ public class CurrentModConfig {
         setHealthy(ModConfig.coloredPropertiesConfig.healthy,
                 ModConfig.coloredPropertiesConfig.healthyChance,
                 ModConfig.coloredPropertiesConfig.healthyDuration);
+        setAlienated(ModConfig.coloredPropertiesConfig.alienated,
+                ModConfig.coloredPropertiesConfig.alienatedChance);
+        setFishy(ModConfig.coloredPropertiesConfig.fishy,
+                ModConfig.coloredPropertiesConfig.fishyChance);
         setIntegrationChiselColoredBlocks(ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks);
     }
 }

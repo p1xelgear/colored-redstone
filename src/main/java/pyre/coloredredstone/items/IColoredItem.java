@@ -45,9 +45,9 @@ public interface IColoredItem {
         EnumColor color = EnumColor.byMetadata(stack.getMetadata());
         String chatColor = ModConfig.coloredNamesAndTooltips ? color.getChatColor().toString() : "";
         switch (color) {
-            case BLUE:
-                if (CurrentModConfig.waterproof) {
-                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.waterproof"));
+            case BLACK:
+                if (CurrentModConfig.withering) {
+                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.withering"));
                 }
                 break;
             case GREEN:
@@ -55,9 +55,49 @@ public interface IColoredItem {
                     tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.cactusproof"));
                 }
                 break;
+            case BROWN:
+                if (CurrentModConfig.burnable) {
+                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.burnable"));
+                }
+                break;
+            case BLUE:
+                if (CurrentModConfig.waterproof) {
+                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.waterproof"));
+                }
+                break;
+            case CYAN:
+                if (CurrentModConfig.alienated) {
+                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.alienated"));
+                }
+                break;
+            case LIGHT_GRAY:
+                if (CurrentModConfig.speedy) {
+                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.speedy"));
+                }
+                break;
+            case GRAY:
+                if (CurrentModConfig.sluggish) {
+                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.sluggish"));
+                }
+                break;
+            case PINK:
+                if (CurrentModConfig.healthy) {
+                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.healthy"));
+                }
+                break;
+            case LIME:
+                if (CurrentModConfig.slimy) {
+                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.slimy"));
+                }
+                break;
             case YELLOW:
                 if (CurrentModConfig.fireproof) {
                     tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.fireproof"));
+                }
+                break;
+            case LIGHT_BLUE:
+                if (CurrentModConfig.fishy) {
+                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.fishy"));
                 }
                 break;
             case ORANGE:
@@ -68,36 +108,6 @@ public interface IColoredItem {
             case WHITE:
                 if (CurrentModConfig.despawnproof) {
                     tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.despawnproof"));
-                }
-                break;
-            case BROWN:
-                if (CurrentModConfig.burnable) {
-                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.burnable"));
-                }
-                break;
-            case LIME:
-                if (CurrentModConfig.slimy) {
-                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.slimy"));
-                }
-                break;
-            case BLACK:
-                if (CurrentModConfig.withering) {
-                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.withering"));
-                }
-                break;
-            case GRAY:
-                if (CurrentModConfig.sluggish) {
-                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.sluggish"));
-                }
-                break;
-            case LIGHT_GRAY:
-                if (CurrentModConfig.speedy) {
-                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.speedy"));
-                }
-                break;
-            case PINK:
-                if (CurrentModConfig.healthy) {
-                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.healthy"));
                 }
                 break;
             default:
