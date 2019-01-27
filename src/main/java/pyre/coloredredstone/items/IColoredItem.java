@@ -65,6 +65,11 @@ public interface IColoredItem {
                     tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.waterproof"));
                 }
                 break;
+            case PURPLE:
+                if (CurrentModConfig.soft) {
+                    tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.soft"));
+                }
+                break;
             case CYAN:
                 if (CurrentModConfig.alienated) {
                     tooltips.add(chatColor + ColoredRedstone.proxy.localize(Reference.MOD_ID + ".tooltip.alienated"));

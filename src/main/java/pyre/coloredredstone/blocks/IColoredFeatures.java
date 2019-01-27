@@ -24,6 +24,9 @@ public interface IColoredFeatures {
     EnumColor SLUGGISH_COLOR = EnumColor.GRAY;
     EnumColor SPEEDY_COLOR = EnumColor.LIGHT_GRAY;
     EnumColor HEALTHY_COLOR = EnumColor.PINK;
+    EnumColor ALIENATED_COLOR = EnumColor.CYAN;
+    EnumColor FISHY_COLOR = EnumColor.LIGHT_BLUE;
+    EnumColor SOFT_COLOR = EnumColor.PURPLE;
 
     default void withering(World worldIn, Entity entityIn) {
         if (CurrentModConfig.withering) {

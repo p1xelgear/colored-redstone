@@ -1,6 +1,7 @@
 package pyre.coloredredstone.util.handlers;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -9,11 +10,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import pyre.coloredredstone.blocks.IBlockColored;
 import pyre.coloredredstone.blocks.IBlockColoredWithoutRed;
+import pyre.coloredredstone.blocks.IColoredFeatures;
 import pyre.coloredredstone.config.CurrentModConfig;
 import pyre.coloredredstone.items.IColoredItem;
 import pyre.coloredredstone.util.EnumColor;
@@ -21,6 +24,8 @@ import pyre.coloredredstone.util.LootTableHelper;
 
 import java.util.List;
 import java.util.Random;
+
+import static pyre.coloredredstone.blocks.IColoredFeatures.SOFT_COLOR;
 
 @Mod.EventBusSubscriber
 public class ColoredPropertiesEventHandler {
@@ -72,6 +77,20 @@ public class ColoredPropertiesEventHandler {
                 entitySlime.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
                 world.spawnEntity(entitySlime);
             }
+        }
+    }
+
+    //workaround for not solid/full blocks
+    @SubscribeEvent
+    public static void softFall(LivingFallEvent event) {
+        Entity entity = event.getEntity();
+        World world = entity.getEntityWorld();
+        BlockPos pos = entity.getPosition();
+        Block block = world.getBlockState(pos).getBlock();
+
+        if (block instanceof IColoredFeatures && CurrentModConfig.soft && isCorrectColor(world, pos, SOFT_COLOR) && !entity.isSneaking()) {
+            float damageMultiplier = 1.0F - (CurrentModConfig.softDamageReduction / 100.0F);
+            event.setDamageMultiplier(damageMultiplier);
         }
     }
 

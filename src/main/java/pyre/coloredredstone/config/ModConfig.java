@@ -140,5 +140,14 @@ public class ModConfig {
         @Config.Comment("Chance of dropping fishing loot.")
         @Config.RangeInt(min = 1, max = 100)
         public int fishyChance = 5;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.soft")
+        @Config.Comment("If true, purple blocks reduce fall damage.")
+        public boolean soft = true;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.soft_reduction")
+        @Config.Comment("Percentage of damage reduction.")
+        @Config.RangeInt(min = 1, max = 100)
+        public int softDamageReduction = 50;
     }
 }

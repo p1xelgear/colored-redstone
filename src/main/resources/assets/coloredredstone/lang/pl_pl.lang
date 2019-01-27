@@ -48,6 +48,7 @@ coloredredstone.tooltip.speedy=Szybki!
 coloredredstone.tooltip.healthy=Zdrowy!
 coloredredstone.tooltip.alienated=Wyobcowany!
 coloredredstone.tooltip.fishy=Rybi!
+coloredredstone.tooltip.soft=Miękki!
 
 ##################
 ##### CONFIG #####
@@ -84,6 +85,8 @@ coloredredstone.config.colored_properties.alienated=Wyobcowany
 coloredredstone.config.colored_properties.alienated_chance=Wyobcowany - szansa wystąpienia
 coloredredstone.config.colored_properties.fishy=Rybi
 coloredredstone.config.colored_properties.fishy_chance=Rybi - szansa wystąpienia
+coloredredstone.config.colored_properties.soft=Miękki
+coloredredstone.config.colored_properties.soft_reduction=Miękki - redukcja obrażeń
 
 coloredredstone.config.integration=Integracja z modami
 coloredredstone.config.integration.chisel=Chisel

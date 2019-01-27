@@ -21,6 +21,7 @@ public class CurrentModConfig {
     public static boolean healthy = ModConfig.coloredPropertiesConfig.healthy;
     public static boolean alienated = ModConfig.coloredPropertiesConfig.alienated;
     public static boolean fishy = ModConfig.coloredPropertiesConfig.fishy;
+    public static boolean soft = ModConfig.coloredPropertiesConfig.soft;
 
     public static int burnableBurningTime = ModConfig.coloredPropertiesConfig.burnableBurningTime;
     public static boolean burnableCatchFire = ModConfig.coloredPropertiesConfig.burnableCatchFire;
@@ -35,6 +36,7 @@ public class CurrentModConfig {
     public static int healthyDuration = ModConfig.coloredPropertiesConfig.healthyDuration;
     public static int alienatedChance = ModConfig.coloredPropertiesConfig.alienatedChance;
     public static int fishyChance = ModConfig.coloredPropertiesConfig.fishyChance;
+    public static int softDamageReduction = ModConfig.coloredPropertiesConfig.softDamageReduction;
 
     public static boolean integrationChiselColoredBlocks = ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks;
 
@@ -107,6 +109,11 @@ public class CurrentModConfig {
         fishyChance = chance;
     }
 
+    public static void setSoft(boolean isSoft, int reduction) {
+        soft = isSoft;
+        softDamageReduction = reduction;
+    }
+
     public static void setIntegrationChiselColoredBlocks(boolean coloredBlocks) {
         integrationChiselColoredBlocks = coloredBlocks;
         if (coloredBlocks) {
@@ -145,6 +152,8 @@ public class CurrentModConfig {
                 ModConfig.coloredPropertiesConfig.alienatedChance);
         setFishy(ModConfig.coloredPropertiesConfig.fishy,
                 ModConfig.coloredPropertiesConfig.fishyChance);
+        setSoft(ModConfig.coloredPropertiesConfig.soft,
+                ModConfig.coloredPropertiesConfig.softDamageReduction);
         setIntegrationChiselColoredBlocks(ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks);
     }
 }

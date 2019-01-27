@@ -153,4 +153,14 @@ public class BlockColoredRedstone extends Block implements IColoredFeatures, IBl
         }
         return 0;
     }
+
+    @Override
+    public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
+        if (CurrentModConfig.soft && getColor(worldIn, pos) == SOFT_COLOR && !entityIn.isSneaking()) {
+            float damageMultiplier = 1.0F - (CurrentModConfig.softDamageReduction / 100.0F);
+            entityIn.fall(fallDistance, damageMultiplier);
+        } else {
+            super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
+        }
+    }
 }

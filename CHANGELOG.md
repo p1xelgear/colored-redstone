@@ -1,4 +1,10 @@
 # CHANGELOG
+## 1.3.0
+### Added
+- New colored property - Alienated - cyan blocks have a chance to drop Enderman loot instead of actual block item. Default: 5% chance to drop.
+- New colored property - Fishy - light blue blocks have a chance to drop fishing loot instead of actual block item. Default: 5% chance to drop.
+- New colored property - Soft - purple blocks reduce fall damage. Default: 50% fall damage reduction.
+- All of new colored properties can be enabled/disabled in mod config. Chance and specific parameters of properties can also be customized in config.
 ## 1.2.1
 ### Fixed
 - Added missing entry in polish translation.

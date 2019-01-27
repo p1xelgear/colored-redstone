@@ -6,35 +6,35 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import pyre.coloredredstone.config.CurrentModConfig;
 
-public class FishySyncMessage extends ColoredPropertySyncConfigMessage {
+public class SoftSyncMessage extends ColoredPropertySyncConfigMessage {
 
-    private int fishyChance;
+    private int softReduction;
 
-    public FishySyncMessage(){}
+    public SoftSyncMessage(){}
 
-    public FishySyncMessage(boolean isEnabled, int chance) {
+    public SoftSyncMessage(boolean isEnabled, int chance) {
         propertyEnabled = isEnabled;
-        fishyChance = chance;
+        softReduction = chance;
     }
 
     @Override
     public void fromBytes(ByteBuf byteBuf) {
         propertyEnabled = byteBuf.readBoolean();
-        fishyChance = byteBuf.readInt();
+        softReduction = byteBuf.readInt();
     }
 
     @Override
     public void toBytes(ByteBuf byteBuf) {
         byteBuf.writeBoolean(propertyEnabled);
-        byteBuf.writeInt(fishyChance);
+        byteBuf.writeInt(softReduction);
     }
 
-    public static class FishySyncMessageHandler implements IMessageHandler<FishySyncMessage, IMessage> {
+    public static class SoftSyncMessageHandler implements IMessageHandler<SoftSyncMessage, IMessage> {
 
         @Override
-        public IMessage onMessage(FishySyncMessage fishySyncMessage, MessageContext messageContext) {
-            CurrentModConfig.setFishy(fishySyncMessage.propertyEnabled,
-                    fishySyncMessage.fishyChance);
+        public IMessage onMessage(SoftSyncMessage softSyncMessage, MessageContext messageContext) {
+            CurrentModConfig.setSoft(softSyncMessage.propertyEnabled,
+                    softSyncMessage.softReduction);
             return null;
         }
     }
