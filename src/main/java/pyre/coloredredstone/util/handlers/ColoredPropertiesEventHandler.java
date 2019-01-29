@@ -25,7 +25,7 @@ import pyre.coloredredstone.util.LootTableHelper;
 import java.util.List;
 import java.util.Random;
 
-import static pyre.coloredredstone.blocks.IColoredFeatures.SOFT_COLOR;
+import static pyre.coloredredstone.blocks.IColoredFeatures.*;
 
 @Mod.EventBusSubscriber
 public class ColoredPropertiesEventHandler {
@@ -35,7 +35,7 @@ public class ColoredPropertiesEventHandler {
         if (CurrentModConfig.despawnproof) {
             ItemStack itemStack = event.getEntityItem().getItem();
             Item item = itemStack.getItem();
-            if (item instanceof IColoredItem && itemStack.getMetadata() == EnumColor.WHITE.getMetadata()) {
+            if (item instanceof IColoredItem && itemStack.getMetadata() == DESPAWN_PROOF_COLOR.getMetadata()) {
                 event.setCanceled(true);
             }
         }
@@ -47,7 +47,7 @@ public class ColoredPropertiesEventHandler {
             World world = event.getWorld();
             EntityPlayer player = event.getHarvester();
             BlockPos pos = event.getPos();
-            if (!world.isRemote && player instanceof EntityPlayerMP && isCorrectColor(world, pos, EnumColor.CYAN)) {
+            if (!world.isRemote && player instanceof EntityPlayerMP && isCorrectColor(world, pos, ALIENATED_COLOR)) {
                 List<ItemStack> loot = LootTableHelper.generateEndermanLoot((EntityPlayerMP) player, world);
                 updateDrops(event, loot);
             }
@@ -60,7 +60,7 @@ public class ColoredPropertiesEventHandler {
             World world = event.getWorld();
             EntityPlayer player = event.getHarvester();
             BlockPos pos = event.getPos();
-            if (!world.isRemote && player instanceof EntityPlayerMP && isCorrectColor(world, pos, EnumColor.LIGHT_BLUE)) {
+            if (!world.isRemote && player instanceof EntityPlayerMP && isCorrectColor(world, pos, FISHY_COLOR)) {
                 List<ItemStack> loot = LootTableHelper.generateFishingLoot((EntityPlayerMP) player, world);
                 updateDrops(event, loot);
             }
@@ -72,7 +72,7 @@ public class ColoredPropertiesEventHandler {
         if (CurrentModConfig.slimy && hasChance(CurrentModConfig.slimyChance)) {
             World world = event.getWorld();
             BlockPos pos = event.getPos();
-            if (isCorrectColor(world, pos, EnumColor.LIME)) {
+            if (isCorrectColor(world, pos, SLIMY_COLOR)) {
                 EntitySlime entitySlime = new EntitySlime(world);
                 entitySlime.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
                 world.spawnEntity(entitySlime);

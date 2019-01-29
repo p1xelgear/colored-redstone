@@ -5,7 +5,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import pyre.coloredredstone.config.CurrentModConfig;
-import pyre.coloredredstone.util.EnumColor;
+
+import static pyre.coloredredstone.blocks.IColoredFeatures.CACTUS_PROOF_COLOR;
+import static pyre.coloredredstone.blocks.IColoredFeatures.EXPLOSION_PROOF_COLOR;
+import static pyre.coloredredstone.blocks.IColoredFeatures.FIREPROOF_COLOR;
 
 public class EntityItemColored extends EntityItem {
 
@@ -40,14 +43,14 @@ public class EntityItemColored extends EntityItem {
     }
 
     private boolean isItemFireproof(ItemStack item) {
-        return CurrentModConfig.fireproof && item.getMetadata() == EnumColor.YELLOW.getMetadata();
+        return CurrentModConfig.fireproof && item.getMetadata() == FIREPROOF_COLOR.getMetadata();
     }
 
     private boolean isItemExplosionproof(ItemStack item) {
-        return CurrentModConfig.explosionproof && item.getMetadata() == EnumColor.ORANGE.getMetadata();
+        return CurrentModConfig.explosionproof && item.getMetadata() == EXPLOSION_PROOF_COLOR.getMetadata();
     }
 
     private boolean isItemCactusproof(ItemStack item) {
-        return CurrentModConfig.cactusproof && item.getMetadata() == EnumColor.GREEN.getMetadata();
+        return CurrentModConfig.cactusproof && item.getMetadata() == CACTUS_PROOF_COLOR.getMetadata();
     }
 }
