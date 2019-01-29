@@ -149,5 +149,39 @@ public class ModConfig {
         @Config.Comment("Percentage of damage reduction.")
         @Config.RangeInt(min = 1, max = 100)
         public int softDamageReduction = 50;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.edible")
+        @Config.Comment("If true, magenta items can be eaten.")
+        public boolean edible = true;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.edible_hunger")
+        @Config.Comment("Number of Hunger points restored when eaten.")
+        @Config.RangeInt(min = 1, max = 20)
+        public int edibleHunger = 2;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.edible_saturation")
+        @Config.Comment("Number of Saturation points restored when eaten.")
+        @Config.RangeDouble(min = 0.1F, max = 20F)
+        public float edibleSaturation = 0.3F;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.edible_saturation_chance")
+        @Config.Comment("Chance of applying Saturation effect.")
+        @Config.RangeInt(min = 0, max = 100)
+        public int edibleSaturationChance = 5;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.edible_saturation_duration")
+        @Config.Comment("Saturation effect duration in ticks.")
+        @Config.RangeInt(min = 1)
+        public int edibleSaturationDuration = 20;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.edible_nausea_chance")
+        @Config.Comment("Chance of applying Nausea effect.")
+        @Config.RangeInt(min = 0, max = 100)
+        public int edibleNauseaChance = 5;
+
+        @Config.LangKey("coloredredstone.config.colored_properties.edible_nausea_duration")
+        @Config.Comment("Nausea effect duration in ticks.")
+        @Config.RangeInt(min = 1)
+        public int edibleNauseaDuration = 300;
     }
 }

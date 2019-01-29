@@ -27,6 +27,7 @@ public interface IColoredFeatures {
     EnumColor ALIENATED_COLOR = EnumColor.CYAN;
     EnumColor FISHY_COLOR = EnumColor.LIGHT_BLUE;
     EnumColor SOFT_COLOR = EnumColor.PURPLE;
+    EnumColor EDIBLE_COLOR = EnumColor.MAGENTA;
 
     default void withering(World worldIn, Entity entityIn) {
         if (CurrentModConfig.withering) {

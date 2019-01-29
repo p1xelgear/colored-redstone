@@ -41,6 +41,7 @@ public class NetworkHandler {
         INSTANCE.registerMessage(AlienatedSyncMessage.AlienatedSyncMessageHandler.class, AlienatedSyncMessage.class, id++, Side.CLIENT);
         INSTANCE.registerMessage(FishySyncMessage.FishySyncMessageHandler.class, FishySyncMessage.class, id++, Side.CLIENT);
         INSTANCE.registerMessage(SoftSyncMessage.SoftSyncMessageHandler.class, SoftSyncMessage.class, id++, Side.CLIENT);
+        INSTANCE.registerMessage(EdibleSyncMessage.EdibleSyncMessageHandler.class, EdibleSyncMessage.class, id++, Side.CLIENT);
         INSTANCE.registerMessage(IntegrationChiselSyncConfigMessage.IntegrationChiselSyncConfigMessageHandler.class, IntegrationChiselSyncConfigMessage.class, id++, Side.CLIENT);
     }
 }

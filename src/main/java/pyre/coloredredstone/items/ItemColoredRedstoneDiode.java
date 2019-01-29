@@ -120,4 +120,9 @@ public class ItemColoredRedstoneDiode extends ItemBlockSpecial implements IColor
     public int getItemBurnTime(ItemStack itemStack) {
         return getBurnTime(itemStack);
     }
+
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+        return tryEatItem(worldIn, playerIn, handIn);
+    }
 }

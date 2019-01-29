@@ -54,6 +54,13 @@ public class ConfigSynchronizationHandler {
                 ModConfig.coloredPropertiesConfig.fishyChance);
         SoftSyncMessage softSyncMessage = new SoftSyncMessage(ModConfig.coloredPropertiesConfig.soft,
                 ModConfig.coloredPropertiesConfig.softDamageReduction);
+        EdibleSyncMessage edibleSyncMessage = new EdibleSyncMessage(ModConfig.coloredPropertiesConfig.edible,
+                ModConfig.coloredPropertiesConfig.edibleHunger,
+                ModConfig.coloredPropertiesConfig.edibleSaturation,
+                ModConfig.coloredPropertiesConfig.edibleSaturationChance,
+                ModConfig.coloredPropertiesConfig.edibleSaturationDuration,
+                ModConfig.coloredPropertiesConfig.edibleNauseaChance,
+                ModConfig.coloredPropertiesConfig.edibleNauseaDuration);
 
         IntegrationChiselSyncConfigMessage chiselMessage = new IntegrationChiselSyncConfigMessage(ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks);
 
@@ -73,6 +80,7 @@ public class ConfigSynchronizationHandler {
         NetworkHandler.sendTo(alienatedSyncMessage, (EntityPlayerMP) event.player);
         NetworkHandler.sendTo(fishySyncMessage, (EntityPlayerMP) event.player);
         NetworkHandler.sendTo(softSyncMessage, (EntityPlayerMP) event.player);
+        NetworkHandler.sendTo(edibleSyncMessage, (EntityPlayerMP) event.player);
 
         NetworkHandler.sendTo(chiselMessage, (EntityPlayerMP) event.player); //Sync not working (client restart necessary)
     }

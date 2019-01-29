@@ -49,6 +49,7 @@ coloredredstone.tooltip.healthy=Zdrowy!
 coloredredstone.tooltip.alienated=Wyobcowany!
 coloredredstone.tooltip.fishy=Rybi!
 coloredredstone.tooltip.soft=Miękki!
+coloredredstone.tooltip.edible=Jadalne!
 
 ##################
 ##### CONFIG #####
@@ -87,6 +88,13 @@ coloredredstone.config.colored_properties.fishy=Rybi
 coloredredstone.config.colored_properties.fishy_chance=Rybi - szansa wystąpienia
 coloredredstone.config.colored_properties.soft=Miękki
 coloredredstone.config.colored_properties.soft_reduction=Miękki - redukcja obrażeń
+coloredredstone.config.colored_properties.edible=Jadalne
+coloredredstone.config.colored_properties.edible_hunger=Jadalne - Punkty głodu
+coloredredstone.config.colored_properties.edible_saturation=Jadalne - Punkty nasycenia
+coloredredstone.config.colored_properties.edible_saturation_chance=Jadalne - Nasycenie - szansa wystąpienia
+coloredredstone.config.colored_properties.edible_saturation_duration=Jadalne - Nasycenie - czas działania
+coloredredstone.config.colored_properties.edible_nausea_chance=Jadalne - Nudności - szansa wystąpienia
+coloredredstone.config.colored_properties.edible_nausea_duration=Jadalne - Nudności - czas działania
 
 coloredredstone.config.integration=Integracja z modami
 coloredredstone.config.integration.chisel=Chisel

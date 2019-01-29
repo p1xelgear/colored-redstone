@@ -22,6 +22,7 @@ public class CurrentModConfig {
     public static boolean alienated = ModConfig.coloredPropertiesConfig.alienated;
     public static boolean fishy = ModConfig.coloredPropertiesConfig.fishy;
     public static boolean soft = ModConfig.coloredPropertiesConfig.soft;
+    public static boolean edible = ModConfig.coloredPropertiesConfig.edible;
 
     public static int burnableBurningTime = ModConfig.coloredPropertiesConfig.burnableBurningTime;
     public static boolean burnableCatchFire = ModConfig.coloredPropertiesConfig.burnableCatchFire;
@@ -37,6 +38,12 @@ public class CurrentModConfig {
     public static int alienatedChance = ModConfig.coloredPropertiesConfig.alienatedChance;
     public static int fishyChance = ModConfig.coloredPropertiesConfig.fishyChance;
     public static int softDamageReduction = ModConfig.coloredPropertiesConfig.softDamageReduction;
+    public static int edibleHunger = ModConfig.coloredPropertiesConfig.edibleHunger;
+    public static float edibleSaturation = ModConfig.coloredPropertiesConfig.edibleSaturation;
+    public static int edibleSaturationChance = ModConfig.coloredPropertiesConfig.edibleSaturationChance;
+    public static int edibleSaturationDuration = ModConfig.coloredPropertiesConfig.edibleSaturationDuration;
+    public static int edibleNauseaChance = ModConfig.coloredPropertiesConfig.edibleNauseaChance;
+    public static int edibleNauseaDuration = ModConfig.coloredPropertiesConfig.edibleNauseaDuration;
 
     public static boolean integrationChiselColoredBlocks = ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks;
 
@@ -114,6 +121,16 @@ public class CurrentModConfig {
         softDamageReduction = reduction;
     }
 
+    public static void setEdible(boolean isEdible, int hunger, float saturation, int saturationChance, int saturationDuration, int nauseaChance, int nauseaDuration) {
+        edible = isEdible;
+        edibleHunger = hunger;
+        edibleSaturation = saturation;
+        edibleSaturationChance = saturationChance;
+        edibleSaturationDuration = saturationDuration;
+        edibleNauseaChance = nauseaChance;
+        edibleNauseaDuration = nauseaDuration;
+    }
+
     public static void setIntegrationChiselColoredBlocks(boolean coloredBlocks) {
         integrationChiselColoredBlocks = coloredBlocks;
         if (coloredBlocks) {
@@ -154,6 +171,13 @@ public class CurrentModConfig {
                 ModConfig.coloredPropertiesConfig.fishyChance);
         setSoft(ModConfig.coloredPropertiesConfig.soft,
                 ModConfig.coloredPropertiesConfig.softDamageReduction);
+        setEdible(ModConfig.coloredPropertiesConfig.edible,
+                ModConfig.coloredPropertiesConfig.edibleHunger,
+                ModConfig.coloredPropertiesConfig.edibleSaturation,
+                ModConfig.coloredPropertiesConfig.edibleSaturationChance,
+                ModConfig.coloredPropertiesConfig.edibleSaturationDuration,
+                ModConfig.coloredPropertiesConfig.edibleNauseaChance,
+                ModConfig.coloredPropertiesConfig.edibleNauseaDuration);
         setIntegrationChiselColoredBlocks(ModConfig.integrationConfig.chiselIntegration.chiselRedstoneBlocks);
     }
 }
