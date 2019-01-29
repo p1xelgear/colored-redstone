@@ -6,6 +6,7 @@
 - New colored property - Soft - purple blocks reduce fall damage. Default: 50% fall damage reduction.
 - New colored property - Edible - magenta items can be eaten. To eat an item press Shift + Right Click (**Placing item/block has priority over eating!**). By default eating magenta item restores 2 points of Hunger and 0.3 points of Saturation. There is also 5% chance to get Saturation effect for 1 second and/or Nausea effect for 15 seconds.
 - All of new colored properties can be enabled/disabled in mod config. Specific parameters of properties can also be customized in config.
+- Added Chinese translation (Thanks **pixelgear_**).
 ### Changed
 - Small changes to English config translation.
 ## 1.2.1
